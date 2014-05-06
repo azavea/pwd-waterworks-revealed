@@ -1,11 +1,14 @@
 function initialize() {
-    console.log('Initializing...');
-    document.getElementById('helloButton').addEventListener('click', toggleHello);
-    console.log('Initialized');
+    // Allow launching in desktop browser
+    var event = (window.device ? 'deviceready' : 'DOMContentLoaded');
+    document.addEventListener(event, start, false);
 }
 
-function toggleHello(e) {
-    console.log('Button clicked');
+function start(e) {
+    document.getElementById('helloButton').addEventListener('click', toggleHello);
+}
+
+function toggleHello (e) {
     var button = e.currentTarget;
     button.textContent = (button.textContent === 'Hello' ? 'Goodbye' : 'Hello');
 }
