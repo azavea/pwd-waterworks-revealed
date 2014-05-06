@@ -1,0 +1,6 @@
+cert/*
+*~
+build/node_modules/*
+build/app.zip
+
+build/local.json
