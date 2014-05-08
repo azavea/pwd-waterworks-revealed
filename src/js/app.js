@@ -1,8 +1,10 @@
-function initialize() {
-    // Allow launching in desktop browser
-    var event = (window.device ? 'deviceready' : 'DOMContentLoaded');
-    document.addEventListener(event, start, false);
-}
+
+module.exports = {
+    initialize: function () {
+        var event = (window.device ? 'deviceready' : 'DOMContentLoaded'); // Allow launching in desktop browser
+        document.addEventListener(event, start, false);
+    }
+};
 
 function start(e) {
     document.getElementById('helloButton').addEventListener('click', toggleHello);
@@ -27,4 +29,3 @@ function onGeolocateError(error) {
     alert('code: '    + error.code    + '\n' +
           'message: ' + error.message + '\n');
 }
-
