@@ -1,6 +1,5 @@
-cert/*
 *~
-build/node_modules/*
-build/app.zip
-
+node_modules/*
 build/local.json
+build/temp/*
+dist/*
