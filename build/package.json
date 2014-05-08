@@ -1,9 +1,0 @@
-{
-  "name": "pwd-waterworks-revealed",
-  "version": "1.0.0",
-  "devDependencies": {
-    "grunt": "~0.4.4",
-    "grunt-contrib-compress": "~0.8.0",
-    "grunt-phonegap-build": "~0.0.8",
-  }
-}
