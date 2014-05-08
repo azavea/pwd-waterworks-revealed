@@ -1,0 +1,164 @@
+// Partial: Static Pages
+
+.page-static {
+    .page-static-container {
+        margin: 25px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+
+        @media screen and #{$screen-md} {
+            margin: 40px 60px;
+        }
+         @media screen and #{$screen-lg} {
+            margin: 50px 80px;
+        }
+
+        .page-header {
+            height: 44px;
+            padding: 10px;
+            border-bottom: 1px solid #EEE;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            margin: 0;
+
+            h2 {
+                font-size: 1.8rem;
+                font-weight: 700;
+                width: 75%;
+                margin: 1px auto;
+                text-align: center;
+            }
+        }
+        .page-content {
+            width: 100%;
+            top: 44px;
+            bottom: 0;
+            position: absolute;
+            overflow: auto;
+            padding: 15px 20px;
+            
+            h4 {
+                font-size: 1.8rem;
+                font-weight: 700;
+                text-align: center;
+            }
+            p {
+                font-size: 1.6rem;
+                font-weight: 300;
+                line-height: 2.4rem;
+            }
+        }
+    }
+
+    .page-static-list {
+        margin: -15px -20px;
+        padding: 0;
+        list-style: none;
+
+        li {
+            &.header {
+                background: gray;
+                padding: 5px 10px;
+                font-size: 1.2rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                color: white;
+            }
+
+            a {
+                min-height: 44px;
+                display: block;
+                position: relative;
+                border-bottom: 1px solid #EEE;
+                padding: 14px 40px 14px 20px;
+                cursor: pointer;
+                color: #232323;
+
+                @media screen and #{$screen-xs}, #{$screen-sm} {
+                    padding: 10px 36px 10px 16px;
+                }
+
+                h4 {
+                    margin: 0;
+                    font-weight: 300 !important;
+                    font-size: 1.6rem;
+                    text-align: left !important;
+
+                    @media screen and #{$screen-xs}, #{$screen-sm} {
+                        font-size: 1.4rem;
+                    }
+                }
+                h6 {
+                    margin: 5px 0 5px;
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                    text-align: left !important;
+                }
+                i {
+                    position: absolute;
+                    top: 50%;
+                    margin-top: -11px;
+                    right: 10px;
+
+                    @media screen and #{$screen-xs}, #{$screen-sm} {
+                        right: 6px;
+                    }
+                }
+
+                &:hover {
+                    background: #F1F2F2;
+                }
+            }
+        }
+    }
+    .achievement-stats {
+        height: 110px;
+        width: auto;
+        margin: -15px -20px;
+
+        @media screen and #{$screen-md}, #{$screen-lg}, #{$screen-xl} {
+            display: table;
+            table-layout: fixed;
+            border-collapse: separate;
+            margin: -15px 0;
+            width: 100%;
+        }
+
+        .stat {
+            text-align: center;
+            display: block;
+            color: black;
+            font-weight: 700;
+            float: none;
+            border-bottom: 1px solid #EEE;
+
+            @media screen and #{$screen-md}, #{$screen-lg}, #{$screen-xl} {
+                display: table-cell;
+                width: 1%;
+                border-bottom: none;
+
+                &:first-child:not(:last-child) {
+                    border-right: 1px solid #EEE;
+                }
+            }
+
+            h3 {
+                font-size: 3rem;
+                font-weight: 800;
+                margin: 12px 0 2px;
+
+                @media screen and #{$screen-md}, #{$screen-lg}, #{$screen-xl} {
+                    font-size: 4.8rem;   
+                }
+            }
+            h6 {
+                margin: 0 0 15px;
+            }
+        }
+    }
+}
