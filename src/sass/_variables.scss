@@ -1,0 +1,34 @@
+// Fonts
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,800,700,600);
+$base-font-family   : 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$base-font-size     : 62.5%;
+
+
+// Colors
+
+
+// Bootstrap Colors
+$bs-primary         : #428bca;
+$bs-success         : #5cb85c;
+$bs-info            : #5bc0de;
+$bs-warning         : #f0ad4e;
+$bs-danger          : #d9534f;
+
+
+// Options
+$border-radius      : 6px;
+$transition         : 0.25s all;
+$panel-size         : 15.6em;
+
+
+// Breakpoints/Media Queries
+$screen-xs          : '(max-width: 320px)';
+$screen-sm          : '(min-width: 321px) and (max-width: 480px)';
+$screen-md          : '(min-width: 481px) and (max-width: 768px)';
+$screen-lg          : '(min-width: 769px) and (max-width: 1024px)';
+$screen-xl          : '(min-width: 1025px)';
+
+$screen-portrait    : '(orientation: portrait)';
+$screen-landscape   : '(orientation: landscape)';
+
+$screen-retina      : '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)';

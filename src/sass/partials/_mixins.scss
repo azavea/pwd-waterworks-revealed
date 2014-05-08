@@ -1,0 +1,40 @@
+// Partial: Mixins
+
+@function em($px, $base: $base-font-size) {
+	@return ($px / $base) * 1em;
+}
+
+@mixin rem($property, $values...) {
+    $max: length($values);
+    $pxValues: '';
+    $remValues: '';
+    
+    @for $i from 1 through $max {
+        $value: nth($values, $i);
+        @if type-of($value) == "number" {
+            $pxValues: #{$pxValues + $value}px;
+        }
+        @else {
+            $pxValues: #{$pxValues + $value};
+        }
+        @if $i < $max {
+            $pxValues: #{$pxValues + " "};
+        }
+    } 
+    
+    @for $i from 1 through $max {
+        $value: nth($values, $i);
+        @if type-of($value) == "number" {
+            $remValues: #{$remValues + $value/10}rem;
+        }
+        @else {
+            $remValues: #{$remValues + $value};
+        }
+        @if $i < $max {
+            $remValues: #{$remValues + " "};
+        }
+    } 
+    
+    #{$property}: $pxValues; 
+    #{$property}: $remValues; 
+}
