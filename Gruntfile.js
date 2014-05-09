@@ -55,7 +55,8 @@ module.exports = function(grunt) {
         browserify: {
             app: {
                 options: {
-                    alias: [jsDir + 'app.js:app']
+                    alias: [jsDir + 'app.js:app'],
+                    transform: ['browserify-shim']
                 },
                 src: [],  // Includes everything in "alias", plus their (recursive) dependencies
                 dest: jsBundlePath
@@ -71,7 +72,7 @@ module.exports = function(grunt) {
 
         sass: {
             app: {
-                src: [sassDir + 'app.scss'],
+                src: [sassDir + 'main.scss'],
                 dest: cssBundlePath
             }
         },
@@ -79,7 +80,6 @@ module.exports = function(grunt) {
         concat: {
             lib: {
                 src: [
-                    // 'somepath/something.css'
                 ],
                 dest: cssVendorPath
             }
@@ -95,8 +95,13 @@ module.exports = function(grunt) {
         copy: {
             app: {
                 expand: true,
-                cwd: srcDir,
-                src: ["index.html"],
+                cwd: 'src/',
+                src: [
+                    'index.html',
+                    'sass/lib/fontello.css',
+                    'sass/lib/bootstrap.min.css',
+                    'sass/fonts/*'
+                ],
                 dest: distDir
             }
         },
@@ -106,7 +111,7 @@ module.exports = function(grunt) {
             app: {
                 expand: true,
                 cwd: distDir,
-                src: ["*"]
+                src: ["**/*"]
             }
         },
 

@@ -12,7 +12,7 @@
 
     <link href="sass/lib/bootstrap.min.css" rel="stylesheet">
     <link href="sass/lib/fontello.css" rel="stylesheet">
-    <link href="sass/main.css" rel="stylesheet">
+    <link href="bundle.css" rel="stylesheet">
 </head>
 <body>
     <div id="drawers">
@@ -229,11 +229,19 @@
         </div>
     </div>
 
+    <script src="phonegap.js"></script>
+    <script src="bundle.js"></script>
+    <script>
+        require('app').init();
+    </script>
+
+<!--
     <script src="js/lib/jquery.min.js"></script>
     <script src="js/lib/bootstrap.min.js"></script>
     <script src="js/lib/snap.min.js"></script>
     <script src="js/app.js"></script>
 
     <script src="//192.168.96.39:35729/livereload.js"></script>
+-->
 </body>
 </html>
