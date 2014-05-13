@@ -1,25 +1,247 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="bundle.css" />
-        <title>Water Works Revealed</title>
-    </head>
-    <body>
-        <p>&nbsp;</p>
-        <p>
-            <button id="helloButton">Hello</button>
-            World!
-        </p>
-        <p>
-            <button id="geolocateButton">Geolocate</button>
-        </p>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Water Revealed">
 
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="bundle.js"></script>
-        <script type="text/javascript">
-            require('app').initialize();
-        </script>
-    </body>
+    <title>Water Revealed</title>
+
+    <link href="sass/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="sass/lib/fontello.css" rel="stylesheet">
+    <link href="bundle.css" rel="stylesheet">
+</head>
+<body>
+    <div id="drawers">
+        <nav class="menu" role="navigation">
+            <ul>
+                <li class="header">Water Revealed</li>
+                <li><a href="#" data-page="map">Explore the Map</a></li>
+                <li class="divider"></li>
+                <li><a href="#" data-page="quests">My Quests</a></li>
+                <li class="divider"></li>
+                <li><a href="#" data-page="encyclopedia">Encyclopedia</a></li>
+                <li class="divider"></li>
+                <li><a href="#" data-page="achievements">My Achievements</a></li>
+            </ul>
+            <ul class="bottom">
+                <li><a href="#" data-page="settings">Settings</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div id="content" class="wrapper">
+        <div id="map" class="page page-map">
+            <a href="#menu" class="menu-link"><i class="icon-menu"></i></a>
+            
+            <div class="overlay">
+                <div class="cards">
+                    <div class="card active">
+                        <div class="card-header">
+                            <a data-navigate="close" class="left"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                            <h2>New Quest</h2>
+                        </div>
+                        <div class="card-visual"></div>
+                        <div class="card-icon"></div>
+                        <div class="card-content scrollable">
+                            <h4>Can you promenade?</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum velit ac velit feugiat, et semper turpis gravida. Donec at placerat urna, id suscipit odio. Morbi a ornare justo, nec rutrum purus. Aenean at dapibus eros. Nunc vitae elementum nisi. Etiam non lobortis sapien. Duis non lorem et mi accumsan rutrum at a dui. Suspendisse non semper est, non eleifend quam. In eget metus tincidunt, tristique risus a, congue nisl.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" data-navigate="close">Decline</a>
+                            <a href="#" data-navigate="next">Accept</a>
+                        </div>
+                    </div>
+                    <div class="card next">
+                        <div class="card-header">
+                            <a data-navigate="prev" class="left"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                            <h2>Quest Activity</h2>
+                        </div>
+                        <div class="card-visual"></div>
+                        <div class="card-icon"></div>
+                        <div class="card-content scrollable">
+                            <h4>Can you promenade?</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum velit ac velit feugiat, et semper turpis gravida. Donec at placerat urna, id suscipit odio. Morbi a ornare justo, nec rutrum purus. Aenean at dapibus eros. Nunc vitae elementum nisi. Etiam non lobortis sapien. Duis non lorem et mi accumsan rutrum at a dui. Suspendisse non semper est, non eleifend quam. In eget metus tincidunt, tristique risus a, congue nisl. <br><br>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum velit ac velit feugiat, et semper turpis gravida. Donec at placerat urna, id suscipit odio. Morbi a ornare justo, nec rutrum purus. Aenean at dapibus eros. Nunc vitae elementum nisi. Etiam non lobortis sapien. Duis non lorem et mi accumsan rutrum at a dui. Suspendisse non semper est, non eleifend quam. In eget metus tincidunt, tristique risus a, congue nisl.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" data-navigate="next">Take a Photo</a>
+                        </div>
+                    </div>
+                    <div class="card next">
+                        <div class="card-header">
+                            <a data-navigate="prev" class="left"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                            <h2>Quest Completed!</h2>
+                        </div>
+                        <div class="card-visual"></div>
+                        <div class="card-icon"></div>
+                        <div class="card-content scrollable"></div>
+                        <div class="card-footer">
+                            <a href="#" data-navigate="close">Continue&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="quests" class="page page-static">
+            <div class="page-static-container">
+                <div class="page-header">
+                    <a href="#menu" class="menu-link"><i class="icon-menu"></i></a>
+                    <h2>My Quests</h2>
+                </div>
+                <div class="page-content scrollable">
+                    <ul class="page-static-list">
+                        <li class="header">Current Quests</li>
+                        <li>
+                            <a>
+                                <h4>Can you promenade?</h4>
+                                <h6>Water and Sustainability</h6>
+                                <i class="icon-right-open"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <h4>Start the water wheels</h4>
+                                <h6>Water and Sustainability</h6>
+                                <i class="icon-right-open"></i>
+                            </a>
+                        </li>
+                        <li class="header">Completed Quests</li>
+                        <li>
+                            <a>
+                                <h4>My first quest!</h4>
+                                <h6>Water and Sustainability</h6>
+                                <i class="icon-right-open"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="encyclopedia" class="page page-static">
+            <div class="page-static-container">
+                <div class="page-header">
+                    <a href="#menu" class="menu-link"><i class="icon-menu"></i></a>
+                    <h2>Encyclopedia</h2>
+                </div>
+                <div class="page-content scrollable">
+                    <ul class="page-static-list">
+                        <li class="header">Fairmount Water Works</li>
+                        <li>
+                            <a>
+                                <h4>Architecture</h4>
+                                <i class="icon-right-open"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <h4>Fairmount Dam</h4>
+                                <i class="icon-right-open"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <h4>Fishways</h4>
+                                <i class="icon-right-open"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <h4>Reservoir</h4>
+                                <i class="icon-right-open"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <h4>Water wheels</h4>
+                                <i class="icon-right-open"></i>
+                            </a>
+                        </li>
+                        <li class="header">Fairmount Water Works</li>
+                        <li>
+                            <a>
+                                <h4>Architecture</h4>
+                                <i class="icon-right-open"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <h4>Fairmount Dam</h4>
+                                <i class="icon-right-open"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <h4>Fishways</h4>
+                                <i class="icon-right-open"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <h4>Reservoir</h4>
+                                <i class="icon-right-open"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <h4>Water wheels</h4>
+                                <i class="icon-right-open"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="achievements" class="page page-static">
+            <div class="page-static-container">
+                <div class="page-header">
+                    <a href="#menu" class="menu-link"><i class="icon-menu"></i></a>
+                    <h2>My Achievements</h2>
+                </div>
+                <div class="page-content scrollable">
+                    <div class="achievement-stats">
+                        <div class="stat">
+                            <h3>12</h3>
+                            <h6>Quests Completed</h6>
+                        </div>
+                        <div class="stat">
+                            <h3>32:10</h3>
+                            <h6>Time Spent Exploring</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="settings" class="page page-static active">
+            <div class="page-static-container">
+                <div class="page-header">
+                    <a href="#menu" class="menu-link"><i class="icon-menu"></i></a>
+                    <h2>Settings</h2>
+                </div>
+                <div class="page-content scrollable">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="phonegap.js"></script>
+    <script src="bundle.js"></script>
+    <script>
+        require('app').init();
+    </script>
+
+<!--
+    <script src="js/lib/jquery.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/snap.min.js"></script>
+    <script src="js/app.js"></script>
+
+    <script src="//192.168.96.39:35729/livereload.js"></script>
+-->
+</body>
 </html>
