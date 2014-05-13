@@ -1,31 +1,8 @@
+'use strict';
 
 module.exports = {
-    initialize: function () {
-        var event = (window.device ? 'deviceready' : 'DOMContentLoaded'); // Allow launching in desktop browser
-        document.addEventListener(event, start, false);
+    init: function () {
+        require('./ui').init();
+        require('./cards').init();
     }
 };
-
-function start(e) {
-    document.getElementById('helloButton').addEventListener('click', toggleHello);
-    document.getElementById('geolocateButton').addEventListener('click', geolocate);
-}
-
-function toggleHello (e) {
-    var button = e.currentTarget;
-    button.textContent = (button.textContent === 'Hello' ? 'Goodbye' : 'Hello');
-}
-
-function geolocate() {
-    navigator.geolocation.getCurrentPosition(onGeolocateSuccess, onGeolocateError);
-}
-
-function onGeolocateSuccess(position) {
-    alert('Latitude:  ' + position.coords.latitude + '\n' +
-          'Longitude: ' + position.coords.longitude);
-};
-
-function onGeolocateError(error) {
-    alert('code: '    + error.code    + '\n' +
-          'message: ' + error.message + '\n');
-}
