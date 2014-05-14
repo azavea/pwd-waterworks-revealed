@@ -35,7 +35,7 @@
     <div id="content" class="wrapper">
         <div id="map" class="page page-map">
             <a href="#menu" class="menu-link"><i class="icon-menu"></i></a>
-            
+
             <div class="overlay">
                 <div class="cards">
                     <div class="card active">
@@ -69,7 +69,22 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <a href="#" data-navigate="next">Take a Photo</a>
+                            <a href="#" data-navigate="next" data-activity="photo">Take a Photo</a>
+                        </div>
+                    </div>
+                    <div class="card next">
+                        <div class="card-header">
+                            <a data-navigate="prev" class="left"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                            <h2>Quest Activity</h2>
+                        </div>
+                        <div class="card-content scrollable">
+                            <h4>Nice Promenade!</h4>
+                            <p>
+                            <img id="pic" style="height:300px;width:100%;border:1px solid gray;"/>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" data-navigate="close">I'm Finished</a>
                         </div>
                     </div>
                     <div class="card next">
@@ -223,7 +238,7 @@
                     <h2>Settings</h2>
                 </div>
                 <div class="page-content scrollable">
-                    
+
                 </div>
             </div>
         </div>
@@ -232,7 +247,11 @@
     <script src="phonegap.js"></script>
     <script src="bundle.js"></script>
     <script>
-        require('app').init();
+        // Allow launching in desktop browser as well as phonegap shell
+        var loadEvent = (window.device ? 'deviceready' : 'DOMContentLoaded');
+        document.addEventListener(loadEvent, function() {
+            require('app').init();
+        });
     </script>
 
 <!--
