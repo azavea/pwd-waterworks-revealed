@@ -97,6 +97,7 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: 'src/',
                 src: [
+                    'config.xml',
                     'index.html',
                     'sass/lib/fontello.css',
                     'sass/lib/bootstrap.min.css',
