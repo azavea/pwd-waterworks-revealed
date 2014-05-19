@@ -10,7 +10,8 @@
         "grunt": "^0.4.4",
         "baconjs": "^0.7.10",
         "jquery": "^1.11.1",
-        "lodash": "^2.4.1"
+        "lodash": "^2.4.1",
+        "leaflet": "0.7.x"
     },
     "devDependencies": {
         "grunt": "^0.4.4",
