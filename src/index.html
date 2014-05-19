@@ -12,6 +12,7 @@
 
     <link href="sass/lib/bootstrap.min.css" rel="stylesheet">
     <link href="sass/lib/fontello.css" rel="stylesheet">
+    <link href="sass/lib/leaflet.css" rel="stylesheet">
     <link href="bundle.css" rel="stylesheet">
 </head>
 <body>
@@ -33,12 +34,18 @@
         </nav>
     </div>
     <div id="content" class="wrapper">
-        <div id="map" class="page page-map">
+        <div id="map" class="page page-map active">
             <a href="#menu" class="menu-link"><i class="icon-menu"></i></a>
 
             <div class="overlay">
                 <div class="cards">
                     <div class="card active">
+                        <div class="card-header">
+                            <h2>Map</h2>
+                        </div>
+                        <div id="tour-map" style="width:100%;height:100%;"></div>
+                    </div>
+                    <div class="card">
                         <div class="card-header">
                             <a data-navigate="close" class="left"><span class="glyphicon glyphicon-chevron-left"></span></a>
                             <h2>New Quest</h2>
@@ -231,7 +238,7 @@
                 </div>
             </div>
         </div>
-        <div id="settings" class="page page-static active">
+        <div id="settings" class="page page-static">
             <div class="page-static-container">
                 <div class="page-header">
                     <a href="#menu" class="menu-link"><i class="icon-menu"></i></a>

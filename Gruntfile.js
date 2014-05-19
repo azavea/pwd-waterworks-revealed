@@ -99,9 +99,11 @@ module.exports = function(grunt) {
                 src: [
                     'config.xml',
                     'index.html',
+                    'sass/lib/leaflet.css',
                     'sass/lib/fontello.css',
                     'sass/lib/bootstrap.min.css',
-                    'sass/fonts/*'
+                    'sass/fonts/*',
+                    'tiles/**/*'
                 ],
                 dest: distDir
             }

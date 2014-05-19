@@ -6,6 +6,7 @@ module.exports = {
     init: function () {
         require('./ui').init();
         require('./cards').init();
+        require('./map')();
 
         // Demonstrate use of photocapture with optional callback
         var PhotoCapture = require('./photoCapture'),
