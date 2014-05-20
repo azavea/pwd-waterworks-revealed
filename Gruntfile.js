@@ -103,7 +103,8 @@ module.exports = function(grunt) {
                     'sass/lib/fontello.css',
                     'sass/lib/bootstrap.min.css',
                     'sass/fonts/*',
-                    'tiles/**/*'
+                    'tiles/**/*',
+                    'img/**/*'
                 ],
                 dest: distDir
             }
