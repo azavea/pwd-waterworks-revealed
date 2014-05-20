@@ -6,16 +6,45 @@ var L = require('leaflet'),
     locationStream = require('./geolocator');
 
 function setupMap(options) {
-        var map = L.map('tour-map').setView([39.9665675,-75.1834254], 18),
-            opts = _.extend({ map: map }, options),
-            updateMarker = setupMarker(map),
-            loc = locationStream(opts).map(toLatLng);
+    var mapOptions = {
+            attributionControl: false,
+            zoomControl: false,
+            center: [39.9665675,-75.1834254],
+            zoom: 18 },
+        map = L.map('tour-map', mapOptions),
+        questLayers = L.layerGroup().addTo(map),
+        getQuestZoneForLatLng = makeQuestZoneTester(questLayers),
+        opts = _.extend({ map: map }, options),
+        updateMarker = setupMarker(map),
+        loc = locationStream(opts).map(toLatLng);
 
-        L.tileLayer('tiles/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(map);
-        loc.onValue(updateMarker);
+    L.tileLayer('tiles/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(map);
+    loc.onValue(updateMarker);
 
+    // Test for quest zone enter
+    loc.map(getQuestZoneForLatLng).filter(_.isObject)
+        .map('.options.attributes')
+        .skipDuplicates()
+        .onValue(initiateQuest);
+
+    return {
+        setQuestZones: setQuestZones(map, questLayers)
+    };
 }
 
+function initiateQuest(questDef) {
+    alert('activated quest: ' + questDef.name);
+}
+
+function makeQuestZoneTester(groupLayer) {
+    return function(latLng) {
+        var layers = groupLayer.getLayers(),
+            match = _.find(layers, function(quest) {
+                return quest.getLatLng().distanceTo(latLng) <= quest.getRadius();
+            });
+        return match;
+    };
+}
 
 function toLatLng(position) {
     return L.latLng([position.coords.latitude, position.coords.longitude]);
@@ -27,6 +56,22 @@ function setupMarker(map) {
 
     return function(latLng) {
         userMarker.setLatLng(latLng);
+    };
+}
+
+function setQuestZones(map, questLayer) {
+    return function(quests) {
+        _.each(quests, function(quest) {
+            var geom = quest.location,
+                options = {
+                    attributes: quest,
+                    weight: quest.weight || 1,
+                    color: quest.color || '#1B1BB3'
+                },
+                circle = L.circle([geom[0], geom[1]], quest.radius, options);
+
+            questLayer.addLayer(circle);
+        });
     };
 }
 
