@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Water Wheel",
+    "location": [39.9665302,-75.1834983],
+    "radius": 10
+  },
+  {
+    "id": 2,
+    "name": "Promenade",
+    "location": [39.9668755,-75.1840642],
+    "radius": 15
+  },
+  {
+    "id": 3,
+    "name": "Pump House",
+    "location": [39.965894,-75.1833469],
+    "radius": 10
+  }
+]

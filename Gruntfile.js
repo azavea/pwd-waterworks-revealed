@@ -38,7 +38,7 @@ module.exports = function(grunt) {
         cssVendorPath    = distDir + 'vendor.css',
         cssMinBundlePath = distDir + 'bundle.min.css',
         zipFilePath = tempDir + 'app.zip';
-      
+
     grunt.initConfig({
         jshint: {
             options: {
@@ -99,9 +99,13 @@ module.exports = function(grunt) {
                 src: [
                     'config.xml',
                     'index.html',
+                    'sass/lib/leaflet.css',
                     'sass/lib/fontello.css',
                     'sass/lib/bootstrap.min.css',
-                    'sass/fonts/*'
+                    'sass/fonts/*',
+                    'tiles/**/*',
+                    'img/**/*',
+                    'quests.json'
                 ],
                 dest: distDir
             }

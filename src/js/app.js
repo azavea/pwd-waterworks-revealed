@@ -7,15 +7,23 @@ module.exports = {
         require('./ui').init();
         require('./cards').init();
 
-        // Demonstrate use of photocapture with optional callback
-        var PhotoCapture = require('./photoCapture'),
-            display = document.getElementById('pic'),
-            camera = new PhotoCapture(display);
+        var map = require('./map').init({mockLocation: true}),
+            questMgr = require('./quests').init(map);
 
-        $('a[data-activity="photo"]').on('click', function() {
-            camera.snap(function(path) {
-                console.log('photo loaded from: ' + path);
-            });
-        });
+        demoCamera();
     }
 };
+
+function demoCamera() {
+
+    // Demonstrate use of photocapture with optional callback
+    var PhotoCapture = require('./photoCapture'),
+        display = document.getElementById('pic'),
+        camera = new PhotoCapture(display);
+
+    $('a[data-activity="photo"]').on('click', function() {
+        camera.snap(function(path) {
+            console.log('photo loaded from: ' + path);
+        });
+    });
+}
