@@ -7,15 +7,13 @@ module.exports = {
         require('./ui').init();
         require('./cards').init();
 
-        var map = require('./map').init({mockLocation: true}),
-            questMgr = require('./quests').init(map);
+        require('./map').init({ mockLocation: true });
 
         demoCamera();
     }
 };
 
 function demoCamera() {
-
     // Demonstrate use of photocapture with optional callback
     var PhotoCapture = require('./photoCapture'),
         display = document.getElementById('pic'),

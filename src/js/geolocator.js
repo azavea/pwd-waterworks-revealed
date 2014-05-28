@@ -2,6 +2,16 @@
 
 var Bacon = require('baconjs');
 
+module.exports = {
+    init: function(options) {
+        var geoService = navigator.geolocation;
+        if (options && options.mockLocation) {
+            geoService = mockLocationStream(options.map);
+        }
+        return getLocationStream(geoService);
+    }
+};
+
 function getLocationStream(geoProvider) {
     var options = {
         enableHighAccuracy: true
@@ -27,7 +37,6 @@ function getLocationStream(geoProvider) {
     });
 }
 
-
 /* Provides a geolocation-like result that returns location updated based 
  * on map taps.  Used for mocking GPS location on the map */
 function mockLocationStream(map) {
@@ -49,11 +58,3 @@ function mockLocationStream(map) {
         }
     };
 }
-
-module.exports = function(options) {
-    var geoService = navigator.geolocation;
-    if (options && options.mockLocation) {
-        geoService = mockLocationStream(options.map);
-    }
-    return getLocationStream(geoService);
-};
