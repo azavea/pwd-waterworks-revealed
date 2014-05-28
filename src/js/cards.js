@@ -1,9 +1,22 @@
 'use strict';
 
-var $ = require('jquery');
+var $ = require('jquery'),
+    _ = require('lodash'),
+    Bacon = require('baconjs');
+
+var deckFinishedBus = new Bacon.Bus();
 
 function init() {
     $('.card a[data-navigate]').on('click', navigateCards);
+}
+
+function openDeck(id) {
+    $('#' + id).fadeIn(400);
+}
+
+function closeDeck($card) {
+    $card.closest('.overlay')
+         .fadeOut(400);
 }
 
 function navigateCards(e) {
@@ -23,11 +36,16 @@ function navigateCards(e) {
                  .toggleClass('prev active')
                  .nextAll();
     } else if (action === 'close') {
-        $thisCard.closest('.overlay')
-                 .fadeOut(400);
+        closeDeck($thisCard);
+    } else if (action === 'finish') {
+        var deckId = $thisCard.closest('.overlay').attr('id');
+        closeDeck($thisCard);
+        deckFinishedBus.push(deckId);
     }
 }
 
 module.exports = {
-    init: init
+    init: init,
+    deckFinishedStream: deckFinishedBus.map(_.identity),
+    openDeck: openDeck
 };
