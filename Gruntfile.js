@@ -56,7 +56,10 @@ module.exports = function(grunt) {
             app: {
                 options: {
                     alias: [jsDir + 'app.js:app'],
-                    transform: ['browserify-shim']
+                    transform: ['browserify-shim'],
+                    bundleOptions: {
+                        debug: debug  // Create source maps in debug mode
+                    }
                 },
                 src: [],  // Includes everything in "alias", plus their (recursive) dependencies
                 dest: jsBundlePath
@@ -102,6 +105,7 @@ module.exports = function(grunt) {
                     'sass/lib/leaflet.css',
                     'sass/lib/fontello.css',
                     'sass/lib/bootstrap.min.css',
+                    'sass/lib/bootstrap-dialog.min.css',
                     'sass/fonts/*',
                     'tiles/**/*',
                     'img/**/*',
