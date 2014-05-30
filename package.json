@@ -30,10 +30,12 @@
     },
     "browser": {
         "bootstrap": "./src/js/shim/bootstrap.min.js",
+        "bootstrap-dialog": "./src/js/shim/bootstrap-dialog.min.js",
         "Snap": "./src/js/shim/snap.min.js"
     },
     "browserify-shim": {
         "bootstrap": { "depends":"jquery:jQuery", "exports": "bootstrap" },
+        "bootstrap-dialog": { "depends":["jquery:jQuery", "bootstrap:bootstrap"], "exports": "BootstrapDialog" },
         "Snap": { "exports": "Snap" }
     }
 }

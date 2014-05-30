@@ -7,6 +7,17 @@
  * */
 var _ = require('lodash');
 
+if (!navigator.camera) {
+    // Create dummy camera object so we can run in a browser
+    navigator.camera = {
+        DestinationType: {File_URI: 1},
+        EncodingType: {PNG: 1},
+        getPicture: function (onSuccess, onFailure, options) {
+            onSuccess('img/location.png');
+        }
+    };
+}
+
 /*
  * Constructor arguments:
  *  - displayEl: <optional> Browser DOM <img> element to set photo source on
@@ -15,13 +26,12 @@ var _ = require('lodash');
 function PhotoCapture(displayEl, options) {
     this.displayEl = displayEl;
     this.options = _.extend({
-            quality: 60,
-            destinationType: navigator.camera.DestinationType.FILE_URI,
-            encodingType: navigator.camera.EncodingType.PNG,
-            correctOrientation: true,
-            saveToPhotoAlbum: true
-        }, options);
-
+        quality: 60,
+        destinationType: navigator.camera.DestinationType.FILE_URI,
+        encodingType: navigator.camera.EncodingType.PNG,
+        correctOrientation: true,
+        saveToPhotoAlbum: true
+    }, options);
 }
 
 PhotoCapture.prototype.snap = function(onSuccess, onFailure) {
