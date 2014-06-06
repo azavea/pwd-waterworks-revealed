@@ -6,7 +6,7 @@
         id        = "com.azavea.pwd-waterworks-revealed"
         version   = "1.0.0">
 
-    <name>Water Works Revealed</name>
+    <name>Water Revealed</name>
 
     <description>
         Prototype app to guide users on "quests" which reveal interesting things about the Fairmount Water Works.
