@@ -1,6 +1,7 @@
 'use strict';
 
-var local = require('./build/local.json');
+var local = require('./build/local.json'),
+    questsToLoad = require('./src/questsToLoad.json');
 
 module.exports = function(grunt) {
 
@@ -20,8 +21,8 @@ module.exports = function(grunt) {
     grunt.registerTask('check', ['jshint']);
 
     grunt.registerTask('js', debug ? ['browserify'] : ['browserify', 'uglify']);
-    grunt.registerTask('css', debug ? ['sass', 'concat'] : ['sass', 'concat', 'cssmin']);
-    grunt.registerTask('app', ['clean', 'js', 'css', 'copy']);
+    grunt.registerTask('css', debug ? ['sass', 'concat:lib'] : ['sass', 'concat:lib', 'cssmin']);
+    grunt.registerTask('app', ['clean', 'concat:questJson', 'js', 'css', 'copy']);
 
     grunt.registerTask('phonegap', ['compress', 'phonegap-build']);
 
@@ -30,7 +31,8 @@ module.exports = function(grunt) {
     var srcDir  = 'src/',
         tempDir = 'build/temp/',
         distDir = 'dist/',
-        jsDir   = srcDir + 'js/', 
+        questDir = srcDir + 'quests/',
+        jsDir   = srcDir + 'js/',
         sassDir = srcDir + 'sass/',
         jsBundlePath     = distDir + 'bundle.js',
         jsMinBundlePath  = distDir + 'bundle.min.js',
@@ -85,6 +87,15 @@ module.exports = function(grunt) {
                 src: [
                 ],
                 dest: cssVendorPath
+            },
+            questJson: {
+                options: {
+                    banner: '[',
+                    footer: ']',
+                    separator: ','
+                },
+                src: questsToLoad.map(function (dir) {return questDir + dir + '/quest.json'}),
+                dest: srcDir + 'quests.json'
             }
         },
 
@@ -102,14 +113,14 @@ module.exports = function(grunt) {
                 src: [
                     'config.xml',
                     'index.html',
+                    'quests/**/*',
                     'sass/lib/leaflet.css',
                     'sass/lib/fontello.css',
                     'sass/lib/bootstrap.min.css',
                     'sass/lib/bootstrap-dialog.min.css',
                     'sass/fonts/*',
                     'tiles/**/*',
-                    'img/**/*',
-                    'quests.json'
+                    'img/**/*'
                 ],
                 dest: distDir
             }

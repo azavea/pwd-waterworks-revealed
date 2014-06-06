@@ -4,9 +4,11 @@ var $ = require('jquery');
 
 module.exports = {
     init: function () {
+        require('./templates').init();
+        require('./fileReader').init();
+        require('./questLoader').loadHtml();
         require('./ui').init();
         require('./cards').init();
-
         require('./map').init({ mockLocation: true });
 
         demoCamera();
