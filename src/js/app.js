@@ -4,12 +4,18 @@ var $ = require('jquery');
 
 module.exports = {
     init: function () {
-        require('./ui').init();
-        require('./cards').init();
+        require('./templates').init();
+        require('./fileReader').init();
 
-        require('./map').init({ mockLocation: true });
+        var allQuestsLoadedStream = require('./questLoader').loadHtml();
 
-        demoCamera();
+        allQuestsLoadedStream.onValue(function () {
+            require('./ui').init();
+            require('./cards').init();
+            require('./map').init({ mockLocation: true });
+
+            demoCamera();
+        })
     }
 };
 
