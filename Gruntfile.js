@@ -145,7 +145,7 @@ module.exports = function(grunt) {
                     appId: local.appId,
                     user: { token: local.token },
                     pollRate: 3000,  // ms
-                    download: { ios: tempDir + 'ios.ipa' }
+                    download: { android: tempDir + 'android.apk' }
                 }
             }
         }
