@@ -4,7 +4,7 @@ var $ = require('jquery'),
     _ = require('lodash'),
     Bacon = require('baconjs'),
     fileReader = require('./fileReader'),
-    templates = require('./templates'),
+    questContentTemplate = require('../templates/quest-content.ejs'),
     quests = require('../quests.json');
 
 module.exports = {
@@ -20,8 +20,7 @@ function loadQuest(quest) {
         var htmlPath = 'quests/' + quest.id + '/index.html';
 
         fileReader.readAsText(htmlPath, onFail, function (questHtml) {
-            var template = templates.get('template-quest-content'),
-                html = template({ id: quest.id, html: questHtml });
+            var html = questContentTemplate({ id: quest.id, html: questHtml });
             $('#map').append(html);
 
             pushToStream();
