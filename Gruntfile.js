@@ -97,7 +97,7 @@ module.exports = function(grunt) {
                     footer: ']',
                     separator: ','
                 },
-                src: questsToLoad.map(function (dir) {return questDir + dir + '/quest.json'}),
+                src: questsToLoad.map(function (dir) {return questDir + dir + '/quest.json'; }),
                 dest: srcDir + 'quests.json'
             }
         },
