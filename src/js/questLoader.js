@@ -25,7 +25,8 @@ function loadQuest(quest) {
 
             pushToStream();
         });
-    })
+    });
+
     return questLoadedStream;
 }
 

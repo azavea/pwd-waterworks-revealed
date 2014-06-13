@@ -14,7 +14,7 @@ module.exports = {
             require('./map').init({ mockLocation: true });
 
             demoCamera();
-        })
+        });
     }
 };
 
