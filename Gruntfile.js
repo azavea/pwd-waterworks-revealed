@@ -58,7 +58,10 @@ module.exports = function(grunt) {
             app: {
                 options: {
                     alias: [jsDir + 'app.js:app'],
-                    transform: ['browserify-shim'],
+                    transform: [
+                        'browserify-shim',
+                        ['jstify', { engine: 'lodash', noMinify: true }]
+                    ],
                     bundleOptions: {
                         debug: debug  // Create source maps in debug mode
                     }
