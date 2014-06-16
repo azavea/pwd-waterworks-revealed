@@ -32,7 +32,8 @@ function initMap() {
             attributionControl: false,
             zoomControl: false,
             center: [39.9665675,-75.1834254],
-            zoom: 18 },
+            zoom: 18
+        },
         map = L.map('tour-map', mapOptions);
     return map;
 }
