@@ -4,7 +4,6 @@ var $ = require('jquery');
 
 module.exports = {
     init: function () {
-        require('./templates').init();
         require('./fileReader').init();
 
         var allQuestsLoadedStream = require('./questLoader').loadHtml();
@@ -15,7 +14,7 @@ module.exports = {
             require('./map').init({ mockLocation: true });
 
             demoCamera();
-        })
+        });
     }
 };
 
