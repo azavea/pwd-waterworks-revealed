@@ -58,7 +58,10 @@ module.exports = function(grunt) {
             app: {
                 options: {
                     alias: [jsDir + 'app.js:app'],
-                    transform: ['browserify-shim'],
+                    transform: [
+                        'browserify-shim',
+                        ['jstify', { engine: 'lodash', noMinify: true }]
+                    ],
                     bundleOptions: {
                         debug: debug  // Create source maps in debug mode
                     }
@@ -94,7 +97,7 @@ module.exports = function(grunt) {
                     footer: ']',
                     separator: ','
                 },
-                src: questsToLoad.map(function (dir) {return questDir + dir + '/quest.json'}),
+                src: questsToLoad.map(function (dir) {return questDir + dir + '/quest.json'; }),
                 dest: srcDir + 'quests.json'
             }
         },
@@ -142,7 +145,7 @@ module.exports = function(grunt) {
                     appId: local.appId,
                     user: { token: local.token },
                     pollRate: 3000,  // ms
-                    download: { ios: tempDir + 'ios.ipa' }
+                    download: { android: tempDir + 'android.apk' }
                 }
             }
         }
