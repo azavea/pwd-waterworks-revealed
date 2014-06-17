@@ -13,6 +13,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-phonegap-build');
     grunt.loadNpmTasks('grunt-sass');
 
@@ -39,7 +40,19 @@ module.exports = function(grunt) {
         cssBundlePath    = distDir + 'bundle.css',
         cssVendorPath    = distDir + 'vendor.css',
         cssMinBundlePath = distDir + 'bundle.min.css',
-        zipFilePath = tempDir + 'app.zip';
+        zipFilePath = tempDir + 'app.zip',
+        appAssets = [
+            'config.xml',
+            'index.html',
+            'quests/**/*',
+            'sass/lib/leaflet.css',
+            'sass/lib/fontello.css',
+            'sass/lib/bootstrap.min.css',
+            'sass/lib/bootstrap-dialog.min.css',
+            'sass/fonts/*',
+            'tiles/**/*',
+            'img/**/*'
+        ];
 
     grunt.initConfig({
         jshint: {
@@ -113,18 +126,7 @@ module.exports = function(grunt) {
             app: {
                 expand: true,
                 cwd: 'src/',
-                src: [
-                    'config.xml',
-                    'index.html',
-                    'quests/**/*',
-                    'sass/lib/leaflet.css',
-                    'sass/lib/fontello.css',
-                    'sass/lib/bootstrap.min.css',
-                    'sass/lib/bootstrap-dialog.min.css',
-                    'sass/fonts/*',
-                    'tiles/**/*',
-                    'img/**/*'
-                ],
+                src: appAssets,
                 dest: distDir
             }
         },
@@ -147,6 +149,24 @@ module.exports = function(grunt) {
                     pollRate: 3000,  // ms
                     download: { android: tempDir + 'android.apk' }
                 }
+            }
+        },
+
+        watch: {
+            options: {
+                cwd: srcDir,
+            },
+            scripts: {
+                files: ['js/**/*.js', 'templates/**/*'],
+                tasks: ['js']
+            },
+            styles: {
+                files: ['sass/*.scss'],
+                tasks: ['sass']
+            },
+            assets: {
+                files: appAssets,
+                tasks: ['copy:app']
             }
         }
     });

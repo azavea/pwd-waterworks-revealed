@@ -38,7 +38,7 @@ function getQuestForLatLng(latLng) {
             return quest.latLng.distanceTo(latLng) <= quest.radius;
         });
     return questOrUndefined;
-};
+}
 
 function questDiff(oldQuest, newQuest) {
     return {
@@ -50,7 +50,7 @@ function questDiff(oldQuest, newQuest) {
 function initStatus() {
     _.each(quests, function (quest) {
         quest.status = STATUS_NOT_STARTED;
-    })
+    });
 }
 
 function onQuestFinished(domId) {
@@ -59,7 +59,7 @@ function onQuestFinished(domId) {
         return (quest.id === id);
     });
     if (quest) {
-       quest.status = STATUS_FINISHED;
+        quest.status = STATUS_FINISHED;
     }
 }
 
@@ -90,7 +90,7 @@ function switchToQuest(quest) {
         }
         dialog.close();
         cards.openDeck('quest_' + quest.id);
-    }
+    };
 }
 
 function cleanupZoneChange(diff) {
