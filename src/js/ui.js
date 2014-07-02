@@ -1,7 +1,8 @@
 'use strict';
 
-var $    = require('jquery'),
-    Snap = require('Snap');
+var $        = require('jquery'),
+    jqToggle = require('toggles'),
+    Snap     = require('Snap');
 
 var snap;
 
@@ -15,8 +16,18 @@ function init() {
     });
 
     initSnap();
+    initToggleButtons();
+
     $('.menu-link').on('click', toggleMenu);
     $('.menu').on('click', 'a', togglePages);
+}
+
+function initToggleButtons() {
+    $('.toggles').toggles({
+        height: 35,
+        width: 100,
+        on: false
+    });
 }
 
 function initSnap() {

@@ -4,13 +4,32 @@ var Bacon = require('baconjs');
 
 module.exports = {
     init: function(options) {
-        var geoService = navigator.geolocation;
-        if (options && options.mockLocation) {
-            geoService = mockLocationStream(options.map);
-        }
-        return getLocationStream(geoService);
+        var active = isActive(options.$enableMockButton),
+            mockEnabledProp = Bacon.fromEventTarget(options.$enableMockButton, 'toggle')
+                .map(isActive, options.$enableMockButton)
+                .toProperty(active),
+            geoProp = getLocationStream(navigator.geolocation).toProperty(),
+            geoStream = geoProp
+                .filter(mockEnabledProp.not())
+                .changes(),
+            mockStream = getLocationStream(mockLocationStream(options.map))
+                .filter(mockEnabledProp),
+            manualBus = new Bacon.Bus();
+
+        // The real geolocation could have been updating while in mock mode
+        // so update the position manually when toggling back to geo mode
+        // with the most recent geo value.
+        geoProp.sampledBy(
+                mockEnabledProp.filter(mockEnabledProp.not()))
+            .onValue(manualBus, 'push');
+
+        return Bacon.mergeAll(geoStream, mockStream, manualBus);
     }
 };
+
+function isActive($button) {
+    return $button.data('toggles').active;
+}
 
 function getLocationStream(geoProvider) {
     var options = {
@@ -37,7 +56,7 @@ function getLocationStream(geoProvider) {
     });
 }
 
-/* Provides a geolocation-like result that returns location updated based 
+/* Provides a geolocation-like result that returns location updated based
  * on map taps.  Used for mocking GPS location on the map */
 function mockLocationStream(map) {
    var toPosition = function(latLng) {
