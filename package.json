@@ -33,7 +33,8 @@
   "browser": {
     "bootstrap": "./src/js/shim/bootstrap.min.js",
     "bootstrap-dialog": "./src/js/shim/bootstrap-dialog.min.js",
-    "Snap": "./src/js/shim/snap.min.js"
+    "Snap": "./src/js/shim/snap.min.js",
+    "toggles": "./src/js/shim/toggles.js"
   },
   "browserify-shim": {
     "bootstrap": {
@@ -49,6 +50,10 @@
     },
     "Snap": {
       "exports": "Snap"
+    },
+    "toggles": {
+      "depends": "jquery:jQuery",
+      "exports": "toggles"
     }
   }
 }
