@@ -14,6 +14,7 @@
     <link href="sass/lib/bootstrap-dialog.min.css" rel="stylesheet">
     <link href="sass/lib/fontello.css" rel="stylesheet">
     <link href="sass/lib/leaflet.css" rel="stylesheet">
+    <link href="sass/lib/toggles-full.css" rel="stylesheet">
     <link href="bundle.css" rel="stylesheet">
 </head>
 <body>
@@ -174,8 +175,12 @@
                     <a href="#menu" class="menu-link"><i class="icon-menu"></i></a>
                     <h2>Settings</h2>
                 </div>
-                <div class="page-content scrollable">
+                <div class="page-content scrollable toggle-modern">
                   <a class="btn btn-danger" data-toggle="modal" href="#reset-quests">Reset Quests</a>
+                  <div>
+                    <label>Enable Mock Locations:</label>
+                    <div class="toggles" id="enable-mock-location"></div>
+                  </div>
                 </div>
             </div>
         </div>
@@ -204,7 +209,9 @@
         // Allow launching in desktop browser as well as phonegap shell
         var loadEvent = (window.device ? 'deviceready' : 'DOMContentLoaded');
         document.addEventListener(loadEvent, function() {
-            require('app').init();
+            require('app').init({
+              mockLocationSelector: '#enable-mock-location'
+            });
         });
     </script>
 
