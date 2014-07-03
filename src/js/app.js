@@ -3,7 +3,7 @@
 var $ = require('jquery');
 
 module.exports = {
-    init: function () {
+    init: function (options) {
         require('./fileReader').init();
 
         var allQuestsLoadedStream = require('./questLoader').loadHtml();
@@ -11,7 +11,9 @@ module.exports = {
         allQuestsLoadedStream.onValue(function () {
             require('./ui').init();
             require('./cards').init();
-            require('./map').init({ mockLocation: true });
+            require('./map').init({
+                $enableMockButton: $(options.mockLocationSelector)
+            });
 
             demoCamera();
         });
