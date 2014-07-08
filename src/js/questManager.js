@@ -1,24 +1,22 @@
 "use strict";
 
 var _ = require('lodash'),
+    $ = require('jquery'),
     BootstrapDialog = require('bootstrap-dialog'),
-    cards = require('./cards.js'),
-    quests = require('../quests.json');
-
-var STATUS_NOT_STARTED = 1,
-    STATUS_STARTED = 2,
-    STATUS_FINISHED = 3;
+    cards = require('./cards'),
+    questUtils = require('./questUtils'),
+    zones = require('../zones.json');
 
 module.exports = {
     init: function (latLngStream) {
         var zoneChangeStream = latLngStream
-                .map(getQuestForLatLng)
+                .map(getZoneForLatLng)
                 .skipDuplicates(),
-            zoneDiffProperty = zoneChangeStream.diff(undefined, questDiff);
+            zoneDiffProperty = zoneChangeStream.diff(undefined, zoneDiff);
 
         zoneChangeStream
             .filter(_.isObject)
-            .onValue(inviteToQuest);
+            .onValue(inviteToZone);
 
         zoneDiffProperty.onValue(cleanupZoneChange);
 
@@ -27,55 +25,63 @@ module.exports = {
         initStatus();
 
         return {
-            quests: quests,
+            zones: zones,
             zoneDiffProperty: zoneDiffProperty
         };
     }
 };
 
-function getQuestForLatLng(latLng) {
-    var questOrUndefined = _.find(quests, function(quest) {
-            return quest.latLng.distanceTo(latLng) <= quest.radius;
-        });
-    return questOrUndefined;
+function getZoneById(id) {
+    return _.find(zones, function (zone) {
+        return (zone.id === id);
+    });
 }
 
-function questDiff(oldQuest, newQuest) {
+function getZoneForLatLng(latLng) {
+    var zoneOrUndefined = _.find(zones, function(zone) {
+            return zone.latLng.distanceTo(latLng) <= zone.radius;
+        });
+    return zoneOrUndefined;
+}
+
+function zoneDiff(oldZone, newZone) {
     return {
-        oldQuest: oldQuest,
-        newQuest: newQuest
+        oldZone: oldZone,
+        newZone: newZone
     };
 }
 
 function initStatus() {
-    _.each(quests, function (quest) {
-        quest.status = STATUS_NOT_STARTED;
+    _.each(zones, function (zone) {
+        zone.status = _.object(_.map(zone.quests, function(questCategory) {
+            return [questCategory, questUtils.STATUS_NOT_STARTED];
+        }));
     });
 }
 
-function onQuestFinished(domId) {
-    var id = domId.substring(6),  // strip off leading 'quest_'
-        quest = _.find(quests, function (quest) {
-        return (quest.id === id);
-    });
-    if (quest) {
-        quest.status = STATUS_FINISHED;
+function onQuestFinished($deck) {
+    var zoneId = $deck.attr('data-zone'),
+        questCategory = $deck.attr('data-quest'),
+        zone = getZoneById(zoneId);
+    if (zone) {
+        zone.status[questCategory] = questUtils.STATUS_FINISHED;
     }
 }
 
-function inviteToQuest(quest) {
+function inviteToZone(zone) {
     var verb = (
-            quest.status == STATUS_NOT_STARTED ? 'start' :
-            quest.status == STATUS_STARTED ? 'continue' : 'revisit'),
+            questUtils.noQuestsStarted(zone) ? 'start exploring' :
+            questUtils.questInProgress(zone) ? 'continue exploring ' : 'revisit'),
+
         dialog = new BootstrapDialog({
-            title: quest.title + ' &mdash; Quest zone entered!',
-            message: 'Would you like to ' + verb + ' the quest?',
+            title: zone.title + ' &mdash; Quest zone entered!',
+            message: 'Would you like to ' + verb + ' the area?',
             buttons: [
-                { label: 'Yes' , action: switchToQuest(quest) },
+                { label: 'Yes' , action: switchToZone(zone) },
                 { label: 'No', action: closeBootstrapDialog }
             ]
         });
-    quest.invitationDialog = dialog;
+    zone.invitationDialog = dialog;
     dialog.open();
 }
 
@@ -83,13 +89,15 @@ function closeBootstrapDialog(dialog) {
     dialog.close();
 }
 
-function switchToQuest(quest) {
-    return function (dialog) {
-        if (quest.status == STATUS_NOT_STARTED) {
-            quest.status = STATUS_STARTED;
-        }
+function switchToZone(zone) {
+    return function(dialog) {
         dialog.close();
-        cards.openDeck('quest_' + quest.id);
+        if (questUtils.questInProgress(zone)) {
+            var currentQuest = questUtils.getCurrentQuest(zone);
+            cards.openQuestDeck(zone, currentQuest);
+        } else {
+            cards.openZoneDeck(zone, questUtils.noQuestsStarted(zone));
+        }
     };
 }
 

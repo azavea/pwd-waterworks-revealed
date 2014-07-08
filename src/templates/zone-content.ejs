@@ -1,0 +1,28 @@
+<div class="overlay" style="display:none">
+    <div class="cards">
+        <div class="card <% if (! showHtml) { %>prev<% } %>">
+        <% if (showHtml) { %>
+            <%= html %>
+        </div>
+        <% } %>
+        <div class="card <% if (showHtml) { %>next<% } %>">
+            <div class="card-header">
+                <a data-navigate="close" class="left"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                <h2>Choose a quest for <%= zone.title %>!</h2>
+            </div>
+            <div class="card-content scrollable">
+                Choose your quest:
+                <div data-toggle="buttons">
+                <% _.each(zone.quests, function(quest){ %>
+                <label class="btn btn-primary">
+                    <input type="radio" name="quest" value="<%= quest %>" /> <%= quest %>
+                </label>
+                <% }); %>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="#" data-start-quest>Start Quest</a>
+            </div>
+        </div>
+    </div>
+</div>
