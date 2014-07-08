@@ -32,7 +32,8 @@ module.exports = function(grunt) {
     var srcDir  = 'src/',
         tempDir = 'build/temp/',
         distDir = 'dist/',
-        questDir = srcDir + 'quests/',
+        zonesDir = srcDir + 'zones/',
+        questJson = zonesDir + '**/quest.json',
         jsDir   = srcDir + 'js/',
         sassDir = srcDir + 'sass/',
         jsBundlePath     = distDir + 'bundle.js',
@@ -44,7 +45,7 @@ module.exports = function(grunt) {
         appAssets = [
             'config.xml',
             'index.html',
-            'quests/**/*',
+            'zones/**/*',
             'sass/lib/leaflet.css',
             'sass/lib/fontello.css',
             'sass/lib/bootstrap.min.css',
@@ -111,8 +112,8 @@ module.exports = function(grunt) {
                     footer: ']',
                     separator: ','
                 },
-                src: questsToLoad.map(function (dir) {return questDir + dir + '/quest.json'; }),
-                dest: srcDir + 'quests.json'
+                src: questJson,
+                dest: srcDir + 'zones.json'
             }
         },
 
