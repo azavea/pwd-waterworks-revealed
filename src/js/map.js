@@ -21,7 +21,7 @@ module.exports = {
         var updateMarker = makeMarkerUpdater(map);
         latLngStream.onValue(updateMarker);
 
-        initQuestZoneLayers(map, questManager.quests);
+        initQuestZoneLayers(map, questManager.zones);
 
         questManager.zoneDiffProperty.onValue(highlightZoneChange);
     }
@@ -51,26 +51,26 @@ function makeMarkerUpdater(map) {
     };
 }
 
-function initQuestZoneLayers(map, quests) {
+function initQuestZoneLayers(map, zones) {
     var questLayerGroup = L.layerGroup().addTo(map);
-    _.each(quests, function(quest) {
-        var geom = quest.location,
+    _.each(zones, function(zone) {
+        var geom = zone.location,
             latLng = L.latLng(geom[0], geom[1]),
-            options = quest.zoneStyleInactive || zoneStyleInactive,
-            circle = L.circle(latLng, quest.radius, options);
+            options = zone.zoneStyleInactive || zoneStyleInactive,
+            circle = L.circle(latLng, zone.radius, options);
 
         questLayerGroup.addLayer(circle);
 
-        quest.latLng = latLng;
-        quest.layer = circle;
+        zone.latLng = latLng;
+        zone.layer = circle;
     });
 }
 
 function highlightZoneChange(diff) {
-    if (diff.newQuest) {
-        diff.newQuest.layer.setStyle(diff.newQuest.zoneStyleActive || zoneStyleActive);
+    if (diff.newZone) {
+        diff.newZone.layer.setStyle(diff.newZone.zoneStyleActive || zoneStyleActive);
     }
-    if (diff.oldQuest) {
-        diff.oldQuest.layer.setStyle(diff.oldQuest.zoneStyleInactive || zoneStyleInactive);
+    if (diff.oldZone) {
+        diff.oldZone.layer.setStyle(diff.oldZone.zoneStyleInactive || zoneStyleInactive);
     }
 }

@@ -3,5 +3,6 @@
     "id": "waterWheel",
     "title": "Water Wheel",
     "location": [39.9665302,-75.1834983],
-    "radius": 10
+    "radius": 10,
+    "quests": ["History"]
 }
