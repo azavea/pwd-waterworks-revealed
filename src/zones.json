@@ -3,14 +3,14 @@
     "title": "Promenade",
     "location": [39.9668755,-75.1840642],
     "radius": 15,
-    "quests": ["science"]
+    "quests": ["Science", "History"]
 }
 ,{
     "id": "pumpHouse",
     "title": "Pump House",
     "location": [39.965894,-75.1833469],
     "radius": 10,
-    "quests": ["science"]
+    "quests": ["Science"]
 }
 ,
 {
@@ -18,6 +18,6 @@
     "title": "Water Wheel",
     "location": [39.9665302,-75.1834983],
     "radius": 10,
-    "quests": ["history"]
+    "quests": ["History"]
 }
 ]
