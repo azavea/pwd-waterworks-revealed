@@ -1,14 +1,28 @@
 <div class="overlay" style="display:none">
     <div class="cards">
-        <div class="card <% if (! showHtml) { %>prev<% } %>">
-        <% if (showHtml) { %>
-            <%= html %>
-        </div>
-        <% } %>
-        <div class="card <% if (showHtml) { %>next<% } %>">
+        <div class="card">
             <div class="card-header">
                 <a data-navigate="close" class="left"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                <h2>Choose a quest for <%= zone.title %>!</h2>
+            </div>
+            <div class="card-visual fullsize" style="background-image: url('<%= path %>/img/fullsize.jpg');"></div>
+            <div class="card-footer">
+                <a href="#" data-navigate="next">Continue&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a>
+            </div>
+        </div>
+        <div class="card next">
+            <div class="card-header">
+                <a data-navigate="prev" class="left"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                <h2><%= zone.title %></h2>
+            </div>
+            <%= html %>
+            <div class="card-footer">
+                <a href="#" data-navigate="next">Continue&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a>
+            </div>
+        </div>
+        <div class="card next">
+            <div class="card-header">
+                <a data-navigate="prev" class="left"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                <h2><%= zone.title %></h2>
             </div>
             <div class="card-content scrollable">
                 Choose your quest:

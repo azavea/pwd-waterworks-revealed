@@ -58,6 +58,16 @@
                 @media screen and #{$screen-md} {
                     height: 300px;
                 }
+
+                &.fullsize {
+                    height: 100%;
+                    width: 100%;
+                    top: 0;
+
+                    @media screen and #{$screen-xs}, #{$screen-sm}, #{$screen-md} {
+                        height: 100%;
+                    }
+                }
             }
             > .card-content {
                 width: 100%;

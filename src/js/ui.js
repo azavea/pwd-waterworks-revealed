@@ -66,6 +66,7 @@ function togglePages(e) {
     if (activePage !== target) {
         $('#' + activePage).fadeOut(200).delay(200).toggleClass('active');
         $('#' + target    ).fadeIn (200).delay(200).toggleClass('active');
+        snap.close();
     }
 }
 
