@@ -2,11 +2,11 @@
     <div class="cards">
         <div class="card">
             <div class="card-header">
-                <a data-navigate="close" class="left"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                <a data-navigate="close" class="left">&times;</a>
             </div>
-            <div class="card-visual fullsize" style="background-image: url('<%= path %>/img/fullsize.jpg');"></div>
+            <div class="card-visual fullsize" style="background-image: url('<%= path %>/images/fullsize.jpg');"></div>
             <div class="card-footer">
-                <a href="#" data-navigate="next">Continue&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a>
+                <a href="#" data-navigate="next">Let&#39;s get started&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a>
             </div>
         </div>
         <div class="card next">
@@ -14,28 +14,32 @@
                 <a data-navigate="prev" class="left"><span class="glyphicon glyphicon-chevron-left"></span></a>
                 <h2><%= zone.title %></h2>
             </div>
-            <%= html %>
-            <div class="card-footer">
-                <a href="#" data-navigate="next">Continue&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a>
-            </div>
-        </div>
-        <div class="card next">
-            <div class="card-header">
-                <a data-navigate="prev" class="left"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                <h2><%= zone.title %></h2>
-            </div>
+            <div class="card-visual" style="background-image: url('<%= path %>/images/halfsize.jpg');"></div>
             <div class="card-content scrollable">
-                Choose your quest:
+                <%= html %>
+            </div>
+            <div class="card-footer">
+                <a href="#" data-navigate="next">Continue&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a>
+            </div>
+        </div>
+        <div class="card next">
+            <div class="card-header">
+                <a data-navigate="prev" class="left"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                <h2><%= zone.title %></h2>
+            </div>
+            <div class="card-visual" style="background-image: url('<%= path %>/images/halfsize.jpg');"></div>
+            <div class="card-content scrollable">
+                Choose a quest topic
                 <div data-toggle="buttons">
-                <% _.each(zone.quests, function(quest){ %>
-                <label class="btn btn-primary">
-                    <input type="radio" name="quest" value="<%= quest %>" /> <%= quest %>
-                </label>
-                <% }); %>
+                    <% _.each(zone.quests, function(quest){ %>
+                    <label class="btn btn-primary btn-lg btn-block">
+                        <input type="radio" name="quest" value="<%= quest %>" /> <%= quest %>
+                    </label>
+                    <% }); %>
                 </div>
             </div>
             <div class="card-footer">
-                <a href="#" data-start-quest>Start Quest</a>
+                <a href="#" data-start-quest>Continue&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a>
             </div>
         </div>
     </div>
