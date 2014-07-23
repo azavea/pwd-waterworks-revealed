@@ -1,5 +1,17 @@
 <div data-zone="<%= zone.id %>" data-quest="<%= quest %>" class="overlay" style="display:none">
     <div class="cards">
         <%= html %>
+    
+        <div class="card next">
+            <div class="card-header">
+                <a data-navigate="close" class="left">&times;</a>
+            </div>
+            <div class="card-visual"></div>
+            <div class="card-content scrollable">
+                <h4>Pick your next quest</h4>
+                <a href="#" class="btn btn-primary btn-lg btn-block">Pick another lens</a>
+                <a href="#" data-navigate="finish" class="btn btn-primary btn-lg btn-block">Explore other areas</a>
+            </div>
+        </div>
     </div>
 </div>
