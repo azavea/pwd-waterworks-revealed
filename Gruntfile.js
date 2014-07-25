@@ -164,7 +164,7 @@ module.exports = function(grunt) {
                 tasks: ['js', 'copy']
             },
             styles: {
-                files: ['sass/*.scss'],
+                files: ['sass/**/*.scss'],
                 tasks: ['sass', 'copy']
             },
             quests: {

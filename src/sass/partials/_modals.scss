@@ -1,0 +1,35 @@
+// Partials: Modals
+
+.modal {
+    .modal-dialog {
+        margin: 100px 50px;
+
+        @media (min-width: 768px) {
+            margin: 100px auto;
+        }
+
+        .modal-content {
+            border: none;
+            box-shadow: 0 3px 20px rgba(0,0,0,.5);
+
+            .modal-header {
+                background: $wr-blue;
+
+                .bootstrap-dialog-title {
+                    font-family: $sec-font-family;
+                    text-align: center;
+                    width: 100%;
+                }
+                .bootstrap-dialog-close-button {
+                    position: absolute;
+                    top: 8px;
+                    right: 12px;
+
+                    > .close {
+                        font-size: 3.6rem;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -21,7 +21,8 @@ body {
     overflow: auto;
 
     > .page {
-        background: #555;
+        background: url(img/background.png);
+        background-size: cover;
         height: 100%;
         width: 100%;
         overflow: auto;
