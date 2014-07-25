@@ -70,15 +70,16 @@ function onQuestFinished($deck) {
 
 function inviteToZone(zone) {
     var verb = (
-            questUtils.noQuestsStarted(zone) ? 'start exploring' :
-            questUtils.questInProgress(zone) ? 'continue exploring ' : 'revisit'),
+            questUtils.noQuestsStarted(zone) ? 'You found a new area! Do you want to explore the ' + zone.title + '?' :
+            questUtils.questInProgress(zone) ? 'You have incomplete quests at the ' + zone.title + '. Continue exploring this location?' : 
+                                               'Welcome back to the ' + zone.title + '. Revisit this area and start a new quest?'),
 
         dialog = new BootstrapDialog({
-            title: zone.title + ' &mdash; Quest zone entered!',
-            message: 'Would you like to ' + verb + ' the area?',
+            title: zone.title,
+            message: verb,
             buttons: [
-                { label: 'Yes' , action: switchToZone(zone) },
-                { label: 'No', action: closeBootstrapDialog }
+                { label: 'Yes' , action: switchToZone(zone), cssClass: 'btn-lg btn-block btn-primary' },
+                { label: 'No', action: closeBootstrapDialog, cssClass: 'btn-lg btn-block btn-default' }
             ]
         });
     zone.invitationDialog = dialog;

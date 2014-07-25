@@ -16,15 +16,18 @@ function init() {
 }
 
 function openQuestDeck(zone, quest) {
-    var htmlPath = path.join('zones', zone.id, quest, 'index.html');
-    templateLoader.loadHtmlStream(htmlPath, questContentTemplate, {zone: zone, quest: quest})
+    var directory = path.join('zones', zone.id, quest);
+    var htmlPath = path.join(directory, 'index.html');
+    
+    templateLoader.loadHtmlStream(htmlPath, questContentTemplate, {zone: zone, quest: quest, path: directory})
         .onValue(addDeckToPage);
 }
 
 function openZoneDeck(zone, showHtml) {
-    var htmlPath = path.join('zones', zone.id, 'index.html');
+    var directory = path.join('zones', zone.id);
+    var htmlPath = path.join(directory, 'index.html');
     var htmlStream = templateLoader.loadHtmlStream(
-            htmlPath, zoneContentTemplate, {zone: zone, showHtml: showHtml});
+            htmlPath, zoneContentTemplate, {zone: zone, showHtml: showHtml, path: directory});
 
     htmlStream.onValue(addDeckToPage);
     htmlStream.onValue(function() {
@@ -51,8 +54,9 @@ function openZoneDeck(zone, showHtml) {
 function setQuestCards($card, zone, quest) {
     $card.nextAll().remove();
 
-    var htmlPath = path.join('zones', zone.id, quest, 'index.html');
-    templateLoader.loadHtmlStream(htmlPath, questContentTemplate, {zone: zone, quest: quest})
+    var directory = path.join('zones', zone.id, quest);
+    var htmlPath = path.join(directory, 'index.html');
+    templateLoader.loadHtmlStream(htmlPath, questContentTemplate, {zone: zone, quest: quest, path: directory})
         .onValue(function(html) {
             var $questCards = $(html).find('.card');
             $card.after($questCards);
