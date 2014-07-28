@@ -82,9 +82,10 @@ function closeDeck($card) {
 function navigateCards(e) {
     e.preventDefault();
 
-    var action = $(this).attr('data-navigate');
-    var $thisCard = $(this).closest('.card');
-    var $deck = $thisCard.closest('.overlay');
+    var $target = $(e.currentTarget),
+        action = $target.attr('data-navigate'),
+        $thisCard = $target.closest('.card'),
+        $deck = $thisCard.closest('.overlay');
 
     if (action === 'next') {
         $thisCard.toggleClass('prev active')
