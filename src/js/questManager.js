@@ -13,17 +13,17 @@ module.exports = {
         var zoneChangeStream = latLngStream
                 .map(getZoneForLatLng)
                 .skipDuplicates(),
-            zoneDiffProperty = zoneChangeStream.diff(undefined, zoneDiff);
+            zoneDiffProperty = zoneChangeStream.diff(undefined, zoneDiff),
+            finishedStream = Bacon.mergeAll(cards.deckFinishedStream, cards.topicFinishedStream)
+                .map(getZoneQuestFromDeck)
+                .doAction(onQuestFinished)
+                .map('.zone');
 
         zoneChangeStream
             .filter(_.isObject)
             .onValue(inviteToZone);
 
         zoneDiffProperty.onValue(cleanupZoneChange);
-
-        Bacon.mergeAll(cards.deckFinishedStream, cards.topicFinishedStream)
-            .map(getZoneQuestFromDeck)
-            .onValue(onQuestFinished);
 
         cards.topicFinishedStream
             .map(getZoneQuestFromDeck)
@@ -34,7 +34,8 @@ module.exports = {
 
         return {
             zones: zones,
-            zoneDiffProperty: zoneDiffProperty
+            zoneDiffProperty: zoneDiffProperty,
+            zoneStatusChangeStream: Bacon.mergeAll(finishedStream, cards.topicStartedStream)
         };
     }
 };
