@@ -2,11 +2,9 @@
 
 var L = require('leaflet'),
     Bacon = require('baconjs'),
-    _ = require('lodash');
-
-var zoneStyleInactive = { weight: 1, color: '#1b1bb3', fillColor: '#0033ff' },
-    zoneStyleActive   = { weight: 1, color: '#1bb31b', fillColor: '#33ff00' };
-
+    _ = require('lodash'),
+    questUtils = require('./questUtils'),
+    zoneStyle = require('./zoneStyles');
 
 module.exports = {
     init: function (options) {
@@ -24,6 +22,11 @@ module.exports = {
         initQuestZoneLayers(map, questManager.zones);
 
         questManager.zoneDiffProperty.onValue(highlightZoneChange);
+
+        // Style the initial zones, and any updates based on their status
+        Bacon.mergeAll(questManager.zoneStatusChangeStream,
+                Bacon.fromArray(questManager.zones))
+            .onValue(changeZoneStyle);
     }
 };
 
@@ -55,7 +58,7 @@ function initQuestZoneLayers(map, zones) {
     _.each(zones, function(zone) {
         var geom = zone.location,
             latLng = L.latLng(geom[0], geom[1]),
-            options = zone.zoneStyleInactive || zoneStyleInactive,
+            options = zone.zoneStyleInactive || zoneStyle.inactive,
             circle = L.circle(latLng, zone.radius, options);
 
         questLayerGroup.addLayer(circle);
@@ -67,9 +70,19 @@ function initQuestZoneLayers(map, zones) {
 
 function highlightZoneChange(diff) {
     if (diff.newZone) {
-        diff.newZone.layer.setStyle(diff.newZone.zoneStyleActive || zoneStyleActive);
+        diff.newZone.layer.setStyle(diff.newZone.zoneStyleActive || zoneStyle.active);
     }
     if (diff.oldZone) {
-        diff.oldZone.layer.setStyle(diff.oldZone.zoneStyleInactive || zoneStyleInactive);
+        diff.oldZone.layer.setStyle(diff.oldZone.zoneStyleInactive || zoneStyle.inactive);
+    }
+}
+
+function changeZoneStyle(zone) {
+    if (questUtils.allQuestsDone(zone)) {
+        zone.layer.setStyle(zoneStyle.done);
+    } else if (questUtils.noQuestsStarted(zone)) {
+        zone.layer.setStyle(zoneStyle.unstarted);
+    } else if (questUtils.questInProgress(zone)) {
+        zone.layer.setStyle(zoneStyle.inProgress);
     }
 }
