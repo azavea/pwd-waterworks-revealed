@@ -26,7 +26,7 @@ function initToggleButtons() {
     $('.toggles').toggles({
         height: 35,
         width: 100,
-        on: false
+        on: true
     });
 }
 
