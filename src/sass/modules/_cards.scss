@@ -184,6 +184,10 @@
                         border-right: 1px solid #EEE;
                     }
                 }
+
+                a.link-disabled {
+                    color: $wr-gray;
+                }
             }
         }
     }

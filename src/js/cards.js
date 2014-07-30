@@ -12,13 +12,18 @@ var $ = require('jquery'),
 var deckFinishedBus = new Bacon.Bus();
 
 function init() {
+
+    var questSelectedStream = $('#card-holder')
+            .asEventStream('change', 'input[name="quest"]')
+            .onValue(enableStartQuest);
+
     $('#card-holder').on('click', '.card a[data-navigate]', navigateCards);
 }
 
 function openQuestDeck(zone, quest) {
     var directory = path.join('zones', zone.id, quest);
     var htmlPath = path.join(directory, 'index.html');
-    
+
     templateLoader.loadHtmlStream(htmlPath, questContentTemplate, {zone: zone, quest: quest, path: directory})
         .onValue(addDeckToPage);
 }
@@ -30,6 +35,7 @@ function openZoneDeck(zone, showHtml) {
             htmlPath, zoneContentTemplate, {zone: zone, showHtml: showHtml, path: directory});
 
     htmlStream.onValue(addDeckToPage);
+
     htmlStream.onValue(function() {
         _.defer(function() {
             $('#card-holder').find('.card a[data-start-quest]').on('click', function(e) {
@@ -79,12 +85,18 @@ function closeDeck($card) {
          .fadeOut(400);
 }
 
+function enableStartQuest(isDisabled) {
+    $('#card-holder .card a[data-start-quest]')
+        .removeClass('link-disabled');
+}
+
 function navigateCards(e) {
     e.preventDefault();
 
-    var action = $(this).attr('data-navigate');
-    var $thisCard = $(this).closest('.card');
-    var $deck = $thisCard.closest('.overlay');
+    var $target = $(e.currentTarget),
+        action = $target.attr('data-navigate'),
+        $thisCard = $target.closest('.card'),
+        $deck = $thisCard.closest('.overlay');
 
     if (action === 'next') {
         $thisCard.toggleClass('prev active')
