@@ -14,12 +14,12 @@ module.exports = {
             opts = _.extend({ map: map }, options),
             locationStream = require('./geolocator').init(opts),
             latLngStream = locationStream.map(toLatLng),
-            questManager = require('./questManager').init(latLngStream);
+            questManager = require('./questManager').init(latLngStream),
+            locationMarker = addLocationMarkerToMap(map);
 
         L.tileLayer('tiles/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(map);
 
-        var updateMarker = makeMarkerUpdater(map);
-        latLngStream.onValue(updateMarker);
+        latLngStream.onValue(locationMarker, 'setLatLng');
 
         initQuestZoneLayers(map, questManager.zones);
 
@@ -42,13 +42,12 @@ function toLatLng(position) {
     return L.latLng([position.coords.latitude, position.coords.longitude]);
 }
 
-function makeMarkerUpdater(map) {
+function addLocationMarkerToMap(map) {
     var icon = L.icon({iconUrl: 'img/location.png'}),
-        userMarker = L.marker([0,0],{icon: icon, clickable: false}).addTo(map);
+        marker = L.marker([0,0],{icon: icon, clickable: false})
+            .addTo(map);
 
-    return function(latLng) {
-        userMarker.setLatLng(latLng);
-    };
+    return marker;
 }
 
 function initQuestZoneLayers(map, zones) {
