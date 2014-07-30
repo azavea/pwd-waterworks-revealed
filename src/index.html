@@ -208,8 +208,7 @@
     <script src="phonegap.js"></script>
     <script src="bundle.js"></script>
     <script>
-        // Allow launching in desktop browser as well as phonegap shell
-        var loadEvent = (window.device ? 'deviceready' : 'DOMContentLoaded');
+        var loadEvent = (window.cordova ? 'deviceready' : 'DOMContentLoaded');
         document.addEventListener(loadEvent, function() {
             require('app').init({
               mockLocationSelector: '#enable-mock-location'

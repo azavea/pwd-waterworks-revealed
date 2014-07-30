@@ -4,8 +4,6 @@ var $ = require('jquery');
 
 module.exports = {
     init: function (options) {
-        require('./fileReader').init();
-
         require('./ui').init();
         require('./cards').init();
         require('./map').init({
