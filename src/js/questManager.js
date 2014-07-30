@@ -2,6 +2,7 @@
 
 var _ = require('lodash'),
     $ = require('jquery'),
+    Bacon = require('baconjs'),
     BootstrapDialog = require('bootstrap-dialog'),
     cards = require('./cards'),
     questUtils = require('./questUtils'),
@@ -20,7 +21,14 @@ module.exports = {
 
         zoneDiffProperty.onValue(cleanupZoneChange);
 
-        cards.deckFinishedStream.onValue(onQuestFinished);
+        Bacon.mergeAll(cards.deckFinishedStream, cards.topicFinishedStream)
+            .map(getZoneQuestFromDeck)
+            .onValue(onQuestFinished);
+
+        cards.topicFinishedStream
+            .map(getZoneQuestFromDeck)
+            .map('.zone')
+            .onValue(switchToZone);
 
         initStatus();
 
@@ -59,12 +67,19 @@ function initStatus() {
     });
 }
 
-function onQuestFinished($deck) {
+function getZoneQuestFromDeck($deck) {
     var zoneId = $deck.attr('data-zone'),
-        questCategory = $deck.attr('data-quest'),
-        zone = getZoneById(zoneId);
-    if (zone) {
-        zone.status[questCategory] = questUtils.STATUS_FINISHED;
+        questCategory = $deck.attr('data-quest');
+
+    return {
+        category: questCategory,
+        zone: getZoneById(zoneId)
+    };
+}
+
+function onQuestFinished(zoneQuest) {
+    if (zoneQuest.zone) {
+        zoneQuest.zone.status[zoneQuest.category] = questUtils.STATUS_FINISHED;
     }
 }
 
@@ -78,7 +93,7 @@ function inviteToZone(zone) {
             title: zone.title,
             message: verb,
             buttons: [
-                { label: 'Yes' , action: switchToZone(zone), cssClass: 'btn-lg btn-block btn-primary' },
+                { label: 'Yes' , action: closeDialogAndSwitchToZone(zone), cssClass: 'btn-lg btn-block btn-primary' },
                 { label: 'No', action: closeBootstrapDialog, cssClass: 'btn-lg btn-block btn-default' }
             ]
         });
@@ -90,16 +105,20 @@ function closeBootstrapDialog(dialog) {
     dialog.close();
 }
 
-function switchToZone(zone) {
+function closeDialogAndSwitchToZone(zone) {
     return function(dialog) {
-        dialog.close();
-        if (questUtils.questInProgress(zone)) {
-            var currentQuest = questUtils.getCurrentQuest(zone);
-            cards.openQuestDeck(zone, currentQuest);
-        } else {
-            cards.openZoneDeck(zone, questUtils.noQuestsStarted(zone));
-        }
+        closeBootstrapDialog(dialog);
+        switchToZone(zone);
     };
+}
+
+function switchToZone(zone) {
+    if (questUtils.questInProgress(zone)) {
+        var currentQuest = questUtils.getCurrentQuest(zone);
+        cards.openQuestDeck(zone, currentQuest);
+    } else {
+        cards.openZoneDeck(zone, questUtils.noQuestsStarted(zone));
+    }
 }
 
 function cleanupZoneChange(diff) {
