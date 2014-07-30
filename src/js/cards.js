@@ -9,7 +9,8 @@ var $ = require('jquery'),
     questContentTemplate = require('../templates/quest-content.ejs'),
     zoneContentTemplate = require('../templates/zone-content.ejs');
 
-var deckFinishedBus = new Bacon.Bus();
+var deckFinishedBus = new Bacon.Bus(),
+    topicFinishedBus = new Bacon.Bus();
 
 function init() {
 
@@ -44,9 +45,7 @@ function openZoneDeck(zone, showHtml) {
                 var $deck = $card.closest('.overlay');
                 var quest = $card.find('[name="quest"]:checked').val();
                 if (quest) {
-                    if (zone.status[quest] === questUtils.STATUS_NOT_STARTED) {
-                        zone.status[quest] = questUtils.STATUS_STARTED;
-                    }
+                    zone.status[quest] = questUtils.STATUS_STARTED;
                     $deck.attr('data-zone', zone.id);
                     $deck.attr('data-quest', quest);
 
@@ -110,6 +109,9 @@ function navigateCards(e) {
                  .nextAll();
     } else if (action === 'close') {
         closeDeck($thisCard);
+    } else if (action === 'repick') {
+        closeDeck($thisCard);
+        topicFinishedBus.push($deck);
     } else if (action === 'finish') {
         closeDeck($thisCard);
 
@@ -120,6 +122,7 @@ function navigateCards(e) {
 module.exports = {
     init: init,
     deckFinishedStream: deckFinishedBus.map(_.identity),
+    topicFinishedStream: topicFinishedBus.map(_.identity),
     openQuestDeck: openQuestDeck,
     openZoneDeck: openZoneDeck,
     setQuestCards: setQuestCards
