@@ -10,6 +10,7 @@ var $ = require('jquery'),
     zoneContentTemplate = require('../templates/zone-content.ejs');
 
 var deckFinishedBus = new Bacon.Bus(),
+    topicStartedBus= new Bacon.Bus(),
     topicFinishedBus = new Bacon.Bus();
 
 function init() {
@@ -50,6 +51,7 @@ function openZoneDeck(zone, showHtml) {
                     $deck.attr('data-quest', quest);
 
                     setQuestCards($card, zone, quest);
+                    topicStartedBus.push(zone);
                 }
             });
         });
@@ -122,6 +124,7 @@ function navigateCards(e) {
 module.exports = {
     init: init,
     deckFinishedStream: deckFinishedBus.map(_.identity),
+    topicStartedStream: topicStartedBus.map(_.identity),
     topicFinishedStream: topicFinishedBus.map(_.identity),
     openQuestDeck: openQuestDeck,
     openZoneDeck: openZoneDeck,
