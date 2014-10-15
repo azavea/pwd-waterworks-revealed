@@ -1,0 +1,7 @@
+{
+    "id": "schuylkill",
+    "title": "Schuylkill River",
+    "location": [39.9672000, -75.184550],
+    "radius": 12,
+    "quests": ["Art", "Environment"]
+}
