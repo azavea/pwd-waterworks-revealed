@@ -1,0 +1,7 @@
+{
+    "id": "reservoir",
+    "title": "The Reservoir",
+    "location": [39.9666053, -75.1837604],
+    "radius": 12,
+    "quests": ["Science", "History"]
+}
