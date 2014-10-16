@@ -1,7 +1,7 @@
 {
     "id": "fountain",
     "title": "The Fountain",
-    "location": [39.9675233, -75.1836567],
-    "radius": 15,
+    "location": [39.9675540, -75.1836170],
+    "radius": 18,
     "quests": ["Art"]
 }
