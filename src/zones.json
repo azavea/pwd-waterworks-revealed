@@ -1,22 +1,22 @@
 [{
     "id": "fishway",
     "title": "Fairmount Fishway",
-    "location": [39.9668550, -75.184580],
-    "radius": 15,
+    "location": [39.9668950, -75.184550],
+    "radius": 16,
     "quests": ["Science", "History", "Environment"]
 }
 ,{
     "id": "fountain",
     "title": "The Fountain",
-    "location": [39.9675233, -75.1836567],
-    "radius": 15,
+    "location": [39.9675540, -75.1836170],
+    "radius": 18,
     "quests": ["Art"]
 }
 ,{
     "id": "reservoir",
     "title": "The Reservoir",
-    "location": [39.9666053, -75.1837604],
-    "radius": 12,
+    "location": [39.9666300, -75.1836200],
+    "radius": 15,
     "quests": ["Science", "History"]
 }
 ,{

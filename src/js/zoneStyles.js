@@ -1,11 +1,11 @@
 "use strict";
 
 module.exports = {
-    inactive   : { fillOpacity: 0.4, weight: 2, color: '#1b1bb3'},
-    active     : { fillOpacity: 0.4, weight: 2, color: '#1bb31b'},
+    inactive   : { fillOpacity: 0.25, weight: 2, opacity: 0.5 },
+    active     : { fillOpacity: 0.5, opacity: 1, weight: 2 },
 
-    unstarted  : { fillColor: '#ff0000' },
-    inProgress : { fillColor: '#ff00ff' },
-    done       : { fillColor: '#000000' }
+    unstarted  : { fillColor: '#565656', color: '#565656', dashArray: '5, 5' },
+    inProgress : { fillColor: '#00c6ff', color: '#00c6ff', dashArray: '0, 0' },
+    done       : { fillColor: '#00ed1c', color: '#00ed1c', dashArray: '0, 0'  }
 };
 

@@ -1,7 +1,7 @@
 {
     "id": "fishway",
     "title": "Fairmount Fishway",
-    "location": [39.9668550, -75.184580],
-    "radius": 15,
+    "location": [39.9668950, -75.184550],
+    "radius": 16,
     "quests": ["Science", "History", "Environment"]
 }
