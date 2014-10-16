@@ -15,9 +15,8 @@ module.exports = {
                 .skipDuplicates(),
             zoneDiffProperty = zoneChangeStream.diff(undefined, zoneDiff),
             finishedStream = Bacon.mergeAll(cards.deckFinishedStream, cards.topicFinishedStream)
-                .map(getZoneQuestFromDeck)
-                .doAction(onQuestFinished)
-                .map('.zone');
+                .map(getZoneFromDeck)
+                .doAction(onZoneFinished);
 
         zoneChangeStream
             .filter(_.isObject)
@@ -26,8 +25,7 @@ module.exports = {
         zoneDiffProperty.onValue(cleanupZoneChange);
 
         cards.topicFinishedStream
-            .map(getZoneQuestFromDeck)
-            .map('.zone')
+            .map(getZoneFromDeck)
             .onValue(switchToZone);
 
         initStatus();
@@ -68,19 +66,18 @@ function initStatus() {
     });
 }
 
-function getZoneQuestFromDeck($deck) {
-    var zoneId = $deck.attr('data-zone'),
-        questCategory = $deck.attr('data-quest');
+function getZoneFromDeck($deck) {
+    var zoneId = $deck.attr('data-zone');
 
-    return {
-        category: questCategory,
-        zone: getZoneById(zoneId)
-    };
+    return getZoneById(zoneId);
 }
 
-function onQuestFinished(zoneQuest) {
-    if (zoneQuest.zone) {
-        zoneQuest.zone.status[zoneQuest.category] = questUtils.STATUS_FINISHED;
+function onZoneFinished(zone) {
+    // All quests are completed at end of zone
+    if (zone) {
+        _.each(zone.quests, function(quest) {
+            zone.status[quest] = questUtils.STATUS_FINISHED;
+        });
     }
 }
 
@@ -114,12 +111,7 @@ function closeDialogAndSwitchToZone(zone) {
 }
 
 function switchToZone(zone) {
-    if (questUtils.questInProgress(zone)) {
-        var currentQuest = questUtils.getCurrentQuest(zone);
-        cards.openQuestDeck(zone, currentQuest);
-    } else {
-        cards.openZoneDeck(zone, questUtils.noQuestsStarted(zone));
-    }
+    cards.openZoneDeck(zone, true);
 }
 
 function cleanupZoneChange(diff) {

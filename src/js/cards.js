@@ -33,28 +33,35 @@ function openQuestDeck(zone, quest) {
 function openZoneDeck(zone, showHtml) {
     var directory = path.join('zones', zone.id);
     var htmlPath = path.join(directory, 'index.html');
-    var htmlStream = templateLoader.loadHtmlStream(
-            htmlPath, zoneContentTemplate, {zone: zone, showHtml: showHtml, path: directory});
 
-    htmlStream.onValue(addDeckToPage);
+    var questContentBus = new Bacon.Bus();
 
-    htmlStream.onValue(function() {
-        _.defer(function() {
-            $('#card-holder').find('.card a[data-start-quest]').on('click', function(e) {
-                var $link = $(this);
-                var $card = $link.closest('.card');
-                var $deck = $card.closest('.overlay');
-                var quest = $card.find('[name="quest"]:checked').val();
-                if (quest) {
-                    zone.status[quest] = questUtils.STATUS_STARTED;
-                    $deck.attr('data-zone', zone.id);
-                    $deck.attr('data-quest', quest);
-
-                    setQuestCards($card, zone, quest);
-                    topicStartedBus.push(zone);
-                }
-            });
+    questContentBus.flatMap(function(quest) {
+        var htmlPath = path.join(directory, quest, 'index.html');
+        return templateLoader.loadHtmlStream(htmlPath, questContentTemplate, {
+            zone: zone, quest: quest, path: directory
         });
+    })
+    .scan([], function(list, html) {
+        list.push(html);
+        return list;
+    })
+    .onValue(function(htmlCards) {
+        if (htmlCards.length === zone.quests.length) {
+            var htmlStream = templateLoader.loadHtmlStream(htmlPath,
+                     zoneContentTemplate, {
+                        zone: zone, showHtml: showHtml, path: directory, fullZoneDeck: htmlCards
+                    });
+
+            htmlStream.onValue(addDeckToPage);
+            topicStartedBus.push(zone);
+        }
+    });
+
+    // Load all quest content and apply the cards to the deck
+    _.each(zone.quests, function(quest) {
+        zone.status[quest] = questUtils.STATUS_STARTED;
+        questContentBus.push(quest);
     });
 }
 

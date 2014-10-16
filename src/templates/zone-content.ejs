@@ -1,4 +1,4 @@
-<div class="overlay" style="display:none">
+<div class="overlay" data-zone="<%= zone.id %>" style="display:none">
     <div class="cards">
         <% if (showHtml) { %>
         <div class="card card-fullimage">
@@ -29,32 +29,9 @@
             </div>
         </div>
         <% } %>
-        <div class="card <% if (showHtml) { %>next<% } %>">
-            <div class="card-header">
-                <% if (showHtml) { %>
-                    <a data-navigate="prev" class="left"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                <% } else { %>
-                    <a data-navigate="close" class="left">&times;</a>
-                <% } %>
-            </div>
-            <div class="card-visual" style="background-image: url('<%= path %>/images/halfsize.jpg');">
-                <h4>New Area</h4>
-                <h2><%= zone.title %></h2>
-            </div>
-            <div class="card-content scrollable">
-                <h4>Choose a quest topic</h4>
-                <div data-toggle="buttons">
-                    <% _.each(zone.quests, function(quest){ %>
-                    <label class="btn btn-primary btn-lg btn-block">
-                        <input type="radio" name="quest" value="<%= quest %>" /> <%= quest %>
-                    </label>
-                    <% }); %>
-                </div>
-            </div>
-            <div class="card-footer">
-                <a href="#" data-start-quest class="link-disabled">Continue&nbsp;&nbsp;&rarr;</a>
-            </div>
-        </div>
+        <% _.each(fullZoneDeck, function(questCard) { %>
+            <%= questCard %>
+        <% }) %>
         <div class="card next">
             <div class="card-header">
                 <a data-navigate="close" class="left">&times;</a>
