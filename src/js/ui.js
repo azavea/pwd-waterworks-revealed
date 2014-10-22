@@ -26,7 +26,7 @@ function initToggleButtons() {
     $('.toggles').toggles({
         height: 35,
         width: 100,
-        on: true
+        on: false
     });
 }
 
@@ -60,7 +60,7 @@ function toggleMenu() {
 
 function togglePages(e) {
     e.preventDefault();
-    var target = $(this).attr('data-page');
+    var target = $(e.currentTarget).attr('data-page');
     var activePage = $('#content').find('.page.active').attr('id');
 
     if (activePage !== target) {
