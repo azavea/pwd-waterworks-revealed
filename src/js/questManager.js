@@ -115,7 +115,7 @@ function switchToZone(zone) {
 }
 
 function cleanupZoneChange(diff) {
-    if (diff.oldQuest) {
-        diff.oldQuest.invitationDialog.close();
+    if (diff.oldZone) {
+        diff.oldZone.invitationDialog.close();
     }
 }
