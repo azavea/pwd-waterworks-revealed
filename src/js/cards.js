@@ -30,7 +30,7 @@ function openQuestDeck(zone, quest) {
         .onValue(addDeckToPage);
 }
 
-function openZoneDeck(zone, showHtml) {
+function openZoneDeck(zone, showHtml, trackProgress) {
     var directory = path.join('zones', zone.id);
     var htmlPath = path.join(directory, 'index.html');
 
@@ -54,13 +54,15 @@ function openZoneDeck(zone, showHtml) {
                     });
 
             htmlStream.onValue(addDeckToPage);
-            topicStartedBus.push(zone);
+            if (trackProgress) {
+                topicStartedBus.push(zone);
+            }
         }
     });
 
     // Load all quest content and apply the cards to the deck
     _.each(zone.quests, function(quest) {
-        zone.status[quest] = questUtils.STATUS_STARTED;
+        zone.status[quest] = trackProgress ? questUtils.STATUS_STARTED : questUtils.STATUS_FINISHED;
         questContentBus.push(quest);
     });
 }
