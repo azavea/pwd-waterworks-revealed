@@ -27,6 +27,8 @@ module.exports = {
         Bacon.mergeAll(questManager.zoneStatusChangeStream,
                 Bacon.fromArray(questManager.zones))
             .onValue(changeZoneStyle);
+
+        initZoneClickEvents(questManager);
     }
 };
 
@@ -65,6 +67,7 @@ function initQuestZoneLayers(map, zones) {
 
         zone.latLng = latLng;
         zone.layer = circle;
+        zone.clickStream = Bacon.fromEventTarget(circle, 'click').map(zone);
     });
 }
 
@@ -85,4 +88,10 @@ function changeZoneStyle(zone) {
     } else if (questUtils.questInProgress(zone)) {
         zone.layer.setStyle(zoneStyle.inProgress);
     }
+}
+
+function initZoneClickEvents(questManager) {
+    _.each(questManager.zones, function(zone) {
+        zone.clickStream.filter(questUtils.allQuestsDone).onValue(questManager.showDeck);
+    });
 }

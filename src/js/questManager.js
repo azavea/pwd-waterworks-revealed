@@ -33,7 +33,8 @@ module.exports = {
         return {
             zones: zones,
             zoneDiffProperty: zoneDiffProperty,
-            zoneStatusChangeStream: Bacon.mergeAll(finishedStream, cards.topicStartedStream)
+            zoneStatusChangeStream: Bacon.mergeAll(finishedStream, cards.topicStartedStream),
+            showDeck: showDeck
         };
     }
 };
@@ -111,11 +112,15 @@ function closeDialogAndSwitchToZone(zone) {
 }
 
 function switchToZone(zone) {
-    cards.openZoneDeck(zone, true);
+    cards.openZoneDeck(zone, true, true);
 }
 
 function cleanupZoneChange(diff) {
     if (diff.oldZone) {
         diff.oldZone.invitationDialog.close();
     }
+}
+
+function showDeck(zone) {
+    cards.openZoneDeck(zone, true, false);
 }
