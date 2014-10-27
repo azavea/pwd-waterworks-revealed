@@ -28,6 +28,12 @@ module.exports = {
                 Bacon.fromArray(questManager.zones))
             .onValue(changeZoneStyle);
 
+        // Show and animate zone markers periodically
+        // for zones that have not been started
+        Bacon.interval(30000, questManager.zones)
+            .map(getUnstartedZones)
+            .onValue(showAndAnimateInactiveZones);
+
         initZoneClickEvents(questManager);
     }
 };
@@ -60,7 +66,7 @@ function initQuestZoneLayers(map, zones) {
     _.each(zones, function(zone) {
         var geom = zone.location,
             latLng = L.latLng(geom[0], geom[1]),
-            options = zone.zoneStyleInactive || zoneStyle.inactive,
+            options = zone.zoneStyleInitial || zoneStyle.initial,
             circle = L.circle(latLng, zone.radius, options);
 
         questLayerGroup.addLayer(circle);
@@ -83,10 +89,51 @@ function highlightZoneChange(diff) {
 function changeZoneStyle(zone) {
     if (questUtils.allQuestsDone(zone)) {
         zone.layer.setStyle(zoneStyle.done);
+        zone.layer.setStyle(zoneStyle.active);
     } else if (questUtils.noQuestsStarted(zone)) {
         zone.layer.setStyle(zoneStyle.unstarted);
     } else if (questUtils.questInProgress(zone)) {
         zone.layer.setStyle(zoneStyle.inProgress);
+        zone.layer.setStyle(zoneStyle.active);
+    }
+}
+
+function getUnstartedZones(zones) {
+    return _.filter(zones, questUtils.noQuestsStarted);
+}
+
+function showAndAnimateInactiveZones(zones) {
+    _.each(zones, function(zone) {
+        var fullRadius = zone.layer.getRadius();
+
+        // The setTimeout interval is tuned to have
+        // circles appear randomly with a second or
+        // or two window
+        window.setTimeout(function() {
+            zone.layer.setStyle({ fillOpacity: 0.35 });
+            zoneAnimation(zone.layer, fullRadius, 0);
+        }, 500 * (Math.random() * 2));
+    });
+}
+
+function zoneAnimation(layer, fullRadius, stepRadius) {
+    layer.setRadius(stepRadius);
+
+    // We want the marker to get more and more yellow as it
+    // gets larger.
+    var saturation = Math.round((stepRadius / fullRadius) * 100);
+    layer.setStyle({ fillColor: 'hsl(54, ' + saturation + '%, 50%)' });
+
+    // The increase in radius and setTimeout interval are tuned
+    // to smoothly animate a growing circle.
+    if(stepRadius < fullRadius) {
+        window.setTimeout(function() {
+            zoneAnimation(layer, fullRadius, stepRadius + 0.33);
+        }, 5);
+    } else {
+        // When the circle has reached is full radius
+        // we want to hide it from the map again.
+        layer.setStyle({ fillOpacity: 0 });
     }
 }
 
