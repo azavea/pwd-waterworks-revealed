@@ -7,7 +7,8 @@ var $ = require('jquery'),
     templateLoader = require('./templateLoader'),
     questUtils = require('./questUtils'),
     questContentTemplate = require('../templates/quest-content.ejs'),
-    zoneContentTemplate = require('../templates/zone-content.ejs');
+    zoneContentTemplate = require('../templates/zone-content.ejs'),
+    singleImageContentTemplate = require('../templates/single-image.ejs');
 
 var deckFinishedBus = new Bacon.Bus(),
     topicStartedBus= new Bacon.Bus(),
@@ -130,6 +131,12 @@ function navigateCards(e) {
     }
 }
 
+function setSingleCard(data) {
+    var html = singleImageContentTemplate({ path: data });
+    enableStartQuest();
+    addDeckToPage(html);
+}
+
 module.exports = {
     init: init,
     deckFinishedStream: deckFinishedBus.map(_.identity),
@@ -137,5 +144,6 @@ module.exports = {
     topicFinishedStream: topicFinishedBus.map(_.identity),
     openQuestDeck: openQuestDeck,
     openZoneDeck: openZoneDeck,
-    setQuestCards: setQuestCards
+    setQuestCards: setQuestCards,
+    setSingleCard: setSingleCard
 };

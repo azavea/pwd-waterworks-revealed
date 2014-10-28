@@ -34,10 +34,16 @@ module.exports = {
             zones: zones,
             zoneDiffProperty: zoneDiffProperty,
             zoneStatusChangeStream: Bacon.mergeAll(finishedStream, cards.topicStartedStream),
-            showDeck: showDeck
+            showDeck: showDeck,
+            zoneFinishedStream: finishedStream,
+            setCardValue: setCardValue
         };
     }
 };
+
+function setCardValue(html) {
+    cards.setSingleCard(html);
+}
 
 function getZoneById(id) {
     return _.find(zones, function (zone) {
