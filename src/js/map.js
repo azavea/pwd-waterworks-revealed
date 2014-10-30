@@ -13,11 +13,14 @@ module.exports = {
             locationStream = require('./geolocator').init(opts),
             latLngStream = locationStream.map(toLatLng),
             questManager = require('./questManager').init(latLngStream),
-            locationMarker = addLocationMarkerToMap(map);
+            locationMarker = addLocationMarkerToMap(map),
+            ghostMarkers = [];
 
         L.tileLayer('tiles/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(map);
 
-        latLngStream.onValue(locationMarker, 'setLatLng');
+        latLngStream
+            .doAction(updateGhostTrail, ghostMarkers, map)
+            .onValue(locationMarker, 'setLatLng');
 
         initQuestZoneLayers(map, questManager.zones);
 
@@ -37,6 +40,40 @@ module.exports = {
         initZoneClickEvents(questManager);
     }
 };
+
+function updateGhostTrail(markers, map, latlng) {
+    var icon = L.icon({iconUrl: 'img/location.png'}),
+        marker = L.marker(latlng, {icon: icon, clickable: false}),
+        lastMarker = null,
+        minTrailMarkerSpacing = 10, // In meters.
+        maxNumberOfMarkersInTrail = 10,
+        distance = minTrailMarkerSpacing;
+
+    if (markers.length > 0) {
+        distance = latlng.distanceTo(markers[0].getLatLng());
+    }
+
+    // Only add new points if the distance is greater than the minimum spacing
+    // distance so ghost trail points don't stack up.
+    if (distance >= minTrailMarkerSpacing) {
+        map.addLayer(marker),
+        markers.unshift(marker);
+
+        // Show only a fixed number of points in the trail at any given time.
+        if (markers.length > maxNumberOfMarkersInTrail) {
+            lastMarker = markers.pop();
+            map.removeLayer(lastMarker);
+        }
+
+        // Reduce the opacity by a fixed percentage (100/points) for each
+        // previous location from the current location. Start at 95% end at 5%.
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setOpacity((105 - (100 / maxNumberOfMarkersInTrail) * i) / 100);
+        }
+    }
+    // Return the latlng to the stream.
+    return latlng;
+}
 
 function initMap() {
     var mapOptions = {
