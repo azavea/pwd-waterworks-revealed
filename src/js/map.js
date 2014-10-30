@@ -56,7 +56,7 @@ function updateGhostTrail(markers, map, latlng) {
     // Only add new points if the distance is greater than the minimum spacing
     // distance so ghost trail points don't stack up.
     if (distance >= minTrailMarkerSpacing) {
-        map.addLayer(marker),
+        map.addLayer(marker);
         markers.unshift(marker);
 
         // Show only a fixed number of points in the trail at any given time.
