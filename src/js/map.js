@@ -34,15 +34,13 @@ module.exports = {
         // Style the initial zones, and any updates based on their status
         Bacon.mergeAll(questManager.zoneStatusChangeStream,
                 Bacon.fromArray(questManager.zones))
-            .onValue(changeZoneStyle);
+            .onValue(changeZoneStyle, questManager.showDeck);
 
         // Show and animate zone markers periodically
         // for zones that have not been started
         Bacon.interval(30000, questManager.zones)
             .map(getUnstartedZones)
             .onValue(showAndAnimateInactiveZones);
-
-        initZoneClickEvents(questManager);
     }
 };
 
@@ -115,7 +113,6 @@ function initQuestZoneLayers(map, zones) {
 
         zone.latLng = latLng;
         zone.layer = circle;
-        zone.clickStream = Bacon.fromEventTarget(circle, 'click').map(zone);
     });
 }
 
@@ -128,15 +125,33 @@ function highlightZoneChange(diff) {
     }
 }
 
-function changeZoneStyle(zone) {
+function changeZoneStyle(showDeck, zone) {
     if (questUtils.allQuestsDone(zone)) {
         zone.layer.setStyle(zoneStyle.done);
         zone.layer.setStyle(zoneStyle.active);
+
+        // Once a zone is completed, a user can click on the marker
+        // to launch the card deck instead of having to revisit the zone.
+        addZoneClickEvent(zone, showDeck);
     } else if (questUtils.noQuestsStarted(zone)) {
         zone.layer.setStyle(zoneStyle.unstarted);
+        removeZoneClickEvent(zone);
     } else if (questUtils.questInProgress(zone)) {
         zone.layer.setStyle(zoneStyle.inProgress);
         zone.layer.setStyle(zoneStyle.active);
+        removeZoneClickEvent(zone);
+    }
+}
+
+function addZoneClickEvent(zone, showDeck) {
+    zone.clickStream = Bacon.fromEventTarget(zone.layer, 'click').map(zone);
+    zone.clickStream.onValue(showDeck);
+}
+
+function removeZoneClickEvent(zone) {
+    if (zone.clickStream) {
+        zone.clickstream = null;
+        zone.layer.off('click');
     }
 }
 
@@ -177,12 +192,6 @@ function zoneAnimation(layer, fullRadius, stepRadius) {
         // we want to hide it from the map again.
         layer.setStyle({ fillOpacity: 0 });
     }
-}
-
-function initZoneClickEvents(questManager) {
-    _.each(questManager.zones, function(zone) {
-        zone.clickStream.filter(questUtils.allQuestsDone).onValue(questManager.showDeck);
-    });
 }
 
 /**
