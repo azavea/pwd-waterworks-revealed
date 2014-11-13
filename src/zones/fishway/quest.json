@@ -1,7 +1,9 @@
 {
     "id": "fishway",
     "title": "Fairmount Fishway",
-    "location": [39.9668950, -75.184550],
-    "radius": 16,
+    "altTitle": "Harnessing the power of the Schuylkill River",
+    "introTitle": "",
+    "location": [39.966850, -75.184600],
+    "radius": 8,
     "quests": ["Science", "History", "Environment"]
 }
