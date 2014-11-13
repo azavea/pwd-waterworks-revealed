@@ -1,7 +1,9 @@
 {
     "id": "schuylkill",
     "title": "Schuylkill River",
-    "location": [39.9672000, -75.184550],
-    "radius": 12,
+    "altTitle": "19th Century Innovation",
+    "introTitle": "Fairmount Water Works circa 1815",
+    "location": [39.9672500, -75.184600],
+    "radius": 6,
     "quests": ["Art", "Environment"]
 }
