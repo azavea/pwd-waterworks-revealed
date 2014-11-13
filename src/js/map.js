@@ -39,7 +39,7 @@ module.exports = {
 
         // Show and animate zone markers periodically
         // for zones that have not been started
-        Bacon.interval(30000, questManager.zones)
+        Bacon.interval(15000, questManager.zones)
             .map(getUnstartedZones)
             .onValue(showAndAnimateInactiveZones);
     }
