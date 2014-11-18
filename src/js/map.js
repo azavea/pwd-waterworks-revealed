@@ -174,7 +174,7 @@ function showAndAnimateInactiveZones(zones) {
         window.setTimeout(function() {
             zone.layer.setStyle({ fillOpacity: 0.35 });
             zoneAnimation(zone.layer, fullRadius, 0);
-        }, 500 * (Math.random() * 2));
+        }, 500 * (Math.random() * 10));
     });
 }
 
@@ -191,7 +191,7 @@ function zoneAnimation(layer, fullRadius, stepRadius) {
     if(stepRadius < fullRadius) {
         window.setTimeout(function() {
             zoneAnimation(layer, fullRadius, stepRadius + 0.33);
-        }, 5);
+        }, 15);
     } else {
         // When the circle has reached is full radius
         // we want to hide it from the map again.
