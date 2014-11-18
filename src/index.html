@@ -39,7 +39,34 @@
         <div id="map" class="page page-map active">
             <div id="tour-map" style="width:100%;height:100%;"></div>
             <a href="#menu" class="menu-link"><i class="icon-menu"></i></a>
-            <div id="card-holder"></div>
+            <div id="card-holder">
+                <div class="overlay">
+                    <div class="cards">
+                        <div class="card">
+                            <div class="card-header"></div>
+                            <div class="card-visual" style="background-image: url('img/intro_half.jpg');"></div>
+                            <div class="card-content scrollable">
+                                <h4>Welcome to the Waterworks!</h4>
+                                <p>...</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" data-navigate="next">Continue&nbsp;&nbsp;→</a>
+                            </div>
+                        </div>
+                        <div class="card next card-fullimage">
+                            <div class="card-header">
+                                <a data-navigate="close" class="left">×</a>
+                            </div>
+                            <div class="card-visual fullsize" style="background-image: url('img/intro_full.jpg');">
+                                <h2>...</h2>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" data-navigate="finish">Let's get started</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="quests" class="page page-static">
             <div class="page-static-container">

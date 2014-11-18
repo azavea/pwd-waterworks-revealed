@@ -20,9 +20,7 @@ module.exports = {
 
         zoneChangeStream
             .filter(_.isObject)
-            .onValue(inviteToZone);
-
-        zoneDiffProperty.onValue(cleanupZoneChange);
+            .onValue(switchToZone);
 
         cards.topicFinishedStream
             .map(getZoneFromDeck)
@@ -88,43 +86,12 @@ function onZoneFinished(zone) {
     }
 }
 
-function inviteToZone(zone) {
-    var verb = (
-            questUtils.noQuestsStarted(zone) ? 'You found a new area! Do you want to explore the ' + zone.title + '?' :
-            questUtils.questInProgress(zone) ? 'You have incomplete quests at the ' + zone.title + '. Continue exploring this location?' : 
-                                               'Welcome back to the ' + zone.title + '. Revisit this area and start a new quest?'),
-
-        dialog = new BootstrapDialog({
-            title: zone.title,
-            message: verb,
-            buttons: [
-                { label: 'Yes' , action: closeDialogAndSwitchToZone(zone), cssClass: 'btn-lg btn-block btn-primary' },
-                { label: 'No', action: closeBootstrapDialog, cssClass: 'btn-lg btn-block btn-default' }
-            ]
-        });
-    zone.invitationDialog = dialog;
-    dialog.open();
-}
-
 function closeBootstrapDialog(dialog) {
     dialog.close();
 }
 
-function closeDialogAndSwitchToZone(zone) {
-    return function(dialog) {
-        closeBootstrapDialog(dialog);
-        switchToZone(zone);
-    };
-}
-
 function switchToZone(zone) {
     cards.openZoneDeck(zone, true, true);
-}
-
-function cleanupZoneChange(diff) {
-    if (diff.oldZone) {
-        diff.oldZone.invitationDialog.close();
-    }
 }
 
 function showDeck(zone) {
