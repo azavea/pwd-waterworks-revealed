@@ -20,6 +20,7 @@ module.exports = {
 
         latLngStream
             .doAction(updateGhostTrail, ghostMarkers, map)
+            .doAction(centerMapOnPosiiton, map)
             .onValue(locationMarker, 'setLatLng');
 
         initQuestZoneLayers(map, questManager.zones);
@@ -99,6 +100,10 @@ function addLocationMarkerToMap(map) {
             .addTo(map);
 
     return marker;
+}
+
+function centerMapOnPosiiton(map, latlng) {
+    map.panTo(latlng);
 }
 
 function initQuestZoneLayers(map, zones) {
