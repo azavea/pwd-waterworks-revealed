@@ -61,3 +61,15 @@ Modify `src/index.html`, and then build:
 grunt
 ```
 On your device, switch away from the app and back to it.
+
+##### Using the PhoneGap Developer App
+
+If you want to more quickly view changes to the app during development, you can skip the publish and build process by using the PhoneGap Developer App. Instructions to install the app on your machine and development device can be found at [http://app.phonegap.com/](http://app.phonegap.com/) and are reproduced here:
+
+1. Install the app on your development machine: `npm install phonegap -g`.
+2. Search for and download the "PhoneGap Developer App" from the app store on your device.
+3. Build the app: `grunt app`.
+4. Start the PhoneGap server from the project root: `phonegap serve`.
+5. Open the PhoneGap Developer App on your device and input the server address give by the PhoneGap server.
+
+Once you are connected to the application on the device, run `grunt watch` locally. The app will reload on the device anytime grunt catches a change.
