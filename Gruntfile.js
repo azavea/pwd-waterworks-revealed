@@ -157,7 +157,7 @@ module.exports = function(grunt) {
         watch: {
             options: {
                 cwd: srcDir,
-                livereload: true  // Starts a livereload server on port 35729
+                livereload: 35727  // Starts a livereload server on port 35727
             },
             scripts: {
                 files: ['js/**/*.js', 'templates/**/*'],
