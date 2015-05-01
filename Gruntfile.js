@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 
     var srcDir  = 'src/',
         tempDir = 'build/temp/',
-        distDir = 'dist/',
+        distDir = 'www/',
         zonesDir = srcDir + 'zones/',
         questJson = zonesDir + '**/quest.json',
         jsDir   = srcDir + 'js/',
