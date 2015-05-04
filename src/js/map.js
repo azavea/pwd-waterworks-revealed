@@ -14,9 +14,20 @@ module.exports = {
             latLngStream = locationStream.map(toLatLng),
             questManager = require('./questManager').init(latLngStream),
             locationMarker = addLocationMarkerToMap(map),
-            ghostMarkers = [];
+            ghostMarkers = [],
+            southWest = L.latLng(39.96028, -75.189786),
+            northEast = L.latLng(39.97286, -75.177855),
+            bounds = L.latLngBounds(southWest, northEast);
 
-        L.tileLayer('tiles/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(map);
+        L.tileLayer(
+            'tiles/{z}/{x}/{y}.png',
+            {
+                maxZoom: 20,
+                minZoom: 17
+            }
+        ).addTo(map);
+
+        map.setMaxBounds(bounds);
 
         latLngStream
             .doAction(updateGhostTrail, ghostMarkers, map)

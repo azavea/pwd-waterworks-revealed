@@ -73,3 +73,10 @@ If you want to more quickly view changes to the app during development, you can 
 5. Open the PhoneGap Developer App on your device and input the server address give by the PhoneGap server.
 
 Once you are connected to the application on the device, run `grunt watch` locally. The app will reload on the device anytime grunt catches a change.
+
+##### Update Map Tiles
+
+Map tiles were generated in MapBox Studio (https://www.mapbox.com/mapbox-studio/).
+To alter them you will need a running copy of mapbox studio. The current project was created by Daniel (https://github.com/dmcglone/mapbox-studio-pencil.tm2).
+Exporting is a complicated process but we created a VM that has all the tools needed to create a raster-based mbtiles file. The VM can be found on the fileshare (smb://fileshare/projects/PWD_StormwaterBilling/data/mapboxstudio.ova). You will need a mapbox studio key. There are instuctions in text files on the desktop. The username and password are "azavea". This user has administrative rights.
+Once you have created the mbtiles file, move off the VM and use mbutil to extract the tiles (https://github.com/mapbox/mbutil). Then drop them in ```/src/tiles```.
