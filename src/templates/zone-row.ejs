@@ -1,0 +1,13 @@
+<li>
+    <% if (finished) { %>
+        <a class="finished" data-zone="<%- id %>">
+            <h4><%- title %><i class="icon-check"></i></h4>
+            <i class="icon-right-open"></i>
+        </a>
+    <% } else { %>
+        <a>
+            <h4><%- title %></h4>
+        </a>
+    <% } %>
+</li>
+

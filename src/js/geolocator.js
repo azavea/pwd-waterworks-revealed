@@ -28,7 +28,7 @@ module.exports = {
 };
 
 function isActive($button) {
-    return $button.data('toggles').active;
+    return $button.data('toggles') && $button.data('toggles').active;
 }
 
 function getLocationStream(geoProvider) {

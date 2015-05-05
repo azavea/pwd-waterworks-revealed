@@ -48,6 +48,8 @@ module.exports = {
         Bacon.interval(15000, questManager.zones)
             .map(getUnfinishedZones)
             .onValue(showAndAnimateInactiveZones);
+
+        return questManager;
     }
 };
 

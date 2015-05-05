@@ -93,6 +93,12 @@
                     @media screen and #{$screen-xs}, #{$screen-sm} {
                         font-size: 1.4rem;
                     }
+
+                    i {
+                        position: relative;
+                        padding-left: 20px;
+                        color: #00ed1c;
+                    }
                 }
                 h6 {
                     margin: 5px 0 5px;
