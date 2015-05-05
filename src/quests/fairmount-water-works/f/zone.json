@@ -1,0 +1,45 @@
+{
+    "id": "f",
+    "title": "Forebay Bridge",
+    "location": [39.9664, -75.18307],
+    "radius": 5,
+    "primaryItems": [
+        {
+            "name": "FP1",
+            "caption": "",
+            "credit": "Photo Courtesy of A. Leonard Pundt, 2010"
+        },
+        {
+            "name": "FP2",
+            "caption": "Forebay Bridge, water flows from New Mill House up to Reservoir, 1872",
+            "credit": "Photo Courtesy of Fairmount Park Archives"
+        }
+    ],
+    "secondaryItems": [
+        {
+            "name": "FC1",
+            "caption": "Old Mill House, New Mill House, and Forebay Bridge from North Cliffside Path, 1862",
+            "credit": "Photo Courtesy of Robert N. Dennis Collection, New York Public Library"
+        },
+        {
+            "name": "FC2",
+            "caption": "The New Mill House, constructed 1859–1862, contained three Jonval Turbine-pump sets, 1885",
+            "credit": "Photo Courtesy of Historical Society of Pennsylvania"
+        },
+        {
+            "name": "FC3",
+            "caption": "Installation of first Jonval Turbine-pump set in Old Mill House, looking north, 1868",
+            "credit": "Photo Courtesy of Franklin Institute"
+        },
+        {
+            "name": "FC4",
+            "caption": "The Distribution Arch was constructed in 1860 to serve as a link between the then-under-construction New Mill House and Standpipe., c.1875",
+            "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+        },
+        {
+            "name": "FC5",
+            "caption": "Gates to control flow of water under Forebay Bridge into Forebay. William Rush's white-painted, carved wood Allegory of the Schuylkill River In Its Improved State atop North Entry House. c.1875",
+            "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+        }
+    ]
+}

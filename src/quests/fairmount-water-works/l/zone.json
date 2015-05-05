@@ -1,0 +1,40 @@
+{
+    "id": "l",
+    "title": "Deck of Old Mill House",
+    "location": [39.96593, -75.18319],
+    "radius": 5,
+    "primaryItems": [
+        {
+            "name": "LP1",
+            "caption": "",
+            "credit": "Photo Courtesy of A. Leonard Pundt, 2010"
+        },
+        {
+            "name": "LP2",
+            "caption": "Deck of Old Mill House from behind Engine House, c.1880",
+            "credit": "Photo by James A. Cremer, Courtesy of Fairmount Park Archives"
+        }
+    ],
+    "secondaryItems": [
+        {
+            "name": "LC1",
+            "caption": "Old Mill House and Forebay looking north, 1875.  Force main pipes carried water from Turbine pumps to the Reservoir. These were removed shortly after the Fairmount Water Works was shut down in 1909. Wheels were used to control opening and closing of water flume gates.",
+            "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+        },
+        {
+            "name": "LC2",
+            "caption": "Forebay was filled in 1920 to a grade higher than the deck of the Old Mill House, trees were planted, and a street was created (Aquarium Drive) for access to the Aquarium. 1930",
+            "credit": "Photo Courtesy of City of Philadelphia Archives"
+        },
+        {
+            "name": "LC4",
+            "caption": "The Old Mill House in the midst of a major stabilization effort. 1987",
+            "credit": "Photo by C. Drew Brown, Courtesy of Philadelphia Water Department Archives"
+        },
+        {
+            "name": "LC6",
+            "caption": "Restoration in process, 1999",
+            "credit": "Photo by Nan Herson and Courtesy of Philadelphia Water Department Archives"
+        }
+    ]
+}

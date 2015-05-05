@@ -1,0 +1,35 @@
+{
+    "id": "k",
+    "title": "Reservoir",
+    "location": [39.96665, -75.18344],
+    "radius": 5,
+    "primaryItems": [
+        {
+            "name": "KP1",
+            "caption": "",
+            "credit": "Photo by James A. Cremer, Courtesy of Free Library of Philadelphia"
+        },
+        {
+            "name": "KP2",
+            "caption": "Forebay, Standpipe and Reservoir from Forebay Bridge, 1910. Crest of Fairmount Reservoir, initially constructed 1815. Demolished 1919 to make way for construction of Philadelphia Museum of Art.",
+            "credit": "Photo Courtesy of City of Philadelphia Archives"
+        }
+    ],
+    "secondaryItems": [
+        {
+            "name": "KC1",
+            "caption": "Foot of North Cliffside Path, 1989. By the late 1980s the Cliffside Paths, overgrown and deteriorated, had fallen into ruin. Safety railings were missing and not replaced.",
+            "credit": "Photo by Claire Donato, Courtesy of Fairmount Park Archives"
+        },
+        {
+            "name": "KC2",
+            "caption": "Foot of North Cliffside Path, 2007.",
+            "credit": "Photo Courtesy of A. Leonard Pundt"
+        },
+        {
+            "name": "KC3",
+            "caption": "From 2001 to 2008, the Fairmount Park Conservancy and Women for the Water Works raises funds for the restoration of the Cliffside Paths and South Garden., 2010",
+            "credit": "Photo Courtesy of A. Leonard Pundt"
+        }
+    ]
+}
