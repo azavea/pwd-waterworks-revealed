@@ -1,0 +1,30 @@
+{
+    "id": "r1",
+    "title": "Decks",
+    "location": [39.96697, -75.18454],
+    "radius": 5,
+    "primaryItems": [
+        {
+            "name": "RP1",
+            "caption": "",
+            "credit": "Photo Courtesy of A. Leonard Pundt, 2015"
+        },
+        {
+            "name": "RP2",
+            "caption": "",
+            "credit": "Photo by James A. Cremer, Courtesy of Fairmount Park Archives"
+        }
+    ],
+    "secondaryItems": [
+        {
+            "name": "RC1",
+            "caption": "New Mill House and Distribution Arch from Eagle Pavilion, 1875",
+            "credit": "Photo by James A. Cremer and Courtesy of Fairmount Park Archives"
+        },
+        {
+            "name": "RC2",
+            "caption": "Fairmount from deck of New Mill House, c.1880. Deck of New Mill House, constructed 1859–1862.",
+            "credit": "Photo Courtesy of Fairmount Park Archives"
+        }
+    ]
+}
