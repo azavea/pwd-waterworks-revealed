@@ -1,8 +1,5 @@
 'use strict';
 
-var $ = require('jquery'),
-    _ = require('lodash');
-
 exports = module.exports = {
     STATUS_NOT_STARTED: 1,
     STATUS_FINISHED: 2,
