@@ -6,3 +6,4 @@ src/quests.json
 dist/*
 www/*
 .idea/*
+*.tif

@@ -1,0 +1,50 @@
+{
+    "id": "r2",
+    "title": "Decks",
+    "location": [39.96697, -75.18454],
+    "radius": 5,
+    "primaryItems": [
+        {
+            "name": "RP13",
+            "caption": "",
+            "credit": "Photo Courtesy of Victoria Prizzia, 2014"
+        },
+        {
+            "name": "RC3",
+            "caption": "Old Mill House and Engine House from New Mill House, 1875. Reconfigured and Pavilion constructed 1868–1872.",
+            "credit": "Photo Courtesy of Fairmount Park Archives"
+        }
+    ],
+    "secondaryItems": [
+        {
+            "name": "RC9",
+            "caption": "Old Mill House and deck structures from New Mill House, 1978. Fairmount Water Works was allowed to deteriorate. Exteriors were marred by graffiti and needed maintenance. The Cliffside Paths, overgrown and missing railings, were a safety hazard.",
+            "credit": "Photo by Jack E. Boucher, Courtesy of Fairmount Water Works Recording Project, HAER, 1978, Library of Congress"
+        },
+        {
+            "name": "RC5",
+            "caption": "RC5. Engine House deck with Water Works Café, from South Garden, 1979. The Junior League of Philadelphia operated the Water Works Café in the Engine House from 1979 to 1981. It closed after a fire damaged part of the interior.",
+            "credit": "Photo by Jim Aleo, Courtesy of Philadelphia Water Department Archives"
+        },
+        {
+            "name": "RC4",
+            "caption": "Water Works Café, 1980",
+            "credit": "Photo by Jim Aleo, Courtesy of Philadelphia Water Department Archives"
+        },
+        {
+            "name": "RC7",
+            "caption": "Watering Committee Building from Pier, 1980",
+            "credit": "Photo by Keast & Hood, Courtesy of Philadelphia Water Department Archives"
+        },
+        {
+            "name": "RC6",
+            "caption": "Engine House deck from South Garden, 1989",
+            "credit": "Photo by Hal Kirn, Courtesy of Philadelphia Water Department Archives"
+        },
+        {
+            "name": "RC12",
+            "caption": "Restoration began in earnest in the 1990s. The Fairmount Water Works Interpretive Center opened in Machine Level of Engine House and portion of Old Mill House in 2003.",
+            "credit": "Rendering Courtesy of the Fairmount Water Works A Vision of the Future, 2014."
+        }
+    ]
+}

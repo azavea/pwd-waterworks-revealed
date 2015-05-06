@@ -1,0 +1,35 @@
+{
+    "id": "h",
+    "title": "New Mill House Deck",
+    "location": [39.96676, -75.18342],
+    "radius": 5,
+    "primaryItems": [
+        {
+            "name": "HP1",
+            "caption": "",
+            "credit": "Photo Courtesy of A. Leonard Pundt, 2010"
+        },
+        {
+            "name": "HP2",
+            "caption": "Corner of New Mill House and Forebay from Forebay Bridge, 1895",
+            "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+        }
+    ],
+    "secondaryItems": [
+        {
+            "name": "HC1",
+            "caption": "Passenger Steamboats made regular schedules runs between the Fairmount Water Works and locations upstream, as well as scheduled and chartered siteseeing trips. c.1885",
+            "credit": "Photo Courtesy of Robert N. Dennis Collection, New York Public Library"
+        },
+        {
+            "name": "HC2",
+            "caption": "Fairmount from the Outer Forebay. Crest of Fairmount Reservoir, initially constructed 1815. Demolished in 1919 to make way for the Philadelphia Museum of Art. c.1875",
+            "credit": "Photo Courtesy of Fairmount Water Works Recording Project, HAER, 1978, Library of Congress"
+        },
+        {
+            "name": "HC3",
+            "credit": "Children at foot of North Cliffside Path, c.1900",
+            "caption": "Photo Courtesy of Robert N. Dennis Collection, New York Public Library"
+        }
+    ]
+}
