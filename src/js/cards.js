@@ -4,30 +4,17 @@ var $ = require('jquery'),
     _ = require('lodash'),
     path = require('path'),
     Bacon = require('baconjs'),
-    templateLoader = require('./templateLoader'),
     zoneUtils = require('./zoneUtils'),
-    questContentTemplate = require('../templates/quest-content.ejs'),
-    zoneContentTemplate = require('../templates/zone-content.ejs'),
-    singleImageContentTemplate = require('../templates/single-image.ejs'),
     zoneTemplate = require('../templates/zone.ejs');
 
 var deckFinishedBus = new Bacon.Bus();
 
 function init() {
-
     var questSelectedStream = $('#card-holder')
             .asEventStream('change', 'input[name="quest"]')
             .onValue(enableStartQuest);
 
     $('#card-holder').on('click', '.card a[data-navigate]', navigateCards);
-}
-
-function openQuestDeck(zone, quest) {
-    var directory = path.join('zones', zone.id, quest);
-    var htmlPath = path.join(directory, 'index.html');
-
-    templateLoader.loadHtmlStream(htmlPath, questContentTemplate, {zone: zone, quest: quest, path: directory})
-        .onValue(addDeckToPage);
 }
 
 function openZoneDeck(zone, activeQuest) {
@@ -43,21 +30,6 @@ function openZoneDeck(zone, activeQuest) {
     addDeckToPage(html);
 
     deckFinishedBus.push(zone.id);
-}
-
-function setQuestCards($card, zone, quest) {
-    $card.nextAll().remove();
-
-    var directory = path.join('zones', zone.id, quest);
-    var htmlPath = path.join(directory, 'index.html');
-    templateLoader.loadHtmlStream(htmlPath, questContentTemplate, {zone: zone, quest: quest, path: directory})
-        .onValue(function(html) {
-            var $questCards = $(html).find('.card');
-            $card.after($questCards);
-            _.defer(function() {
-                $card.toggleClass('prev active');
-            });
-        });
 }
 
 function addDeckToPage(html) {
@@ -105,17 +77,8 @@ function navigateCards(e) {
     }
 }
 
-function setSingleCard(data) {
-    var html = singleImageContentTemplate({ path: data });
-    enableStartQuest();
-    addDeckToPage(html);
-}
-
 module.exports = {
     init: init,
     deckFinishedStream: deckFinishedBus.map(_.identity),
-    openQuestDeck: openQuestDeck,
-    openZoneDeck: openZoneDeck,
-    setQuestCards: setQuestCards,
-    setSingleCard: setSingleCard
+    openZoneDeck: openZoneDeck
 };
