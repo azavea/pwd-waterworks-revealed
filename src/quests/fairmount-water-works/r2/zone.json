@@ -1,11 +1,11 @@
 {
     "id": "r2",
     "title": "Decks",
-    "location": [39.96697, -75.18454],
+    "location": [39.96679, -75.18462],
     "radius": 5,
     "primaryItems": [
         {
-            "name": "RP13",
+            "name": "RC13_amphitheater_view",
             "caption": "",
             "credit": "Photo Courtesy of Victoria Prizzia, 2014"
         },
@@ -23,7 +23,7 @@
         },
         {
             "name": "RC5",
-            "caption": "RC5. Engine House deck with Water Works Café, from South Garden, 1979. The Junior League of Philadelphia operated the Water Works Café in the Engine House from 1979 to 1981. It closed after a fire damaged part of the interior.",
+            "caption": "Engine House deck with Water Works Café, from South Garden, 1979. The Junior League of Philadelphia operated the Water Works Café in the Engine House from 1979 to 1981. It closed after a fire damaged part of the interior.",
             "credit": "Photo by Jim Aleo, Courtesy of Philadelphia Water Department Archives"
         },
         {
@@ -42,7 +42,7 @@
             "credit": "Photo by Hal Kirn, Courtesy of Philadelphia Water Department Archives"
         },
         {
-            "name": "RC12",
+            "name": "RC12_FWW_Vision",
             "caption": "Restoration began in earnest in the 1990s. The Fairmount Water Works Interpretive Center opened in Machine Level of Engine House and portion of Old Mill House in 2003.",
             "credit": "Rendering Courtesy of the Fairmount Water Works A Vision of the Future, 2014."
         }
