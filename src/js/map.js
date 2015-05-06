@@ -3,7 +3,7 @@
 var L = require('leaflet'),
     Bacon = require('baconjs'),
     _ = require('lodash'),
-    questUtils = require('./questUtils'),
+    zoneUtils = require('./zoneUtils'),
     zoneStyle = require('./zoneStyles');
 
 module.exports = {
@@ -51,7 +51,7 @@ module.exports = {
         // Show and animate zone markers periodically
         // for zones that have not been started
         Bacon.interval(15000, questManager.zones)
-            .map(getUnstartedZones)
+            .map(getUnfinishedZones)
             .onValue(showAndAnimateInactiveZones);
     }
 };
@@ -142,19 +142,17 @@ function highlightZoneChange(diff) {
 }
 
 function changeZoneStyle(showDeck, zone) {
-    if (questUtils.allQuestsDone(zone)) {
+    if (!zone) { return; }
+
+    if (zoneUtils.zoneFinished(zone)) {
         zone.layer.setStyle(zoneStyle.done);
         zone.layer.setStyle(zoneStyle.active);
 
-        // Once a zone is completed, a user can click on the marker
+        // Once a zone has been entered, a user can click on the marker
         // to launch the card deck instead of having to revisit the zone.
         addZoneClickEvent(zone, showDeck);
-    } else if (questUtils.noQuestsStarted(zone)) {
+    } else {
         zone.layer.setStyle(zoneStyle.unstarted);
-        removeZoneClickEvent(zone);
-    } else if (questUtils.questInProgress(zone)) {
-        zone.layer.setStyle(zoneStyle.inProgress);
-        zone.layer.setStyle(zoneStyle.active);
         removeZoneClickEvent(zone);
     }
 }
@@ -171,8 +169,8 @@ function removeZoneClickEvent(zone) {
     }
 }
 
-function getUnstartedZones(zones) {
-    return _.filter(zones, questUtils.noQuestsStarted);
+function getUnfinishedZones(zones) {
+    return _.filter(zones, zoneUtils.zoneNotFinished);
 }
 
 function showAndAnimateInactiveZones(zones) {

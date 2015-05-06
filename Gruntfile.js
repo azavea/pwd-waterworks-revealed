@@ -23,17 +23,31 @@ module.exports = function(grunt) {
 
     grunt.registerTask('js', debug ? ['browserify'] : ['browserify', 'uglify']);
     grunt.registerTask('css', debug ? ['sass', 'concat:lib'] : ['sass', 'concat:lib', 'cssmin']);
-    grunt.registerTask('app', ['clean', 'concat:questJson', 'js', 'css', 'copy']);
+    grunt.registerTask('app', ['clean', 'quests', 'js', 'css', 'copy']);
 
     grunt.registerTask('phonegap', ['compress', 'phonegap-build']);
 
     grunt.registerTask('default', ['app', 'phonegap']);
 
+    grunt.registerTask('quests', function() {
+        var exec = require('child_process').exec,
+            done = this.async();
+
+        exec('python scripts/assemble_quests.py', {},
+            function(err) {
+                if (err) {
+                    grunt.log.error(err);
+                    done(false);
+                } else {
+                    done(true);
+                }
+        });
+    });
+
     var srcDir  = 'src/',
         tempDir = 'build/temp/',
         distDir = 'www/',
-        zonesDir = srcDir + 'zones/',
-        questJson = zonesDir + '**/quest.json',
+        zonesJson = srcDir + 'quests/**/*.json',
         jsDir   = srcDir + 'js/',
         sassDir = srcDir + 'sass/',
         jsBundlePath     = distDir + 'bundle.js',
@@ -45,7 +59,7 @@ module.exports = function(grunt) {
         appAssets = [
             'config.xml',
             'index.html',
-            'zones/**/*',
+            'quests/**/*',
             'sass/lib/leaflet.css',
             'sass/lib/fontello.css',
             'sass/lib/bootstrap.min.css',
@@ -53,7 +67,8 @@ module.exports = function(grunt) {
             'sass/lib/toggles-full.css',
             'sass/fonts/*',
             'tiles/**/*',
-            'img/**/*'
+            'img/**/*',
+            'quests.json'
         ];
 
     grunt.initConfig({
@@ -105,15 +120,6 @@ module.exports = function(grunt) {
                 src: [
                 ],
                 dest: cssVendorPath
-            },
-            questJson: {
-                options: {
-                    banner: '[',
-                    footer: ']',
-                    separator: ','
-                },
-                src: questJson,
-                dest: srcDir + 'zones.json'
             }
         },
 
@@ -168,8 +174,8 @@ module.exports = function(grunt) {
                 tasks: ['sass', 'copy']
             },
             quests: {
-                files: [questJson],
-                tasks: ['concat:questJson', 'copy']
+                files: zonesJson,
+                tasks: ['quests', 'copy']
             },
             assets: {
                 files: appAssets,
