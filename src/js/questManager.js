@@ -34,7 +34,6 @@ module.exports = {
             zoneDiffProperty: zoneDiffProperty,
             zoneStatusChangeStream: finishedStream,
             showDeck: showDeck,
-            zoneFinishedStream: finishedStream,
             setCardValue: setCardValue
         };
     }

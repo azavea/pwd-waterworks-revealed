@@ -1,7 +1,6 @@
 'use strict';
 
-var local = require('./build/local.json'),
-    questsToLoad = require('./src/questsToLoad.json');
+var local = require('./build/local.json');
 
 module.exports = function(grunt) {
 

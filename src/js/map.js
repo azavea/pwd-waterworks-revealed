@@ -38,11 +38,6 @@ module.exports = {
 
         questManager.zoneDiffProperty.onValue(highlightZoneChange);
 
-        questManager.zoneFinishedStream
-            .filter('.bonusPhotos')
-            .flatMap(addBonusPhotos, map)
-            .onValue(questManager, 'setCardValue');
-
         // Style the initial zones, and any updates based on their status
         Bacon.mergeAll(questManager.zoneStatusChangeStream,
                 Bacon.fromArray(questManager.zones))
@@ -206,26 +201,4 @@ function zoneAnimation(layer, fullRadius, stepRadius) {
         // we want to hide it from the map again.
         layer.setStyle({ fillOpacity: 0 });
     }
-}
-
-/**
- * Create a new stream composed of click events from markers that return the
- * paths of bonusPhotos for a given marker.
- */
-function addBonusPhotos(map, zone) {
-    return Bacon.mergeAll(_.map(zone.bonusPhotos, function (bonusPhoto) {
-        return prepareBonusImageMarker(map, zone, bonusPhoto);
-    }));
-}
-
-/**
- * Adds bonus markers to the map for a specific zone. Returns an event stream of
- * image paths when a marker is clicked.
- */
-function prepareBonusImageMarker(map, zone, bonusPhoto) {
-    var icon = L.icon({iconUrl: 'img/bonusMarker.png'});
-    var marker = L.marker(bonusPhoto.location, { icon: icon, clickable: true }).addTo(map);
-    return Bacon.fromEventTarget(marker, 'click').map(function () {
-        return 'zones/' + zone.id + '/bonusPhotos/' + bonusPhoto.image;
-    });
 }
