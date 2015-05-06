@@ -5,14 +5,13 @@ var $ = require('jquery'),
     path = require('path'),
     Bacon = require('baconjs'),
     templateLoader = require('./templateLoader'),
-    questUtils = require('./questUtils'),
+    zoneUtils = require('./zoneUtils'),
     questContentTemplate = require('../templates/quest-content.ejs'),
     zoneContentTemplate = require('../templates/zone-content.ejs'),
-    singleImageContentTemplate = require('../templates/single-image.ejs');
+    singleImageContentTemplate = require('../templates/single-image.ejs'),
+    zoneTemplate = require('../templates/zone.ejs');
 
-var deckFinishedBus = new Bacon.Bus(),
-    topicStartedBus= new Bacon.Bus(),
-    topicFinishedBus = new Bacon.Bus();
+var deckFinishedBus = new Bacon.Bus();
 
 function init() {
 
@@ -31,41 +30,19 @@ function openQuestDeck(zone, quest) {
         .onValue(addDeckToPage);
 }
 
-function openZoneDeck(zone, showHtml, trackProgress) {
-    var directory = path.join('zones', zone.id);
-    var htmlPath = path.join(directory, 'index.html');
+function openZoneDeck(zone, activeQuest) {
+    var directory = path.join('quests', activeQuest, zone.id),
+        context = {
+            quest: activeQuest,
+            primaryPath: directory + '/primary/',
+            secondaryPath: directory + '/secondary/',
+            zone: zone
+        },
+        html = zoneTemplate(context);
 
-    var questContentBus = new Bacon.Bus();
+    addDeckToPage(html);
 
-    questContentBus.flatMap(function(quest) {
-        var htmlPath = path.join(directory, quest, 'index.html');
-        return templateLoader.loadHtmlStream(htmlPath, questContentTemplate, {
-            zone: zone, quest: quest, path: directory
-        });
-    })
-    .scan([], function(list, html) {
-        list.push(html);
-        return list;
-    })
-    .onValue(function(htmlCards) {
-        if (htmlCards.length === zone.quests.length) {
-            var htmlStream = templateLoader.loadHtmlStream(htmlPath,
-                     zoneContentTemplate, {
-                        zone: zone, showHtml: showHtml, path: directory, fullZoneDeck: htmlCards
-                    });
-
-            htmlStream.onValue(addDeckToPage);
-            if (trackProgress) {
-                topicStartedBus.push(zone);
-            }
-        }
-    });
-
-    // Load all quest content and apply the cards to the deck
-    _.each(zone.quests, function(quest) {
-        zone.status[quest] = trackProgress ? questUtils.STATUS_STARTED : questUtils.STATUS_FINISHED;
-        questContentBus.push(quest);
-    });
+    deckFinishedBus.push(zone.id);
 }
 
 function setQuestCards($card, zone, quest) {
@@ -123,11 +100,8 @@ function navigateCards(e) {
         closeDeck($thisCard);
     } else if (action === 'repick') {
         closeDeck($thisCard);
-        topicFinishedBus.push($deck);
     } else if (action === 'finish') {
         closeDeck($thisCard);
-
-        deckFinishedBus.push($deck);
     }
 }
 
@@ -140,8 +114,6 @@ function setSingleCard(data) {
 module.exports = {
     init: init,
     deckFinishedStream: deckFinishedBus.map(_.identity),
-    topicStartedStream: topicStartedBus.map(_.identity),
-    topicFinishedStream: topicFinishedBus.map(_.identity),
     openQuestDeck: openQuestDeck,
     openZoneDeck: openZoneDeck,
     setQuestCards: setQuestCards,

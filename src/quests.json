@@ -1,0 +1,499 @@
+{
+    "fairmount-water-works": {
+        "zones": [
+            {
+                "title": "Rustic Pavilion", 
+                "primaryItems": [
+                    {
+                        "caption": "", 
+                        "name": "AP1", 
+                        "credit": "Photo Courtesy of A. Leonard Pundt, 2009"
+                    }, 
+                    {
+                        "caption": "Rustic Pavilion, 1876", 
+                        "name": "AP2", 
+                        "credit": "Photo by James A. Cremer, Courtesy of Fairmount Park Archives"
+                    }
+                ], 
+                "secondaryItems": [
+                    {
+                        "caption": "Rustic Pavilion looking north from South Cliffside Path, 1876", 
+                        "name": "AC1", 
+                        "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+                    }, 
+                    {
+                        "caption": "South Garden and Peace Fountain, 1876", 
+                        "name": "AC2", 
+                        "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+                    }, 
+                    {
+                        "caption": "Panorama of Fairmount Water Works from top of Cliff Path", 
+                        "name": "AC6", 
+                        "credit": "Photo Courtesy of A. Leonard Pundt, 2015"
+                    }
+                ], 
+                "location": [
+                    39.9656, 
+                    -75.1828
+                ], 
+                "radius": 5, 
+                "id": "a"
+            }, 
+            {
+                "title": "Old Mill House & Forebay", 
+                "primaryItems": [
+                    {
+                        "caption": "", 
+                        "name": "DP1", 
+                        "credit": "Photo Courtesy of A. Leonard Pundt, 2010"
+                    }, 
+                    {
+                        "caption": "Old Mill House and Forebay from Central Cliffside Path, c.1875", 
+                        "name": "DP2", 
+                        "credit": "Photo Courtesy of Free Library of Philadelphia"
+                    }
+                ], 
+                "secondaryItems": [
+                    {
+                        "caption": "Plan of Fairmount Water Works, 1874", 
+                        "name": "DC1", 
+                        "credit": "Courtesy of Philadelphia Bureau of Water, 1874 Annual Report. Fairmount Water Works Recording Project, HAER, 1978, Library of Congress"
+                    }, 
+                    {
+                        "caption": "Interior of Old Mill House, looking south, 1875", 
+                        "name": "DC2", 
+                        "credit": "Photo by James A. Cremer and Courtesy of City of Philadelphia Archives"
+                    }, 
+                    {
+                        "caption": "Diagram of Jonval Turbine and pump set in Old Mill House, side view, 1872", 
+                        "name": "DC3", 
+                        "credit": "Courtesy of Philadelphia Bureau of Water, Annual Report. Philadelphia Water Department Archives"
+                    }
+                ], 
+                "location": [
+                    39.9658, 
+                    -75.183
+                ], 
+                "radius": 5, 
+                "id": "d"
+            }, 
+            {
+                "title": "Forebay & New Mill House", 
+                "primaryItems": [
+                    {
+                        "caption": "", 
+                        "name": "EP1", 
+                        "credit": "Photo Courtesy of A. Leonard Pundt, 2010"
+                    }, 
+                    {
+                        "caption": "Forebay and New Mill House from North Cliffside Path, c.1862", 
+                        "name": "EP2", 
+                        "credit": "Photo Courtesy of Free Library of Philadelphia"
+                    }
+                ], 
+                "secondaryItems": [
+                    {
+                        "caption": "Forebay Bridge, docks for passenger steamboats going up river, 1872", 
+                        "name": "EC1", 
+                        "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+                    }, 
+                    {
+                        "caption": "Lemon Hill Observation Tower, constructed in 1875 to attract tourists from Centennial Exposition of 1876", 
+                        "name": "EC2", 
+                        "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+                    }
+                ], 
+                "location": [
+                    39.9666, 
+                    -75.1831
+                ], 
+                "radius": 5, 
+                "id": "e"
+            }, 
+            {
+                "title": "Forebay Bridge", 
+                "primaryItems": [
+                    {
+                        "caption": "", 
+                        "name": "FP1", 
+                        "credit": "Photo Courtesy of A. Leonard Pundt, 2010"
+                    }, 
+                    {
+                        "caption": "Forebay Bridge, water flows from New Mill House up to Reservoir, 1872", 
+                        "name": "FP2", 
+                        "credit": "Photo Courtesy of Fairmount Park Archives"
+                    }
+                ], 
+                "secondaryItems": [
+                    {
+                        "caption": "Old Mill House, New Mill House, and Forebay Bridge from North Cliffside Path, 1862", 
+                        "name": "FC1", 
+                        "credit": "Photo Courtesy of Robert N. Dennis Collection, New York Public Library"
+                    }, 
+                    {
+                        "caption": "The New Mill House, constructed 1859\u20131862, contained three Jonval Turbine-pump sets, 1885", 
+                        "name": "FC2", 
+                        "credit": "Photo Courtesy of Historical Society of Pennsylvania"
+                    }, 
+                    {
+                        "caption": "Installation of first Jonval Turbine-pump set in Old Mill House, looking north, 1868", 
+                        "name": "FC3", 
+                        "credit": "Photo Courtesy of Franklin Institute"
+                    }, 
+                    {
+                        "caption": "The Distribution Arch was constructed in 1860 to serve as a link between the then-under-construction New Mill House and Standpipe., c.1875", 
+                        "name": "FC4", 
+                        "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+                    }, 
+                    {
+                        "caption": "Gates to control flow of water under Forebay Bridge into Forebay. William Rush's white-painted, carved wood Allegory of the Schuylkill River In Its Improved State atop North Entry House. c.1875", 
+                        "name": "FC5", 
+                        "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+                    }
+                ], 
+                "location": [
+                    39.9664, 
+                    -75.18307
+                ], 
+                "radius": 5, 
+                "id": "f"
+            }, 
+            {
+                "title": "New Mill House Deck", 
+                "primaryItems": [
+                    {
+                        "caption": "", 
+                        "name": "HP1", 
+                        "credit": "Photo Courtesy of A. Leonard Pundt, 2010"
+                    }, 
+                    {
+                        "caption": "Corner of New Mill House and Forebay from Forebay Bridge, 1895", 
+                        "name": "HP2", 
+                        "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+                    }
+                ], 
+                "secondaryItems": [
+                    {
+                        "caption": "Passenger Steamboats made regular schedules runs between the Fairmount Water Works and locations upstream, as well as scheduled and chartered siteseeing trips. c.1885", 
+                        "name": "HC1", 
+                        "credit": "Photo Courtesy of Robert N. Dennis Collection, New York Public Library"
+                    }, 
+                    {
+                        "caption": "Fairmount from the Outer Forebay. Crest of Fairmount Reservoir, initially constructed 1815. Demolished in 1919 to make way for the Philadelphia Museum of Art. c.1875", 
+                        "name": "HC2", 
+                        "credit": "Photo Courtesy of Fairmount Water Works Recording Project, HAER, 1978, Library of Congress"
+                    }, 
+                    {
+                        "credit": "Children at foot of North Cliffside Path, c.1900", 
+                        "name": "HC3", 
+                        "caption": "Photo Courtesy of Robert N. Dennis Collection, New York Public Library"
+                    }
+                ], 
+                "location": [
+                    39.96676, 
+                    -75.18342
+                ], 
+                "radius": 5, 
+                "id": "h"
+            }, 
+            {
+                "title": "Deck", 
+                "primaryItems": [
+                    {
+                        "caption": "", 
+                        "name": "IP1", 
+                        "credit": "Photo Courtesy of A. Leonard Pundt, 2010"
+                    }, 
+                    {
+                        "caption": "Crest of Fairmount Reservoir, initially constructed in 1815. Demolished in 1919 to make way for construction of Philadelphia Museum of Art., c.1875", 
+                        "name": "IP2", 
+                        "credit": "Photo Courtesy of Free Library of Philadelphia"
+                    }
+                ], 
+                "secondaryItems": [
+                    {
+                        "caption": "Fairmount Water Works and Reservoir from West Bank of Schuylkill River, 1855", 
+                        "name": "IC1", 
+                        "credit": "Photo Courtesy of Franklin Institute"
+                    }, 
+                    {
+                        "caption": "New Mill House from Forebay Bridge, c.1875", 
+                        "name": "IC2", 
+                        "credit": "Photo by James A. Cremer, Courtesy of Fairmount Park Archives"
+                    }, 
+                    {
+                        "credit": "Old Mill House and Engine House from New Mill House, 1872", 
+                        "name": "IC3", 
+                        "caption": "Photo Courtesy of Philadelphia Water Department Archives"
+                    }
+                ], 
+                "location": [
+                    39.96686, 
+                    -75.18396
+                ], 
+                "radius": 5, 
+                "id": "i"
+            }, 
+            {
+                "title": "Reservoir", 
+                "primaryItems": [
+                    {
+                        "caption": "", 
+                        "name": "JP1", 
+                        "credit": "Photo Courtesy of A. Leonard Pundt, 2010"
+                    }, 
+                    {
+                        "caption": "Forebay, Standpipe and Reservoir from Forebay Bridge, 1910", 
+                        "name": "JP2", 
+                        "credit": "Photo Courtesy of City of Philadelphia Archives"
+                    }
+                ], 
+                "secondaryItems": [], 
+                "location": [
+                    39.96669, 
+                    -75.18356
+                ], 
+                "radius": 5, 
+                "id": "j"
+            }, 
+            {
+                "title": "Reservoir", 
+                "primaryItems": [
+                    {
+                        "caption": "", 
+                        "name": "KP1", 
+                        "credit": "Photo by James A. Cremer, Courtesy of Free Library of Philadelphia"
+                    }, 
+                    {
+                        "caption": "Forebay, Standpipe and Reservoir from Forebay Bridge, 1910. Crest of Fairmount Reservoir, initially constructed 1815. Demolished 1919 to make way for construction of Philadelphia Museum of Art.", 
+                        "name": "KP2", 
+                        "credit": "Photo Courtesy of City of Philadelphia Archives"
+                    }
+                ], 
+                "secondaryItems": [
+                    {
+                        "caption": "Foot of North Cliffside Path, 1989. By the late 1980s the Cliffside Paths, overgrown and deteriorated, had fallen into ruin. Safety railings were missing and not replaced.", 
+                        "name": "KC1", 
+                        "credit": "Photo by Claire Donato, Courtesy of Fairmount Park Archives"
+                    }, 
+                    {
+                        "caption": "Foot of North Cliffside Path, 2007.", 
+                        "name": "KC2", 
+                        "credit": "Photo Courtesy of A. Leonard Pundt"
+                    }, 
+                    {
+                        "caption": "From 2001 to 2008, the Fairmount Park Conservancy and Women for the Water Works raises funds for the restoration of the Cliffside Paths and South Garden., 2010", 
+                        "name": "KC3", 
+                        "credit": "Photo Courtesy of A. Leonard Pundt"
+                    }
+                ], 
+                "location": [
+                    39.96665, 
+                    -75.18344
+                ], 
+                "radius": 5, 
+                "id": "k"
+            }, 
+            {
+                "title": "Deck of Old Mill House", 
+                "primaryItems": [
+                    {
+                        "caption": "", 
+                        "name": "LP1", 
+                        "credit": "Photo Courtesy of A. Leonard Pundt, 2010"
+                    }, 
+                    {
+                        "caption": "Deck of Old Mill House from behind Engine House, c.1880", 
+                        "name": "LP2", 
+                        "credit": "Photo by James A. Cremer, Courtesy of Fairmount Park Archives"
+                    }
+                ], 
+                "secondaryItems": [
+                    {
+                        "caption": "Old Mill House and Forebay looking north, 1875.  Force main pipes carried water from Turbine pumps to the Reservoir. These were removed shortly after the Fairmount Water Works was shut down in 1909. Wheels were used to control opening and closing of water flume gates.", 
+                        "name": "LC1", 
+                        "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+                    }, 
+                    {
+                        "caption": "Forebay was filled in 1920 to a grade higher than the deck of the Old Mill House, trees were planted, and a street was created (Aquarium Drive) for access to the Aquarium. 1930", 
+                        "name": "LC2", 
+                        "credit": "Photo Courtesy of City of Philadelphia Archives"
+                    }, 
+                    {
+                        "caption": "The Old Mill House in the midst of a major stabilization effort. 1987", 
+                        "name": "LC4", 
+                        "credit": "Photo by C. Drew Brown, Courtesy of Philadelphia Water Department Archives"
+                    }, 
+                    {
+                        "caption": "Restoration in process, 1999", 
+                        "name": "LC6", 
+                        "credit": "Photo by Nan Herson and Courtesy of Philadelphia Water Department Archives"
+                    }
+                ], 
+                "location": [
+                    39.96593, 
+                    -75.18319
+                ], 
+                "radius": 5, 
+                "id": "l"
+            }, 
+            {
+                "title": "Cliff Side Path", 
+                "primaryItems": [
+                    {
+                        "caption": "", 
+                        "name": "NP1", 
+                        "credit": "Photo Courtesy of A. Leonard Pundt, 2010"
+                    }, 
+                    {
+                        "caption": "North Cliffside Path from Pavilion, 1875. Completed in this configuration with construction of Distribution Arch in 1860.", 
+                        "name": "NP2", 
+                        "credit": "Photo by James A. Cremer, Courtesy of Fairmount Park Archives"
+                    }
+                ], 
+                "secondaryItems": [
+                    {
+                        "caption": "Fairmount looking south from North Garden, c.1875", 
+                        "name": "NC1", 
+                        "credit": "Photo Courtesy of Robert N. Dennis Collection, New York Public Library"
+                    }, 
+                    {
+                        "caption": "Distribution Arch looking north from crest of Fairmount Reservoir, 1865. Served as a link between the then-under-construction New Mill House and the Standpipe.", 
+                        "name": "NC2", 
+                        "credit": "Photo Courtesy of Franklin Institute"
+                    }, 
+                    {
+                        "caption": "New Mill House from North Cliffside Path through Distribution Arch, 1865", 
+                        "name": "NC4", 
+                        "credit": "Photo by R. Newell and Courtesy of Robert N. Dennis Collection, New York Public Library"
+                    }
+                ], 
+                "location": [
+                    39.96628, 
+                    -75.18359
+                ], 
+                "radius": 5, 
+                "id": "n"
+            }, 
+            {
+                "title": "Reservoir", 
+                "primaryItems": [
+                    {
+                        "caption": "Fairmount Water Works and Philadelphia Museum of Art from west bank of Schuylkill River, 2015", 
+                        "name": "OP1", 
+                        "credit": "Photo Courtesy of A. Leonard Pundt"
+                    }, 
+                    {
+                        "caption": "Fairmount Water Works and Reservoir from west bank of Schuylkill River, c.1900", 
+                        "name": "OP2", 
+                        "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+                    }
+                ], 
+                "secondaryItems": [
+                    {
+                        "caption": "Fairmount Water Works and Reservoir from West Bank of Schuylkill River, 1855", 
+                        "name": "OC1", 
+                        "credit": "Photo Courtesy of Franklin Institute"
+                    }, 
+                    {
+                        "caption": "Fairmount Water Works and Reservoir from Lemon Hill Observation Tower, 1876", 
+                        "name": "OC2", 
+                        "credit": "Photo by James A. Cremer, Courtesy of Free Library of Philadelphia"
+                    }
+                ], 
+                "location": [
+                    39.96667, 
+                    -75.18398
+                ], 
+                "radius": 5, 
+                "id": "o"
+            }, 
+            {
+                "title": "Decks", 
+                "primaryItems": [
+                    {
+                        "caption": "", 
+                        "name": "RP1", 
+                        "credit": "Photo Courtesy of A. Leonard Pundt, 2015"
+                    }, 
+                    {
+                        "caption": "", 
+                        "name": "RP2", 
+                        "credit": "Photo by James A. Cremer, Courtesy of Fairmount Park Archives"
+                    }
+                ], 
+                "secondaryItems": [
+                    {
+                        "caption": "New Mill House and Distribution Arch from Eagle Pavilion, 1875", 
+                        "name": "RC1", 
+                        "credit": "Photo by James A. Cremer and Courtesy of Fairmount Park Archives"
+                    }, 
+                    {
+                        "caption": "Fairmount from deck of New Mill House, c.1880. Deck of New Mill House, constructed 1859\u20131862.", 
+                        "name": "RC2", 
+                        "credit": "Photo Courtesy of Fairmount Park Archives"
+                    }
+                ], 
+                "location": [
+                    39.96697, 
+                    -75.18454
+                ], 
+                "radius": 5, 
+                "id": "r1"
+            }, 
+            {
+                "title": "Decks", 
+                "primaryItems": [
+                    {
+                        "caption": "", 
+                        "name": "RC13_amphitheater_view", 
+                        "credit": "Photo Courtesy of Victoria Prizzia, 2014"
+                    }, 
+                    {
+                        "caption": "Old Mill House and Engine House from New Mill House, 1875. Reconfigured and Pavilion constructed 1868\u20131872.", 
+                        "name": "RC3", 
+                        "credit": "Photo Courtesy of Fairmount Park Archives"
+                    }
+                ], 
+                "secondaryItems": [
+                    {
+                        "caption": "Old Mill House and deck structures from New Mill House, 1978. Fairmount Water Works was allowed to deteriorate. Exteriors were marred by graffiti and needed maintenance. The Cliffside Paths, overgrown and missing railings, were a safety hazard.", 
+                        "name": "RC9", 
+                        "credit": "Photo by Jack E. Boucher, Courtesy of Fairmount Water Works Recording Project, HAER, 1978, Library of Congress"
+                    }, 
+                    {
+                        "caption": "Engine House deck with Water Works Caf\u00e9, from South Garden, 1979. The Junior League of Philadelphia operated the Water Works Caf\u00e9 in the Engine House from 1979 to 1981. It closed after a fire damaged part of the interior.", 
+                        "name": "RC5", 
+                        "credit": "Photo by Jim Aleo, Courtesy of Philadelphia Water Department Archives"
+                    }, 
+                    {
+                        "caption": "Water Works Caf\u00e9, 1980", 
+                        "name": "RC4", 
+                        "credit": "Photo by Jim Aleo, Courtesy of Philadelphia Water Department Archives"
+                    }, 
+                    {
+                        "caption": "Watering Committee Building from Pier, 1980", 
+                        "name": "RC7", 
+                        "credit": "Photo by Keast & Hood, Courtesy of Philadelphia Water Department Archives"
+                    }, 
+                    {
+                        "caption": "Engine House deck from South Garden, 1989", 
+                        "name": "RC6", 
+                        "credit": "Photo by Hal Kirn, Courtesy of Philadelphia Water Department Archives"
+                    }, 
+                    {
+                        "caption": "Restoration began in earnest in the 1990s. The Fairmount Water Works Interpretive Center opened in Machine Level of Engine House and portion of Old Mill House in 2003.", 
+                        "name": "RC12_FWW_Vision", 
+                        "credit": "Rendering Courtesy of the Fairmount Water Works A Vision of the Future, 2014."
+                    }
+                ], 
+                "location": [
+                    39.96679, 
+                    -75.18462
+                ], 
+                "radius": 5, 
+                "id": "r2"
+            }
+        ]
+    }
+}

@@ -2,7 +2,6 @@
 node_modules/*
 build/local.json
 build/temp/*
-src/quests.json
 dist/*
 www/*
 .idea/*
