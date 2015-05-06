@@ -1,0 +1,35 @@
+{
+    "id": "a",
+    "title": "Rustic Pavilion",
+    "location": [39.9656, -75.1828],
+    "radius": 5,
+    "primaryItems": [
+        {
+            "name": "AP1",
+            "caption": "",
+            "credit": "Photo Courtesy of A. Leonard Pundt, 2009"
+        },
+        {
+            "name": "AP2",
+            "caption": "Rustic Pavilion, 1876",
+            "credit": "Photo by James A. Cremer, Courtesy of Fairmount Park Archives"
+        }
+    ],
+    "secondaryItems": [
+        {
+            "name": "AC1",
+            "caption": "Rustic Pavilion looking north from South Cliffside Path, 1876",
+            "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+        },
+        {
+            "name": "AC2",
+            "caption": "South Garden and Peace Fountain, 1876",
+            "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+        },
+        {
+            "name": "AC6",
+            "caption": "Panorama of Fairmount Water Works from top of Cliff Path",
+            "credit": "Photo Courtesy of A. Leonard Pundt, 2015"
+        }
+    ]
+}

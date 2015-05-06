@@ -1,0 +1,31 @@
+{
+    "id": "e",
+    "title": "Forebay & New Mill House",
+    "location": [39.9666, -75.1831],
+    "radius": 5,
+    "primaryItems": [
+        {
+            "name": "EP1",
+            "caption": "",
+            "credit": "Photo Courtesy of A. Leonard Pundt, 2010"
+        },
+        {
+            "name": "EP2",
+            "caption": "Forebay and New Mill House from North Cliffside Path, c.1862",
+            "credit": "Photo Courtesy of Free Library of Philadelphia"
+        }
+    ],
+    "secondaryItems": [
+        {
+            "name": "EC1",
+            "caption": "Forebay Bridge, docks for passenger steamboats going up river, 1872",
+            "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+        },
+        {
+            "name": "EC2",
+            "caption": "Lemon Hill Observation Tower, constructed in 1875 to attract tourists from Centennial Exposition of 1876",
+            "credit": "Photo Courtesy of Philadelphia Water Department Archives"
+        }
+    ]
+}
+
