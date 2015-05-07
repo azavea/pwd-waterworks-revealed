@@ -37,11 +37,20 @@ function loadMyQuests($el, questManager) {
             });
 
         questManager.showDeck(zone);
-        $el.fadeOut(200).delay(200).toggleClass('active');
-        $('#map').fadeIn(200).delay(200).toggleClass('active');
+        crossFade($el, $('#map'));
     });
 }
 
+function crossFade($fromEl, $toEl, fadeLength, delay, toggleClass) {
+    if (!fadeLength) { fadeLength = 200; }
+    if (!delay) { delay = 200; }
+    if (!toggleClass) { toggleClass = 'active'; }
+
+    $fromEl.fadeOut(fadeLength).delay(delay).toggleClass(toggleClass);
+    $toEl.fadeIn(fadeLength).delay(delay).toggleClass(toggleClass);
+}
+
 module.exports = {
-    loadPage: loadPage
+    loadPage: loadPage,
+    crossFade: crossFade
 };

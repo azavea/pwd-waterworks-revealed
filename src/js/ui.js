@@ -68,8 +68,7 @@ function togglePages(e) {
     var activePage = $('#content').find('.page.active').attr('id');
 
     if (activePage !== target) {
-        $('#' + activePage).fadeOut(200).delay(200).toggleClass('active');
-        $('#' + target    ).fadeIn (200).delay(200).toggleClass('active');
+        pageManager.crossFade($('#' + activePage), $('#' + target));
         snap.close();
         pageManager.loadPage(target, $('#' + target), questManager);
     }
