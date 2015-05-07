@@ -42,7 +42,7 @@
             position: absolute;
             overflow: auto;
             padding: 15px 20px;
-            
+
             h4 {
                 font-size: 1.8rem;
                 font-weight: 700;
@@ -92,6 +92,12 @@
 
                     @media screen and #{$screen-xs}, #{$screen-sm} {
                         font-size: 1.4rem;
+                    }
+
+                    i {
+                        position: relative;
+                        padding-left: 20px;
+                        color: #00ed1c;
                     }
                 }
                 h6 {
