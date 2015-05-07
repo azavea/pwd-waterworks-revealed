@@ -5,8 +5,12 @@ var _ = require('lodash'),
     Bacon = require('baconjs'),
     BootstrapDialog = require('bootstrap-dialog'),
     cards = require('./cards'),
-    questUtils = require('./questUtils'),
-    zones = require('../zones.json');
+    zoneUtils = require('./zoneUtils'),
+    quests = require('../quests.json');
+
+var ACTIVE_QUEST = 'fairmount-water-works',
+    quest = quests[ACTIVE_QUEST],
+    zones = quest.zones;
 
 module.exports = {
     init: function (latLngStream) {
@@ -14,26 +18,22 @@ module.exports = {
                 .map(getZoneForLatLng)
                 .skipDuplicates(),
             zoneDiffProperty = zoneChangeStream.diff(undefined, zoneDiff),
-            finishedStream = Bacon.mergeAll(cards.deckFinishedStream, cards.topicFinishedStream)
-                .map(getZoneFromDeck)
+            finishedStream = cards.deckFinishedStream
+                .map(getZoneById)
                 .doAction(onZoneFinished);
 
         zoneChangeStream
             .filter(_.isObject)
             .onValue(switchToZone);
 
-        cards.topicFinishedStream
-            .map(getZoneFromDeck)
-            .onValue(switchToZone);
-
         initStatus();
 
         return {
             zones: zones,
+            activeQuest: ACTIVE_QUEST,
             zoneDiffProperty: zoneDiffProperty,
-            zoneStatusChangeStream: Bacon.mergeAll(finishedStream, cards.topicStartedStream),
+            zoneStatusChangeStream: finishedStream,
             showDeck: showDeck,
-            zoneFinishedStream: finishedStream,
             setCardValue: setCardValue
         };
     }
@@ -64,10 +64,8 @@ function zoneDiff(oldZone, newZone) {
 }
 
 function initStatus() {
-    _.each(zones, function (zone) {
-        zone.status = _.object(_.map(zone.quests, function(questCategory) {
-            return [questCategory, questUtils.STATUS_NOT_STARTED];
-        }));
+    _.each(zones, function(zone) {
+        zone.status = zoneUtils.STATUS_NOT_STARTED;
     });
 }
 
@@ -78,11 +76,8 @@ function getZoneFromDeck($deck) {
 }
 
 function onZoneFinished(zone) {
-    // All quests are completed at end of zone
     if (zone) {
-        _.each(zone.quests, function(quest) {
-            zone.status[quest] = questUtils.STATUS_FINISHED;
-        });
+        zone.status = zoneUtils.STATUS_FINISHED;
     }
 }
 
@@ -91,9 +86,9 @@ function closeBootstrapDialog(dialog) {
 }
 
 function switchToZone(zone) {
-    cards.openZoneDeck(zone, true, true);
+    cards.openZoneDeck(zone, ACTIVE_QUEST);
 }
 
 function showDeck(zone) {
-    cards.openZoneDeck(zone, true, false);
+    cards.openZoneDeck(zone, ACTIVE_QUEST);
 }
