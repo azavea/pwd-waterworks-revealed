@@ -1,6 +1,6 @@
 'use strict';
 
-var $ = require('jquery'),
+var $ = require('./jqueryBacon').$,
     _ = require('lodash'),
     path = require('path'),
     Bacon = require('baconjs'),

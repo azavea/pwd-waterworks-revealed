@@ -2,11 +2,14 @@
 
 var $        = require('jquery'),
     jqToggle = require('toggles'),
-    Snap     = require('Snap');
+    Snap     = require('Snap'),
+    pageManager = require('./pages');
 
-var snap;
+var snap,
+    questManager;
 
-function init() {
+function init(options) {
+    questManager = options.questManager;
     // Need these to not allow overscrolling
     $(window).bind('touchmove', function (e) {
         e.preventDefault();
@@ -51,7 +54,7 @@ function initSnap() {
 }
 
 function toggleMenu() {
-    if (snap.state().state == "left" ) {
+    if (snap.state().state === 'left' ) {
         snap.close();
     } else {
         snap.open('left');
@@ -60,13 +63,14 @@ function toggleMenu() {
 
 function togglePages(e) {
     e.preventDefault();
+    var page = $(e.currentTarget).data('page');
     var target = $(e.currentTarget).attr('data-page');
     var activePage = $('#content').find('.page.active').attr('id');
 
     if (activePage !== target) {
-        $('#' + activePage).fadeOut(200).delay(200).toggleClass('active');
-        $('#' + target    ).fadeIn (200).delay(200).toggleClass('active');
+        pageManager.crossFade($('#' + activePage), $('#' + target));
         snap.close();
+        pageManager.loadPage(target, $('#' + target), questManager);
     }
 }
 
