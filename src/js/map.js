@@ -3,7 +3,7 @@
 var L = require('leaflet'),
     Bacon = require('baconjs'),
     _ = require('lodash'),
-    questUtils = require('./questUtils'),
+    zoneUtils = require('./zoneUtils'),
     zoneStyle = require('./zoneStyles');
 
 module.exports = {
@@ -38,11 +38,6 @@ module.exports = {
 
         questManager.zoneDiffProperty.onValue(highlightZoneChange);
 
-        questManager.zoneFinishedStream
-            .filter('.bonusPhotos')
-            .flatMap(addBonusPhotos, map)
-            .onValue(questManager, 'setCardValue');
-
         // Style the initial zones, and any updates based on their status
         Bacon.mergeAll(questManager.zoneStatusChangeStream,
                 Bacon.fromArray(questManager.zones))
@@ -51,7 +46,7 @@ module.exports = {
         // Show and animate zone markers periodically
         // for zones that have not been started
         Bacon.interval(15000, questManager.zones)
-            .map(getUnstartedZones)
+            .map(getUnfinishedZones)
             .onValue(showAndAnimateInactiveZones);
     }
 };
@@ -142,19 +137,17 @@ function highlightZoneChange(diff) {
 }
 
 function changeZoneStyle(showDeck, zone) {
-    if (questUtils.allQuestsDone(zone)) {
+    if (!zone) { return; }
+
+    if (zoneUtils.zoneFinished(zone)) {
         zone.layer.setStyle(zoneStyle.done);
         zone.layer.setStyle(zoneStyle.active);
 
-        // Once a zone is completed, a user can click on the marker
+        // Once a zone has been entered, a user can click on the marker
         // to launch the card deck instead of having to revisit the zone.
         addZoneClickEvent(zone, showDeck);
-    } else if (questUtils.noQuestsStarted(zone)) {
+    } else {
         zone.layer.setStyle(zoneStyle.unstarted);
-        removeZoneClickEvent(zone);
-    } else if (questUtils.questInProgress(zone)) {
-        zone.layer.setStyle(zoneStyle.inProgress);
-        zone.layer.setStyle(zoneStyle.active);
         removeZoneClickEvent(zone);
     }
 }
@@ -171,8 +164,8 @@ function removeZoneClickEvent(zone) {
     }
 }
 
-function getUnstartedZones(zones) {
-    return _.filter(zones, questUtils.noQuestsStarted);
+function getUnfinishedZones(zones) {
+    return _.filter(zones, zoneUtils.zoneNotFinished);
 }
 
 function showAndAnimateInactiveZones(zones) {
@@ -208,26 +201,4 @@ function zoneAnimation(layer, fullRadius, stepRadius) {
         // we want to hide it from the map again.
         layer.setStyle({ fillOpacity: 0 });
     }
-}
-
-/**
- * Create a new stream composed of click events from markers that return the
- * paths of bonusPhotos for a given marker.
- */
-function addBonusPhotos(map, zone) {
-    return Bacon.mergeAll(_.map(zone.bonusPhotos, function (bonusPhoto) {
-        return prepareBonusImageMarker(map, zone, bonusPhoto);
-    }));
-}
-
-/**
- * Adds bonus markers to the map for a specific zone. Returns an event stream of
- * image paths when a marker is clicked.
- */
-function prepareBonusImageMarker(map, zone, bonusPhoto) {
-    var icon = L.icon({iconUrl: 'img/bonusMarker.png'});
-    var marker = L.marker(bonusPhoto.location, { icon: icon, clickable: true }).addTo(map);
-    return Bacon.fromEventTarget(marker, 'click').map(function () {
-        return 'zones/' + zone.id + '/bonusPhotos/' + bonusPhoto.image;
-    });
 }

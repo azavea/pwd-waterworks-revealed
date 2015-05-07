@@ -1,9 +1,0 @@
-{
-    "id": "fountain",
-    "title": "The Fountain",
-    "altTitle": "The Fountain",
-    "introTitle": "",
-    "location": [39.9675540, -75.1836170],
-    "radius": 18,
-    "quests": ["Art"]
-}
