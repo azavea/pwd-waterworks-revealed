@@ -1,19 +1,11 @@
 @mixin cards() {
     .cards {
-        margin: 25px;
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
         box-shadow: 0 0 15px rgba(0,0,0,0.75);
-
-        @media screen and #{$screen-md} {
-            margin: 40px 60px;
-        }
-         @media screen and #{$screen-lg} {
-            margin: 50px 80px;
-        }
 
         .card {
             @include card();
