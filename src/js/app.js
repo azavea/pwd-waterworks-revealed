@@ -1,5 +1,8 @@
 'use strict';
 
+var attachFastClick = require('fastclick');
+attachFastClick(document.body);
+
 var $ = require('jquery');
 
 module.exports = {
