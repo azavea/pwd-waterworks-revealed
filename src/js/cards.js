@@ -82,8 +82,9 @@ function navigateCards(e) {
 }
 
 function toggleCardContent(e) {
-    var caption = $('#card-holder .card.active').find('.slider');
-    caption.slideToggle();
+    // Find all current captions and open them.
+    var captions = $('#card-holder .card').find('.slider');
+    captions.slideToggle();
 }
 
 module.exports = {
