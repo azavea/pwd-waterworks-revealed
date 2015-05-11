@@ -7,6 +7,8 @@ var $ = require('./jqueryBacon').$,
     zoneUtils = require('./zoneUtils'),
     zoneTemplate = require('../templates/zone.ejs');
 
+$.mobile = require('jquery-mobile');
+
 var deckFinishedBus = new Bacon.Bus();
 
 function init() {
@@ -19,6 +21,10 @@ function init() {
     // Allow tapping the image or caption to toggle said caption open or closed.
     $('#card-holder').on('click', '.card .card-visual', toggleCardContent);
     $('#card-holder').on('click', '.card .card-content.slider', toggleCardContent);
+
+    // Allow swipe events to move through the card stack.
+    $('#card-holder').on('swiperight', swipeNavigateCards);
+    $('#card-holder').on('swipeleft', swipeNavigateCards);
 }
 
 function openZoneDeck(zone, activeQuest) {
@@ -63,7 +69,8 @@ function navigateCards(e) {
         $deck = $thisCard.closest('.overlay');
 
     if (action === 'next') {
-        $thisCard.toggleClass('prev active')
+        $thisCard.toggleClass('prev')
+                 .removeClass('active')
                  .next()
                  .toggleClass('next active')
                  .nextAll();
@@ -78,6 +85,28 @@ function navigateCards(e) {
         closeDeck($thisCard);
     } else if (action === 'finish') {
         closeDeck($thisCard);
+    }
+}
+
+function swipeNavigateCards(e) {
+    e.preventDefault();
+    var $target = $(e.currentTarget),
+        type = e.type,
+        $thisCard = $target.find('.card.active'),
+        $deck = $thisCard.closest('.overlay');
+
+    // In at least one case (the initial screen) the card opens without an
+    // active class so we need to find it another way.
+    if ($thisCard.length === 0) {
+        $thisCard = $target.find('.card').first();
+    }
+
+    // Proxy the swipe events to the next and back/close buttons since they have
+    // all the logic wired up already.
+    if (type === 'swipeleft') {
+        $thisCard.find('.card-footer a').click();
+    } else if (type === 'swiperight') {
+        $thisCard.find('.card-header a').click();
     }
 }
 

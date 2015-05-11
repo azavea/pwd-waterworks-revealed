@@ -11,6 +11,7 @@
     "fastclick": "^1.0.6",
     "grunt": "^0.4.4",
     "jquery": "^1.11.1",
+    "jquery-mobile": "^1.4.1",
     "leaflet": "0.7.x",
     "lodash": "^2.4.1"
   },
@@ -35,7 +36,8 @@
     "bootstrap": "./src/js/shim/bootstrap.min.js",
     "bootstrap-dialog": "./src/js/shim/bootstrap-dialog.min.js",
     "Snap": "./src/js/shim/snap.min.js",
-    "toggles": "./src/js/shim/toggles.js"
+    "toggles": "./src/js/shim/toggles.js",
+    "jquery-mobile": "./src/js/shim/jquery.mobile.min.js"
   },
   "browserify-shim": {
     "bootstrap": {
@@ -55,6 +57,13 @@
     "toggles": {
       "depends": "jquery:jQuery",
       "exports": "toggles"
+    },
+    "jquery": "$",
+    "jquery-mobile" : {
+      "exports": "$.mobile",
+      "depends": [
+        "jquery:$"
+      ]
     }
   }
 }
