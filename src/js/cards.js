@@ -15,6 +15,10 @@ function init() {
             .onValue(enableStartQuest);
 
     $('#card-holder').on('click', '.card a[data-navigate]', navigateCards);
+
+    // Allow tapping the image or caption to toggle said caption open or closed.
+    $('#card-holder').on('click', '.card .card-visual', toggleCardContent);
+    $('#card-holder').on('click', '.card .card-content.slider', toggleCardContent);
 }
 
 function openZoneDeck(zone, activeQuest) {
@@ -75,6 +79,12 @@ function navigateCards(e) {
     } else if (action === 'finish') {
         closeDeck($thisCard);
     }
+}
+
+function toggleCardContent(e) {
+    // Find all current captions and open them.
+    var captions = $('#card-holder .card').find('.slider');
+    captions.slideToggle(200);
 }
 
 module.exports = {
