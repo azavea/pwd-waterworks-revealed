@@ -66,8 +66,10 @@
             > .card-visual {
                 height: 100%;
                 width: 100%;
-                background: #F1F2F2;
-                background-size: cover;
+                background: #000;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
                 top: 0;
                 position: absolute;
 
