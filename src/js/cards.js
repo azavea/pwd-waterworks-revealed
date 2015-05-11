@@ -84,7 +84,7 @@ function navigateCards(e) {
 function toggleCardContent(e) {
     // Find all current captions and open them.
     var captions = $('#card-holder .card').find('.slider');
-    captions.slideToggle();
+    captions.slideToggle(200);
 }
 
 module.exports = {
