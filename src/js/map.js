@@ -38,16 +38,10 @@ module.exports = {
 
         questManager.zoneDiffProperty.onValue(highlightZoneChange);
 
-        // Style the initial zones, and any updates based on their status
+        // Update the style of a zone depending on it's status
         Bacon.mergeAll(questManager.zoneStatusChangeStream,
                 Bacon.fromArray(questManager.zones))
             .onValue(changeZoneStyle, questManager.showDeck);
-
-        // Show and animate zone markers periodically
-        // for zones that have not been started
-        Bacon.interval(15000, questManager.zones)
-            .map(getUnfinishedZones)
-            .onValue(showAndAnimateInactiveZones);
 
         return questManager;
     }
@@ -119,7 +113,7 @@ function initQuestZoneLayers(map, zones) {
     _.each(zones, function(zone) {
         var geom = zone.location,
             latLng = L.latLng(geom[0], geom[1]),
-            options = zone.zoneStyleInitial || zoneStyle.initial,
+            options = zoneStyle.unstarted,
             circle = L.circle(latLng, zone.radius, options);
 
         questLayerGroup.addLayer(circle);
@@ -131,10 +125,10 @@ function initQuestZoneLayers(map, zones) {
 
 function highlightZoneChange(diff) {
     if (diff.newZone) {
-        diff.newZone.layer.setStyle(diff.newZone.zoneStyleActive || zoneStyle.active);
+        diff.newZone.layer.setStyle(zoneStyle.active);
     }
     if (diff.oldZone) {
-        diff.oldZone.layer.setStyle(diff.oldZone.zoneStyleInactive || zoneStyle.inactive);
+        diff.oldZone.layer.setStyle(zoneStyle.inactive);
     }
 }
 
@@ -143,7 +137,6 @@ function changeZoneStyle(showDeck, zone) {
 
     if (zoneUtils.zoneFinished(zone)) {
         zone.layer.setStyle(zoneStyle.done);
-        zone.layer.setStyle(zoneStyle.active);
 
         // Once a zone has been entered, a user can click on the marker
         // to launch the card deck instead of having to revisit the zone.
@@ -168,39 +161,4 @@ function removeZoneClickEvent(zone) {
 
 function getUnfinishedZones(zones) {
     return _.filter(zones, zoneUtils.zoneNotFinished);
-}
-
-function showAndAnimateInactiveZones(zones) {
-    _.each(zones, function(zone) {
-        var fullRadius = zone.layer.getRadius();
-
-        // The setTimeout interval is tuned to have
-        // circles appear randomly with a second or
-        // or two window
-        window.setTimeout(function() {
-            zone.layer.setStyle({ fillOpacity: 0.35 });
-            zoneAnimation(zone.layer, fullRadius, 0);
-        }, 500 * (Math.random() * 10));
-    });
-}
-
-function zoneAnimation(layer, fullRadius, stepRadius) {
-    layer.setRadius(stepRadius);
-
-    // We want the marker to get more and more yellow as it
-    // gets larger.
-    var saturation = Math.round((stepRadius / fullRadius) * 100);
-    layer.setStyle({ fillColor: 'hsl(54, ' + saturation + '%, 50%)' });
-
-    // The increase in radius and setTimeout interval are tuned
-    // to smoothly animate a growing circle.
-    if(stepRadius < fullRadius) {
-        window.setTimeout(function() {
-            zoneAnimation(layer, fullRadius, stepRadius + 0.33);
-        }, 15);
-    } else {
-        // When the circle has reached is full radius
-        // we want to hide it from the map again.
-        layer.setStyle({ fillOpacity: 0 });
-    }
 }
