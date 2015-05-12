@@ -1,0 +1,110 @@
+.circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  background-color: #ccc;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 150;
+  background-image: url(http://sandbox.azavea.com/ww-map-even.jpg);
+  background-repeat: repeat;
+  background-position: center;
+}
+
+html {
+  overflow: hidden;
+}
+
+.modal-container {
+  display: table;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal {
+  display: table-cell;
+  vertical-align: middle;
+  left: 0;
+  right: 0;
+  position: relative;
+  z-index: 400;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 800ms ease-in-out;
+  -webkit-transform: translate3d(0, 10%, 0);
+  -ms-transform: translate3d(0, 10%, 0);
+  transform: translate3d(0, 10%, 0);
+}
+
+.modal.active {
+  visibility: initial;
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.modal-content {
+  background: #000;
+  padding: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fff;
+  max-width: 500px;
+  cursor: pointer;
+}
+
+.introduction {
+  height: 100vh;
+  opacity: 0;
+  background: #000;
+  z-index: 4000;
+  position: relative;
+  transition: opacity 800ms ease-in-out;
+}
+
+.introduction.active {
+  opacity: 1;
+}
+
+.modal-button {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  background-color: #999;
+  text-align: center;
+  font-weight: bold;
+}
+
+#map {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+
+.button--center {
+
+}
+
+.title {
+  color: #fff;
+  font-family: "gotham bold", helvetica, sans-serif;
+  text-transform: uppercase;
+  position: absolute;
+  text-align: center;
+  bottom: calc(50% - 200px);
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
