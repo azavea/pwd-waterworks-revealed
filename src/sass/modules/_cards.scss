@@ -1,19 +1,11 @@
 @mixin cards() {
     .cards {
-        margin: 25px;
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
         box-shadow: 0 0 15px rgba(0,0,0,0.75);
-
-        @media screen and #{$screen-md} {
-            margin: 40px 60px;
-        }
-         @media screen and #{$screen-lg} {
-            margin: 50px 80px;
-        }
 
         .card {
             @include card();
@@ -66,8 +58,10 @@
             > .card-visual {
                 height: 100%;
                 width: 100%;
-                background: #F1F2F2;
-                background-size: cover;
+                background: #000;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
                 top: 0;
                 position: absolute;
 
