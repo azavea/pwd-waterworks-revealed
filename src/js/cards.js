@@ -7,6 +7,8 @@ var $ = require('./jqueryBacon').$,
     zoneUtils = require('./zoneUtils'),
     zoneTemplate = require('../templates/zone.ejs');
 
+$.mobile = require('jquery-mobile');
+
 var deckFinishedBus = new Bacon.Bus();
 
 function init() {
@@ -14,11 +16,13 @@ function init() {
             .asEventStream('change', 'input[name="quest"]')
             .onValue(enableStartQuest);
 
-    $('#card-holder').on('click', '.card a[data-navigate]', navigateCards);
-
     // Allow tapping the image or caption to toggle said caption open or closed.
     $('#card-holder').on('click', '.card .card-visual', toggleCardContent);
     $('#card-holder').on('click', '.card .card-content.slider', toggleCardContent);
+
+    // Allow swipe events to move through the card stack.
+    $('#card-holder').on('swiperight', swipeNavigateCards);
+    $('#card-holder').on('swipeleft', swipeNavigateCards);
 }
 
 function openZoneDeck(zone, activeQuest) {
@@ -54,30 +58,44 @@ function enableStartQuest(isDisabled) {
         .removeClass('link-disabled');
 }
 
-function navigateCards(e) {
-    e.preventDefault();
-
+function swipeNavigateCards(e) {
     var $target = $(e.currentTarget),
-        action = $target.attr('data-navigate'),
-        $thisCard = $target.closest('.card'),
+        type = e.type,
+        $thisCard = $target.find('.card.active'),
         $deck = $thisCard.closest('.overlay');
 
-    if (action === 'next') {
-        $thisCard.toggleClass('prev active')
-                 .next()
-                 .toggleClass('next active')
-                 .nextAll();
-    } else if (action === 'prev') {
-        $thisCard.toggleClass('next active')
-                 .prev()
-                 .toggleClass('prev active')
-                 .nextAll();
-    } else if (action === 'close') {
-        closeDeck($thisCard);
-    } else if (action === 'repick') {
-        closeDeck($thisCard);
-    } else if (action === 'finish') {
-        closeDeck($thisCard);
+    // In at least one case (the initial screen) the card opens without an
+    // active class so we need to find it another way.
+    if ($thisCard.length === 0) {
+        $thisCard = $target.find('.card').first();
+    }
+
+    // Proxy the swipe events to the next and back/close buttons since they have
+    // all the logic wired up already.
+    if (type === 'swipeleft') {
+        // If there is another card in the stack, move to it.
+        if ($thisCard.next().length > 0) {
+            $thisCard
+                .addClass('prev')
+                .removeClass('active')
+                .next()
+                .addClass('active')
+                .removeClass('next');
+        } else {
+            // No next card so close the deck.
+            closeDeck($thisCard);
+        }
+    } else if (type === 'swiperight') {
+        if ($thisCard.prev().length > 0){
+            $thisCard
+                .addClass('next')
+                .removeClass('active')
+                .prev()
+                .addClass('active')
+                .removeClass('prev');
+        } else {
+            closeDeck($thisCard);
+        }
     }
 }
 

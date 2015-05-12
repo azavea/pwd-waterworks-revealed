@@ -112,8 +112,11 @@
                 }
             }
             > .card-content {
+                &.with-footer {
+                    bottom: 56px;
+                }
                 width: 100%;
-                bottom: 56px;
+                bottom: 0px;
                 position: absolute;
                 overflow: auto;
                 padding: 20px;
