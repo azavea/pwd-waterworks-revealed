@@ -1,6 +1,7 @@
 "use strict";
 
 var L = require('leaflet'),
+    $ = require('jquery'),
     Bacon = require('baconjs'),
     _ = require('lodash'),
     zoneUtils = require('./zoneUtils'),
@@ -28,6 +29,10 @@ module.exports = {
         ).addTo(map);
 
         map.setMaxBounds(bounds);
+
+        $(window).on('orientationchange', function() {
+            map.invalidateSize();
+        });
 
         latLngStream
             .doAction(updateGhostTrail, ghostMarkers, map)
