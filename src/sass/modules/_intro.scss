@@ -15,22 +15,22 @@
   background-position: center;
 }
 
-html {
-  overflow: hidden;
-}
-
-.modal-container {
+.modaloverlay-container {
   display: table;
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 2000;
+  cursor: pointer;
 }
 
 .hidden {
   display: none;
 }
 
-.modal {
+.modaloverlay {
   display: table-cell;
   vertical-align: middle;
   left: 0;
@@ -45,7 +45,7 @@ html {
   transform: translate3d(0, 10%, 0);
 }
 
-.modal.active {
+.modaloverlay.active {
   visibility: initial;
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
@@ -53,7 +53,7 @@ html {
   transform: translate3d(0, 0, 0);
 }
 
-.modal-content {
+.modaloverlay-content {
   background: #000;
   padding: 40px;
   margin-left: auto;
@@ -64,11 +64,12 @@ html {
 }
 
 .introduction {
-  height: 100vh;
+  height: 100%;
   opacity: 0;
   background: #000;
   z-index: 4000;
   position: relative;
+  overflow: hidden;
   transition: opacity 800ms ease-in-out;
 }
 
@@ -76,7 +77,7 @@ html {
   opacity: 1;
 }
 
-.modal-button {
+.modaloverlay-button {
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
@@ -93,18 +94,17 @@ html {
   position: absolute;
 }
 
-.button--center {
-
-}
-
 .title {
   color: #fff;
-  font-family: "gotham bold", helvetica, sans-serif;
   text-transform: uppercase;
-  position: absolute;
   text-align: center;
-  bottom: calc(50% - 200px);
+  top: 0;
   left: 0;
   right: 0;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0, -50%) translate(0, 200px);
+  -ms-transform: translate(0, -50%) translate(0, 200px);
+  transform: translate(0, -50%) translate(0, 200px);
   z-index: 100;
 }
