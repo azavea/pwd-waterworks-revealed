@@ -2,7 +2,8 @@
 
 var $ = require('jquery');
 
-var $introduction = $('#introduction');
+var $introduction = $('#introduction'),
+    $circle = $('#overlay-circle');
 
 module.exports = {
     init: function (options) {
@@ -33,24 +34,26 @@ function makeEvenInt(num) {
     return (numInt);
 }
 
-function animateModal() {
-    var $modal = $('#introduction-modal');
-    $modal.addClass('active');
+function animateModalOverlay() {
+    var $modaloverlay = $('#introduction-modaloverlay');
+    $modaloverlay.addClass('active');
 }
 
 function animateOpenCircle() {
-    var $circle = $('#overlay-circle'),
-            windowWidth = window.innerWidth,
-            windowHeight = window.innerHeight,
-            // maxDimension is multiplied by 2 to ensure that circle expands off screen
-            maxDimension = (windowWidth > windowHeight ? windowWidth : windowHeight) * 2;
+    var windowWidth = window.innerWidth,
+        windowHeight = window.innerHeight,
+        // maxDimension is multiplied by 2 to ensure that circle expands off screen
+        maxDimension = (windowWidth > windowHeight ? windowWidth : windowHeight) * 2;
     $circle.animate({width: maxDimension, height: maxDimension}, {
         duration: 1000,
         step: function(now, fx){
             fx.now = makeEvenInt(now);
         },
-        complete: animateModal,
+        complete: animateModalOverlay,
     });
+
+    // Fallback in case complete callback doesn't fire.
+    setTimeout(animateModalOverlay, 1500);
 }
 
 function animateSwitchMap() {
