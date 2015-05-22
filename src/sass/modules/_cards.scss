@@ -110,6 +110,12 @@
                         content: '\00a0\2014\00a0';
                     }
                 }
+
+                .flex {
+                    display: flex;
+                    flex-direction: row;
+                    height: 100%;
+                }
             }
             > .card-content {
                 &.with-footer {

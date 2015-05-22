@@ -100,6 +100,10 @@ function swipeNavigateCards(e) {
 }
 
 function toggleCardContent(e) {
+    // Not the most beautiful but a workable solution. If the tap came from a
+    // video, ignore it and move on.
+    if (e.target.tagName === 'VIDEO') { return; }
+
     // Find all current captions and open them.
     var captions = $('#card-holder .card').find('.slider');
     captions.slideToggle(200);
