@@ -5,12 +5,24 @@
             </div>
         </div>
         <div class="card next">
-            <div class="card-visual" style="background-image: url('<%= primaryPath %><%= zone.primaryItems[1].name %>.jpg');">
-            </div>
-            <div class="card-content slider">
-                <%- zone.primaryItems[1].caption %>
-                <strong><%- zone.primaryItems[1].credit %></strong>
-            </div>
+            <% if (zone.primaryItems[1].type && zone.primaryItems[1].type === 'video') { %>
+                <div class="card-visual">
+                    <div class="flex">
+                        <video controls
+                                style="width:100%;"
+                                src="<%= primaryPath %><%= zone.primaryItems[1].name %>"
+                                poster="<%= primaryPath %><%= zone.primaryItems[1].poster %>">
+                        </video>
+                    </div>
+                </div>
+            <% } else { %>
+                <div class="card-visual" style="background-image: url('<%= primaryPath %><%= zone.primaryItems[1].name %>.jpg');">
+                </div>
+                <div class="card-content slider">
+                    <%- zone.primaryItems[1].caption %>
+                    <strong><%- zone.primaryItems[1].credit %></strong>
+                </div>
+            <% } %>
         </div>
         <% _.each(zone.secondaryItems, function(item) { %>
             <div class="card next">
