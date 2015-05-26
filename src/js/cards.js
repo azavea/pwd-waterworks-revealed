@@ -82,7 +82,14 @@ function swipeNavigateCards(e) {
     var $target = $(e.currentTarget),
         type = e.type,
         $thisCard = $target.find('.card.active'),
-        $deck = $thisCard.closest('.overlay');
+        $deck = $thisCard.closest('.overlay'),
+        $video = $target.find('video');
+
+    // On android the video will play after leaving the card so we stop it
+    // manually.
+    if ($video.length > 0) {
+        $video.get(0).pause();
+    }
 
     // In at least one case (the initial screen) the card opens without an
     // active class so we need to find it another way.
