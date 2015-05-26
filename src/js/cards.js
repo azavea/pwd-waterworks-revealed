@@ -23,6 +23,26 @@ function init() {
     // Allow swipe events to move through the card stack.
     $('#card-holder').on('swiperight', swipeNavigateCards);
     $('#card-holder').on('swipeleft', swipeNavigateCards);
+    $('#card-holder').on('click', '.poster', startVideo);
+}
+
+function startVideo(e) {
+    var $poster = $(e.currentTarget),
+        $video = $(this).closest('.flex').find('video');
+
+    $poster.hide();
+    $video.show();
+    $video.get(0).play();
+
+    $video.on('pause', function() {
+        $poster.show();
+        $video.hide();
+    });
+
+    $video.on('ended', function() {
+        $poster.show();
+        $video.hide();
+    });
 }
 
 function openZoneDeck(zone, activeQuest) {
