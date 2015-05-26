@@ -6,3 +6,5 @@ dist/*
 www/*
 .idea/*
 *.tif
+
+.DS_Store
