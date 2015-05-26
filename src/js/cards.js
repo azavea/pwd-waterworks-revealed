@@ -23,6 +23,26 @@ function init() {
     // Allow swipe events to move through the card stack.
     $('#card-holder').on('swiperight', swipeNavigateCards);
     $('#card-holder').on('swipeleft', swipeNavigateCards);
+    $('#card-holder').on('click', '.poster', startVideo);
+}
+
+function startVideo(e) {
+    var $poster = $(e.currentTarget),
+        $video = $(this).closest('.flex').find('video');
+
+    $poster.hide();
+    $video.show();
+    $video.get(0).play();
+
+    $video.on('pause', function() {
+        $poster.show();
+        $video.hide();
+    });
+
+    $video.on('ended', function() {
+        $poster.show();
+        $video.hide();
+    });
 }
 
 function openZoneDeck(zone, activeQuest) {
@@ -62,7 +82,14 @@ function swipeNavigateCards(e) {
     var $target = $(e.currentTarget),
         type = e.type,
         $thisCard = $target.find('.card.active'),
-        $deck = $thisCard.closest('.overlay');
+        $deck = $thisCard.closest('.overlay'),
+        $video = $target.find('video');
+
+    // On android the video will play after leaving the card so we stop it
+    // manually.
+    if ($video.length > 0) {
+        $video.get(0).pause();
+    }
 
     // In at least one case (the initial screen) the card opens without an
     // active class so we need to find it another way.
@@ -100,6 +127,10 @@ function swipeNavigateCards(e) {
 }
 
 function toggleCardContent(e) {
+    // Not the most beautiful but a workable solution. If the tap came from a
+    // video, ignore it and move on.
+    if (e.target.tagName === 'VIDEO') { return; }
+
     // Find all current captions and open them.
     var captions = $('#card-holder .card').find('.slider');
     captions.slideToggle(200);

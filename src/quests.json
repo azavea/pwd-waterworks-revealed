@@ -48,12 +48,19 @@
                         "credit": "Photo Courtesy of A. Leonard Pundt, 2010"
                     }, 
                     {
-                        "caption": "Old Mill House and Forebay from Central Cliffside Path, c.1875", 
-                        "name": "DP2", 
-                        "credit": "Photo Courtesy of Free Library of Philadelphia"
+                        "poster": "flyover.jpg", 
+                        "credit": "", 
+                        "type": "video", 
+                        "name": "flyover.mp4", 
+                        "caption": ""
                     }
                 ], 
                 "secondaryItems": [
+                    {
+                        "caption": "Old Mill House and Forebay from Central Cliffside Path, c.1875", 
+                        "name": "DP2", 
+                        "credit": "Photo Courtesy of Free Library of Philadelphia"
+                    }, 
                     {
                         "caption": "Plan of Fairmount Water Works, 1874", 
                         "name": "DC1", 
