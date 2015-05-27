@@ -36,31 +36,26 @@
         </nav>
     </div>
     <div id="content" class="wrapper">
+
+        <div id="introduction" class="introduction active">
+            <div class="modaloverlay-container">
+                <div id="introduction-modaloverlay" class="modaloverlay">
+                    <div class="modaloverlay-content">
+                        <h1>A look through the past</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum eligendi harum beatae autem velit corporis, dolor consequuntur est, saepe sit dolorem nemo animi sequi quas non inventore pariatur. Quasi, magnam!</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque corporis ut doloremque facilis, vero sequi assumenda molestiae, aut animi eius quidem cumque. Facilis ex rerum, consequuntur. Recusandae odio reprehenderit atque?</p>
+                        <div id="button-close-introduction" class="modaloverlay-button">Get Started</div>
+                    </div>
+                </div>
+            </div>
+            <div id="overlay-circle" class="circle">&nbsp;</div>
+            <div class="title">Water Revealed</div>
+        </div>
+
         <div id="map" class="page page-map active">
             <div id="tour-map" style="width:100%;height:100%;"></div>
             <a href="#menu" class="menu-link"><i class="icon-menu"></i></a>
             <div id="card-holder">
-                <div class="overlay">
-                    <div class="cards">
-                        <div class="card">
-                            <div class="card-header"></div>
-                            <div class="card-visual" style="background-image: url('img/intro_half.jpg');"></div>
-                            <div class="card-content with-footer">
-                                <h4>Welcome to the Waterworks!</h4>
-                            </div>
-                            <div class="card-footer">
-                                <a>Swipe to Continue&nbsp;&nbsp;→</a>
-                            </div>
-                        </div>
-                        <div class="card next card-fullimage">
-                            <div class="card-header"></div>
-                            <div class="card-visual fullsize" style="background-image: url('img/intro_full.jpg');"></div>
-                            <div class="card-footer">
-                                <a>Let's get started... Swipe to begin.</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div id="quests" class="page page-static">
@@ -182,23 +177,23 @@
                     <div class="toggles" id="enable-mock-location"></div>
                   </div>
                   <hr>
-                  <a class="btn btn-danger btn-block" data-toggle="modal" href="#reset-quests">Reset Quests</a>
+                  <a class="btn btn-danger btn-block" data-toggle="modaloverlay" href="#reset-quests">Reset Quests</a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="reset-quests">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Reset all Quests?</h4>
+    <div class="modaloverlay fade" id="reset-quests">
+      <div class="modaloverlay-dialog">
+        <div class="modaloverlay-content">
+          <div class="modaloverlay-header">
+            <button type="button" class="close" data-dismiss="modaloverlay" aria-hidden="true">&times;</button>
+            <h4 class="modaloverlay-title">Reset all Quests?</h4>
           </div>
-          <div class="modal-body">
+          <div class="modaloverlay-body">
             <p>Are you sure you want to reset all complete and in-progress quests?</p>
           </div>
-          <div class="modal-footer">
-            <a class="btn btn-default" data-dismiss="modal">Cancel</a>
+          <div class="modaloverlay-footer">
+            <a class="btn btn-default" data-dismiss="modaloverlay">Cancel</a>
             <a class="btn btn-primary" href="index.html">Reset</a>
           </div>
         </div>
