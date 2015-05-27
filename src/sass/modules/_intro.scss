@@ -1,0 +1,110 @@
+.circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  background-color: #ccc;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 150;
+  background-image: url(http://sandbox.azavea.com/ww-map-even.jpg);
+  background-repeat: repeat;
+  background-position: center;
+}
+
+.modaloverlay-container {
+  display: table;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 2000;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.modaloverlay {
+  display: table-cell;
+  vertical-align: middle;
+  left: 0;
+  right: 0;
+  position: relative;
+  z-index: 400;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 800ms ease-in-out;
+  -webkit-transform: translate3d(0, 10%, 0);
+  -ms-transform: translate3d(0, 10%, 0);
+  transform: translate3d(0, 10%, 0);
+}
+
+.modaloverlay.active {
+  visibility: initial;
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.modaloverlay-content {
+  background: #000;
+  padding: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fff;
+  max-width: 500px;
+  cursor: pointer;
+}
+
+.introduction {
+  height: 100%;
+  opacity: 0;
+  background: #000;
+  z-index: 4000;
+  position: relative;
+  overflow: hidden;
+  transition: opacity 800ms ease-in-out;
+}
+
+.introduction.active {
+  opacity: 1;
+}
+
+.modaloverlay-button {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  background-color: #999;
+  text-align: center;
+  font-weight: bold;
+}
+
+#map {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+
+.title {
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0, -50%) translate(0, 200px);
+  -ms-transform: translate(0, -50%) translate(0, 200px);
+  transform: translate(0, -50%) translate(0, 200px);
+  z-index: 100;
+}

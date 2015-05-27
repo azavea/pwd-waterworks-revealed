@@ -10,6 +10,7 @@ module.exports = {
         var questManager = require('./map').init({
             $enableMockButton: $(options.mockLocationSelector)
         });
+        require('./intro').init();
         require('./cards').init();
         require('./ui').init({ questManager: questManager });
     }
