@@ -71,6 +71,8 @@ function togglePages(e) {
         pageManager.crossFade($('#' + activePage), $('#' + target));
         snap.close();
         pageManager.loadPage(target, $('#' + target), questManager);
+    } else {
+        toggleMenu();
     }
 }
 
