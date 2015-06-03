@@ -80,3 +80,25 @@ Map tiles were generated in MapBox Studio (https://www.mapbox.com/mapbox-studio/
 To alter them you will need a running copy of mapbox studio. The current project was created by Daniel (https://github.com/dmcglone/mapbox-studio-pencil.tm2).
 Exporting is a complicated process but we created a VM that has all the tools needed to create a raster-based mbtiles file. The VM can be found on the fileshare (smb://fileshare/projects/PWD_StormwaterBilling/data/mapboxstudio.ova). You will need a mapbox studio key. There are instuctions in text files on the desktop. The username and password are "azavea". This user has administrative rights.
 Once you have created the mbtiles file, move off the VM and use mbutil to extract the tiles (https://github.com/mapbox/mbutil). Then drop them in ```/src/tiles```.
+
+## Native Builds
+
+Recent versions have failed to successfully build using the phonegap platform
+and tooling. Creating native applications has proven successful. In order to do
+this you will need the IDE for the platform you want to build (either Android
+Studio or XCode). To start, wipe out any files you may have that are lying
+around from older builds:
+
+```phonegap platform remove ios```
+
+or
+
+```phonegap platform remove android```
+
+then,
+
+```phonegap run [ios, android]```
+
+This prepares the build directories in `./plaforms/[ios, android]`
+Open the appropriate project file in the IDE for that platform and build
+normally.
