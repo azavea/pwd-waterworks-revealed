@@ -1,0 +1,21 @@
+.quest-confirmation {
+  position: fixed;
+  display: table;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 1rem;
+  transition: $transition;
+  transform: translate(0, 100%);
+  z-index: 200;
+  opacity: .5;
+  &.active {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+.quest-confirmation-text {
+  display: table-cell;
+  vertical-align: middle;
+}

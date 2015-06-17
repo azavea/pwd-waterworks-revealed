@@ -254,3 +254,8 @@
         transform: translate3d(-125%,0,0);
     }
 }
+
+#card-holder {
+    z-index: 1000;
+    position: relative;
+}
