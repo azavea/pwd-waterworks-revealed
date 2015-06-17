@@ -103,6 +103,11 @@
                     font-family: $sec-font-family;
                     font-size: 1.8rem;
                     font-weight: 400;
+                    text-align: center;
+                    > img {
+                        max-width: 12rem;
+                        padding: 1rem;
+                    }
                 }
                 &.divider {
                     border-bottom: 1px solid #666;
