@@ -23,8 +23,9 @@ module.exports = {
                 .doAction(onZoneFinished);
 
         zoneChangeStream
+            .doAction(hideZoneActivationDialog)
             .filter(_.isObject)
-            .onValue(switchToZone);
+            .onValue(confirmZoneActivation);
 
         initStatus();
 
@@ -91,4 +92,24 @@ function switchToZone(zone) {
 
 function showDeck(zone) {
     cards.openZoneDeck(zone, ACTIVE_QUEST);
+}
+
+function confirmZoneActivation(zone) {
+    var $confirmation = $('#confirmation');
+
+    $confirmation.find('#confirmation-quest-name').html(zone.title);
+    $confirmation.addClass('active');
+
+    $('#explore-zone').bind('click', function() {
+        cards.openZoneDeck(zone, ACTIVE_QUEST);
+        hideZoneActivationDialog();
+    });
+}
+
+function hideZoneActivationDialog() {
+    var $confirmation = $('#confirmation'),
+        $exploreZone = $confirmation.find('#explore-zone');
+
+    $confirmation.removeClass('active');
+    $exploreZone.unbind();
 }
