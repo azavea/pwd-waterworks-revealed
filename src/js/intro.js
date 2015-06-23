@@ -37,6 +37,7 @@ function makeEvenInt(num) {
 function animateModalOverlay() {
     var $modaloverlay = $('#introduction-modaloverlay');
     $modaloverlay.addClass('active');
+    $('.title').hide();
 }
 
 function animateOpenCircle() {

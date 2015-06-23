@@ -11,8 +11,23 @@
     height: 55px;
     width: 55px;
 
+    .page-map & {
+        i {
+            background-color: #060623;
+        }
+    }
+
+    .snapjs-left .page-map & {
+        i {
+           background-color: transparent;
+        }
+    }
+
     i {
         font-size: 3.3rem;
+        border-radius: 4px;
+        transition: $transition;
+
     }
 
     @media screen and #{$screen-xs}, #{$screen-sm}, #{$screen-md} {
@@ -20,7 +35,7 @@
         left: 8px;
     }
 
-    &:hover {
+    &:hover, &:active {
         color: white;
         opacity: 1;
         text-decoration: none;
@@ -88,6 +103,11 @@
                     font-family: $sec-font-family;
                     font-size: 1.8rem;
                     font-weight: 400;
+                    text-align: center;
+                    > img {
+                        max-width: 12rem;
+                        padding: 1rem;
+                    }
                 }
                 &.divider {
                     border-bottom: 1px solid #666;
