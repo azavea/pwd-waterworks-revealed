@@ -1,7 +1,5 @@
 'use strict';
 
-var local = require('./build/local.json');
-
 module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-browserify');
@@ -13,7 +11,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-phonegap-build');
     grunt.loadNpmTasks('grunt-sass');
 
     var debug = typeof grunt.option('release') === "undefined";
@@ -24,9 +21,7 @@ module.exports = function(grunt) {
     grunt.registerTask('css', debug ? ['sass', 'concat:lib'] : ['sass', 'concat:lib', 'cssmin']);
     grunt.registerTask('app', ['clean', 'quests', 'js', 'css', 'copy']);
 
-    grunt.registerTask('phonegap', ['compress', 'phonegap-build']);
-
-    grunt.registerTask('default', ['app', 'phonegap']);
+    grunt.registerTask('default', ['app', 'compress']);
 
     grunt.registerTask('quests', function() {
         var exec = require('child_process').exec,
@@ -144,18 +139,6 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: distDir,
                 src: ["**/*"]
-            }
-        },
-
-        "phonegap-build": {
-            app: {
-                options: {
-                    archive: zipFilePath,
-                    appId: local.appId,
-                    user: { token: local.token },
-                    pollRate: 3000,  // ms
-                    download: { android: tempDir + 'android.apk' }
-                }
             }
         },
 
