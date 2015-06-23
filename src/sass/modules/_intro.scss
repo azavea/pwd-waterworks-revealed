@@ -4,7 +4,7 @@
   border-radius: 100%;
   background-color: #ccc;
   position: relative;
-  top: 50%;
+  top: 40%;
   left: 50%;
   -webkit-transform: translate3d(-50%, -50%, 0);
   -ms-transform: translate3d(-50%, -50%, 0);
@@ -102,9 +102,19 @@
   left: 0;
   right: 0;
   position: absolute;
-  top: 50%;
-  -webkit-transform: translate(0, -50%) translate(0, 200px);
-  -ms-transform: translate(0, -50%) translate(0, 200px);
-  transform: translate(0, -50%) translate(0, 200px);
+  top: 45%;
+  -webkit-transform: translate(0, -55%) translate(0, 200px);
+  -ms-transform: translate(0, -55%) translate(0, 200px);
+  transform: translate(0, -55%) translate(0, 200px);
   z-index: 100;
+  @media screen and (max-height: 460px) {
+    top: 36%;
+  }
+  img {
+    width: 13rem;
+    position: relative;
+    @media screen and (max-height: 460px) {
+      width: 11rem;
+    }
+  }
 }
