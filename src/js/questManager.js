@@ -9,6 +9,7 @@ var _ = require('lodash'),
     quests = require('../quests.json');
 
 var ACTIVE_QUEST = 'fairmount-water-works',
+    DEFAULT_PRIMARY_CAPTION = 'Align your screen so that it matches up with the view you see here, tap to show/hide captions.',
     quest = quests[ACTIVE_QUEST],
     zones = quest.zones;
 
@@ -28,6 +29,12 @@ module.exports = {
 
         initStatus();
 
+        zones.forEach(function(z) {
+            var firstPhoto = _.first(z.primaryItems);
+            if (!firstPhoto.caption) {
+                firstPhoto.caption = DEFAULT_PRIMARY_CAPTION;
+            }
+        });
         return {
             zones: zones,
             activeQuest: ACTIVE_QUEST,
