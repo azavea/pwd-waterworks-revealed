@@ -3,6 +3,10 @@
         <div class="card card-fullimage">
             <div class="card-visual fullsize" style="background-image: url('<%= primaryPath %><%= zone.primaryItems[0].name %>.jpg');">
             </div>
+            <div class="card-content slider">
+                <%- zone.primaryItems[0].caption %>
+                <strong><%- zone.primaryItems[0].credit %></strong>
+            </div>
         </div>
         <div class="card next">
             <% if (zone.primaryItems[1].type && zone.primaryItems[1].type === 'video') { %>
