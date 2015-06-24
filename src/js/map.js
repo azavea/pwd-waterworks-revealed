@@ -53,11 +53,11 @@ module.exports = {
 };
 
 function updateGhostTrail(markers, map, latlng) {
-    var icon = L.icon({iconUrl: 'img/location.png'}),
+    var icon = L.icon({iconUrl: 'img/location-ghost.png'}),
         marker = L.marker(latlng, {icon: icon, clickable: false}),
         lastMarker = null,
-        minTrailMarkerSpacing = 10, // In meters.
-        maxNumberOfMarkersInTrail = 10,
+        minTrailMarkerSpacing = 5, // In meters.
+        maxNumberOfMarkersInTrail = 12,
         distance = minTrailMarkerSpacing;
 
     if (markers.length > 0) {
@@ -77,9 +77,9 @@ function updateGhostTrail(markers, map, latlng) {
         }
 
         // Reduce the opacity by a fixed percentage (100/points) for each
-        // previous location from the current location. Start at 95% end at 5%.
+        // previous location from the current location. Start at 85% end at 0%.
         for (var i = 0; i < markers.length; i++) {
-            markers[i].setOpacity((105 - (100 / maxNumberOfMarkersInTrail) * i) / 100);
+            markers[i].setOpacity((85 - (100 / maxNumberOfMarkersInTrail) * i) / 100);
         }
     }
     // Return the latlng to the stream.
@@ -91,7 +91,7 @@ function initMap() {
             attributionControl: false,
             zoomControl: false,
             center: [39.9665675,-75.1834254],
-            zoom: 18
+            zoom: 19
         },
         map = L.map('tour-map', mapOptions);
     return map;
@@ -103,7 +103,7 @@ function toLatLng(position) {
 
 function addLocationMarkerToMap(map) {
     var icon = L.icon({iconUrl: 'img/location.png'}),
-        marker = L.marker([0,0],{icon: icon, clickable: false})
+        marker = L.marker([0,0],{icon: icon, clickable: false, zIndexOffset: 1000 })
             .addTo(map);
 
     return marker;
