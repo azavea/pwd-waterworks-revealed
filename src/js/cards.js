@@ -14,6 +14,7 @@ var deckFinishedBus = new Bacon.Bus();
 
 function init() {
     var cardHolder = $('#card-holder');
+
     cardHolder.asEventStream('change', 'input[name="quest"]')
             .onValue(enableStartQuest);
 
@@ -24,24 +25,7 @@ function init() {
     // Allow swipe events to move through the card stack.
     cardHolder.on('swiperight', swipeNavigateCards);
     cardHolder.on('swipeleft', swipeNavigateCards);
-    cardHolder.on('click', '.poster', function(e) {
-        var $poster = $(e.currentTarget),
-            $video = $(this).closest('.flex').find('video');
-
-        $poster.hide();
-        $video.show();
-        $video.get(0).play();
-
-        $video.on('pause', function() {
-            $poster.show();
-            $video.hide();
-        });
-
-        $video.on('ended', function() {
-            $poster.show();
-            $video.hide();
-        });
-    });
+    cardHolder.on('click', '.poster', handleVideoTap);
 }
 
 function openZoneDeck(zone, activeQuest) {
@@ -170,6 +154,25 @@ function swipeNavigateCards(e) {
             closeDeck($thisCard);
         }
     }
+}
+
+function handleVideoTap(e) {
+    var $poster = $(e.currentTarget),
+        $video = $poster.closest('.flex').find('video');
+
+    $poster.hide();
+    $video.show();
+    $video.get(0).play();
+
+    $video.on('pause', function() {
+        $poster.show();
+        $video.hide();
+    });
+
+    $video.on('ended', function() {
+        $poster.show();
+        $video.hide();
+    });
 }
 
 function toggleCardContent(e) {
