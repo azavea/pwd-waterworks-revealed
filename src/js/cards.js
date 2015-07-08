@@ -43,6 +43,8 @@ function openZoneDeck(zone, activeQuest) {
     var html = zoneTemplate(context);
     addDeckToPage(html);
 
+    $('#finish-zone').on('click', finishZone);
+
     deckFinishedBus.push(zone.id);
 }
 
@@ -109,6 +111,12 @@ function enableStartQuest(isDisabled) {
         .removeClass('link-disabled');
 }
 
+function finishZone(e) {
+    var $activeCard = $(e.currentTarget).closest('.card.active');
+
+    closeDeck($activeCard);
+}
+
 function swipeNavigateCards(e) {
     var $target = $(e.currentTarget),
         type = e.type,
@@ -130,6 +138,12 @@ function swipeNavigateCards(e) {
     // Proxy the swipe events to the next and back/close buttons since they have
     // all the logic wired up already.
     if (type === 'swipeleft') {
+        // Don't allow users to swipe away the
+        // last card in the deck.
+        if ($thisCard.hasClass('last')) {
+            return;
+        }
+
         // If there is another card in the stack, move to it.
         if ($thisCard.next().hasClass('card')) {
             $thisCard
