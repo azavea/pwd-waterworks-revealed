@@ -7,6 +7,32 @@
         right: 0;
         box-shadow: 0 0 15px rgba(0,0,0,0.75);
 
+        .audio-player {
+            position: absolute;
+            z-index: 100;
+            width: 100%;
+            background-color: black;
+            padding: 15px 10px;
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+            border-bottom: 1px solid white;
+
+            .audio-control {
+                padding: 5px;
+                border: 2px solid white;
+                margin: 7px;
+                display: inline-block;
+            }
+
+            .close-deck {
+                float: right;
+                text-align: right;
+                font-size: 30px;
+                padding: 5px 10px;
+            }
+        }
+
         .card {
             @include card();
 

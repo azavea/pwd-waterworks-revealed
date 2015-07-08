@@ -50,10 +50,13 @@ function openZoneDeck(zone, activeQuest) {
             quest: activeQuest,
             primaryPath: directory + '/primary/',
             secondaryPath: directory + '/secondary/',
-            zone: zone
-        },
-        html = zoneTemplate(context);
+            mediaPath: directory + '/media/',
+            zone: zone,
+        };
 
+    context.audioPlayer = audioPlayerTemplate(context);
+
+    var html = zoneTemplate(context);
     addDeckToPage(html);
 
     deckFinishedBus.push(zone.id);
@@ -65,11 +68,56 @@ function addDeckToPage(html) {
         .find('.overlay')
         .first()
         .fadeIn(400);
+
+        // Now that our card holder has a deck in it prepare audio.
+        setUpAudio();
+}
+
+function setUpAudio() {
+    var $audioPlayer = $('#card-holder').find('.audio-player'),
+        $audioButton = $audioPlayer.find('.audio-control'),
+        $audioEl = $('#card-holder').find('audio'),
+        sound = $audioEl.get(0),
+        playingClass = 'playing';
+
+    // Reset on sound completion.
+    $audioEl.on('ended', function() {
+        $audioButton.removeClass(playingClass).text('Play Again');
+    });
+
+    // Single button audio player.
+    $audioButton.on('click', function() {
+        if ($(this).hasClass(playingClass)) {
+            sound.pause();
+            $(this).removeClass(playingClass).text('Play Audio');
+        } else {
+            sound.play();
+            $(this).addClass(playingClass).text('Pause Audio');
+        }
+    });
+
+    // Audio player can close the deck.
+    $audioPlayer.on('click', '.close-deck', function() {
+        // Though not a card, passing the player div to the closeDeck function
+        // is fine since the card is only used to find the overlay container
+        // and hide it. This works just as well for the player div.
+        closeDeck($audioPlayer);
+    });
 }
 
 function closeDeck($card) {
-    $card.closest('.overlay')
-         .fadeOut(400);
+    try {
+        // Attempt to stop any sound that is playing before we close.
+        $('#card-holder').find('audio').get(0).pause();
+    } catch (exc) {
+        // Expecting: TypeError "Cannot read property 'pause' of undefined"
+        if (exc.name !== 'TypeError') {
+            throw exc;
+        }
+    } finally {
+        $card.closest('.overlay')
+            .fadeOut(400);
+    }
 }
 
 function enableStartQuest(isDisabled) {
@@ -99,7 +147,7 @@ function swipeNavigateCards(e) {
     // all the logic wired up already.
     if (type === 'swipeleft') {
         // If there is another card in the stack, move to it.
-        if ($thisCard.next().length > 0) {
+        if ($thisCard.next().hasClass('card')) {
             $thisCard
                 .addClass('prev')
                 .removeClass('active')
@@ -111,7 +159,7 @@ function swipeNavigateCards(e) {
             closeDeck($thisCard);
         }
     } else if (type === 'swiperight') {
-        if ($thisCard.prev().length > 0){
+        if ($thisCard.prev().hasClass('card')){
             $thisCard
                 .addClass('next')
                 .removeClass('active')
