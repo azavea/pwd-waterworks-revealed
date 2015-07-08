@@ -31,12 +31,12 @@ function init() {
         $poster.hide();
         $video.show();
         $video.get(0).play();
-        
+
         $video.on('pause', function() {
             $poster.show();
             $video.hide();
         });
-        
+
         $video.on('ended', function() {
             $poster.show();
             $video.hide();
