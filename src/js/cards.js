@@ -5,25 +5,26 @@ var $ = require('./jqueryBacon').$,
     path = require('path'),
     Bacon = require('baconjs'),
     zoneUtils = require('./zoneUtils'),
-    zoneTemplate = require('../templates/zone.ejs');
+    zoneTemplate = require('../templates/zone.ejs'),
+    audioPlayerTemplate = require('../templates/audioPlayer.ejs');
 
 $.mobile = require('jquery-mobile');
 
 var deckFinishedBus = new Bacon.Bus();
 
 function init() {
-    var questSelectedStream = $('#card-holder')
-            .asEventStream('change', 'input[name="quest"]')
+    var cardHolder = $('#card-holder');
+    cardHolder.asEventStream('change', 'input[name="quest"]')
             .onValue(enableStartQuest);
 
     // Allow tapping the image or caption to toggle said caption open or closed.
-    $('#card-holder').on('click', '.card .card-visual', toggleCardContent);
-    $('#card-holder').on('click', '.card .card-content.slider', toggleCardContent);
+    cardHolder.on('click', '.card .card-visual', toggleCardContent);
+    cardHolder.on('click', '.card .card-content.slider', toggleCardContent);
 
     // Allow swipe events to move through the card stack.
-    $('#card-holder').on('swiperight', swipeNavigateCards);
-    $('#card-holder').on('swipeleft', swipeNavigateCards);
-    $('#card-holder').on('click', '.poster', function(e) {
+    cardHolder.on('swiperight', swipeNavigateCards);
+    cardHolder.on('swipeleft', swipeNavigateCards);
+    cardHolder.on('click', '.poster', function(e) {
         var $poster = $(e.currentTarget),
             $video = $(this).closest('.flex').find('video');
 
@@ -80,7 +81,6 @@ function swipeNavigateCards(e) {
     var $target = $(e.currentTarget),
         type = e.type,
         $thisCard = $target.find('.card.active'),
-        $deck = $thisCard.closest('.overlay'),
         $video = $target.find('video');
 
     // On android the video will play after leaving the card so we stop it
