@@ -1,8 +1,9 @@
 'use strict';
 
-var $        = require('jquery'),
+var $ = require('jquery'),
+    _ = require('lodash'),
     jqToggle = require('toggles'),
-    Snap     = require('Snap'),
+    Snap = require('Snap'),
     pageManager = require('./pages');
 
 var snap,
