@@ -1,5 +1,9 @@
 <div class="overlay" data-zone="<%= zone.id %>" style="display:none">
     <div class="cards">
+        <div class="card-header">
+            <span class="close-deck">&times;</span>
+            <%= audioPlayer %>
+        </div>
         <div class="card card-fullimage">
             <div class="card-visual fullsize" style="background-image: url('<%= primaryPath %><%= zone.primaryItems[0].name %>.jpg');">
             </div>
@@ -14,8 +18,8 @@
                     <div class="flex">
                         <video controls
                                 style="width:100%;"
-                                src="<%= primaryPath %><%= zone.primaryItems[1].name %>"
-                                poster="<%= primaryPath %><%= zone.primaryItems[1].poster %>">
+                                src="<%= mediaPath %><%= zone.primaryItems[1].name %>"
+                                poster="<%= mediaPath %><%= zone.primaryItems[1].poster %>">
                         </video>
                         <div class="poster">
                             <div class="poster-inner">
