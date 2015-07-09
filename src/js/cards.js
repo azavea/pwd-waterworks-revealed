@@ -74,7 +74,7 @@ function addDeckToPage(html) {
 }
 
 function setUpAudio() {
-    var $audioPlayer = $('#card-holder').find('.audio-player'),
+    var $audioPlayer = $('#card-holder').find('.card-header'),
         $audioButton = $audioPlayer.find('.audio-control'),
         $audioEl = $('#card-holder').find('audio'),
         sound = $audioEl.get(0),
