@@ -24,6 +24,7 @@ function init(options) {
     initSnap();
     initToggleButtons();
     initQuestProgress(questManager);
+    initCompass();
 
     $('.menu-link').on('click', toggleMenu);
     $('.menu').on('click', 'a', togglePages);
@@ -35,6 +36,32 @@ function initToggleButtons() {
         width: 100,
         on: false
     });
+}
+
+function initCompass() {
+    // onSuccess: Get the current heading
+    function onSuccess(heading) {
+        // The icon starts at 45 degrees so reset it to zero first.
+        var rotation = heading.magneticHeading - 45;
+        $('#compass').find('svg path').attr('transform', 'rotate(' + rotation + ' 896 896)');
+    }
+
+    // Failed to get the heading
+    function onError(compassError) {
+        console.warn('Compass error: ' + compassError.code);
+    }
+
+    var options = { frequency: 1000 }, // ms between compass updates.
+        watchId = null;
+
+    try {
+        watchId = navigator.compass.watchHeading(onSuccess, onError, options);
+    } catch (exc) {
+        // Expecting: TypeError: Cannot read property 'watchHeading' of undefined
+        if (exc.name !== 'TypeError') {
+            throw exc;
+        }
+    }
 }
 
 function initSnap() {

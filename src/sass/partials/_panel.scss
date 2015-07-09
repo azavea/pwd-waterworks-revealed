@@ -151,3 +151,21 @@
       padding: 5px 10px;
     }
 }
+
+#compass {
+    background-color: #060623;
+    border-radius: 50px;
+    color: #fff;
+    position: absolute;
+    right: 40px; bottom: 40px;
+    width: 50px;
+    height: 50px;
+    opacity: .75;
+
+    svg {
+        fill: white;
+        width: 40px;
+        height: 40px;
+        margin:5px 0 0 5px;
+    }
+}
