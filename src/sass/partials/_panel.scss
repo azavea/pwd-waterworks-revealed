@@ -136,3 +136,18 @@
         }
     }
 }
+
+#progress {
+    background-color: coral;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    span {
+      padding: 5px 10px;
+    }
+}
