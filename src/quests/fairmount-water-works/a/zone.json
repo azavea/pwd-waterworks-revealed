@@ -5,7 +5,10 @@
     "radius": 5,
     "audio": {
         "files": [
-            "test.mp3"
+            {
+                "file": "test.mp3",
+                "type": "audio/mpeg"
+            }
         ]
     },
     "primaryItems": [

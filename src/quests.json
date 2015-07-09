@@ -39,7 +39,10 @@
                 ], 
                 "audio": {
                     "files": [
-                        "test.mp3"
+                        {
+                            "type": "audio/mpeg", 
+                            "file": "test.mp3"
+                        }
                     ]
                 }, 
                 "id": "a"
