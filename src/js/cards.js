@@ -14,6 +14,7 @@ var deckFinishedBus = new Bacon.Bus();
 
 function init() {
     var cardHolder = $('#card-holder');
+
     cardHolder.asEventStream('change', 'input[name="quest"]')
             .onValue(enableStartQuest);
 
@@ -24,24 +25,7 @@ function init() {
     // Allow swipe events to move through the card stack.
     cardHolder.on('swiperight', swipeNavigateCards);
     cardHolder.on('swipeleft', swipeNavigateCards);
-    cardHolder.on('click', '.poster', function(e) {
-        var $poster = $(e.currentTarget),
-            $video = $(this).closest('.flex').find('video');
-
-        $poster.hide();
-        $video.show();
-        $video.get(0).play();
-        
-        $video.on('pause', function() {
-            $poster.show();
-            $video.hide();
-        });
-        
-        $video.on('ended', function() {
-            $poster.show();
-            $video.hide();
-        });
-    });
+    cardHolder.on('click', '.poster', handleVideoTap);
 }
 
 function openZoneDeck(zone, activeQuest) {
@@ -58,6 +42,8 @@ function openZoneDeck(zone, activeQuest) {
 
     var html = zoneTemplate(context);
     addDeckToPage(html);
+
+    $('#finish-zone').on('click', finishZone);
 
     deckFinishedBus.push(zone.id);
 }
@@ -125,6 +111,12 @@ function enableStartQuest(isDisabled) {
         .removeClass('link-disabled');
 }
 
+function finishZone(e) {
+    var $activeCard = $(e.currentTarget).closest('.card.active');
+
+    closeDeck($activeCard);
+}
+
 function swipeNavigateCards(e) {
     var $target = $(e.currentTarget),
         type = e.type,
@@ -146,6 +138,12 @@ function swipeNavigateCards(e) {
     // Proxy the swipe events to the next and back/close buttons since they have
     // all the logic wired up already.
     if (type === 'swipeleft') {
+        // Don't allow users to swipe away the
+        // last card in the deck.
+        if ($thisCard.hasClass('last')) {
+            return;
+        }
+
         // If there is another card in the stack, move to it.
         if ($thisCard.next().hasClass('card')) {
             $thisCard
@@ -170,6 +168,25 @@ function swipeNavigateCards(e) {
             closeDeck($thisCard);
         }
     }
+}
+
+function handleVideoTap(e) {
+    var $poster = $(e.currentTarget),
+        $video = $poster.closest('.flex').find('video');
+
+    $poster.hide();
+    $video.show();
+    $video.get(0).play();
+
+    $video.on('pause', function() {
+        $poster.show();
+        $video.hide();
+    });
+
+    $video.on('ended', function() {
+        $poster.show();
+        $video.hide();
+    });
 }
 
 function toggleCardContent(e) {

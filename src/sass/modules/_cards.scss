@@ -219,6 +219,25 @@
                     }
                 }
             }
+            > .card-message {
+                color: #fff;
+                font-size: 2em;
+                margin-top: 25%;
+                position: absolute;
+                text-align: center;
+                width: 100%;
+
+                #finish-zone {
+                  background-color: coral;
+                  border-radius: 10px;
+                  cursor: pointer;
+                  margin: 30px auto 0 auto;
+                  padding: 10px;
+                  text-align: center;
+                  width: 20%;
+                }
+            }
+
             > .card-footer {
                 height: 56px;
                 width: 100%;
