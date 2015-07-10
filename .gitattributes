@@ -12,6 +12,9 @@
 *.ogv binary
 *.m4a binary
 *.webm binary
+*.eot binary
+*.ttf binary
+*.woff binary
 
 # When a text file is committed, convert line endings to LF.
 # When a text file is checked out, do nothing.

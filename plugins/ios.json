@@ -10,7 +10,7 @@
                     "CoreLocation.framework": [
                         {
                             "xml": false,
-                            "count": 1
+                            "count": 2
                         }
                     ]
                 }
@@ -18,6 +18,10 @@
             "config.xml": {
                 "parents": {
                     "/*": [
+                        {
+                            "xml": "<feature name=\"Compass\"><param name=\"ios-package\" value=\"CDVCompass\" /></feature>",
+                            "count": 1
+                        },
                         {
                             "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
                             "count": 1
@@ -38,6 +42,9 @@
         }
     },
     "installed_plugins": {
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "com.azavea.pwd-waterworks-revealed"
+        },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.azavea.pwd-waterworks-revealed"
         }

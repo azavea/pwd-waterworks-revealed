@@ -5,16 +5,26 @@
     },
     "config_munge": {
         "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Compass\"><param name=\"android-package\" value=\"org.apache.cordova.deviceorientation.CompassListener\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
             "AndroidManifest.xml": {
                 "parents": {
                     "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
-                            "count": 1
+                            "count": 2
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
-                            "count": 1
+                            "count": 2
                         }
                     ]
                 }
@@ -22,6 +32,9 @@
         }
     },
     "installed_plugins": {
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "com.azavea.pwd_waterworks_revealed"
+        },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.azavea.pwd_waterworks_revealed"
         }
