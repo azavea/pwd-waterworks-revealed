@@ -53,6 +53,20 @@
 
         <div id="map" class="page page-map active">
             <div id="tour-map" style="width:100%;height:100%;"></div>
+            <!-- 1. Add class .active when the user is inside the quest area area. Remove when they leave the quest area. 2. Add class .enterarea-dismissed when the user presses the dismiss button. This will remain until they leave the area. -->
+            <div id="enterarea" class="enterarea active enterarea-dismissed">
+                <div class="enterarea-container">
+                    <div class="enterarea-image" style="background-image: url('/www/quests/fairmount-water-works/a/primary/AP2.jpg');">
+                    </div>
+                    <h3 class="text-center enterarea-message">
+                        You are in the Old Mill House &amp; Forebay quest region.
+                    </h3>
+                    <div class="text-center">
+                        <button class="btn enterarea-button btn-secondary btn-lg btn-large">Dismiss</button>
+                        <button class="btn enterarea-button btn-primary btn-lg btn-large">Enter</button>
+                    </div>
+                </div>
+            </div>
             <div id="progress" class="ui-link" data-page="quests"></div>
             <div id="compass">
                 <svg viewBox="0 0 1792 1792">
@@ -63,7 +77,6 @@
             <div id="card-holder">
             </div>
         </div>
-
         <div id="quests" class="page page-static">
             <div class="page-static-container">
                 <div class="page-header">
