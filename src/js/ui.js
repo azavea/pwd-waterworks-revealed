@@ -57,7 +57,12 @@ function initCompass() {
     try {
         watchId = navigator.compass.watchHeading(onSuccess, onError, options);
     } catch (exc) {
+        // Remove from DOM if compass is not available so it doesn't look
+        // broken.
+        $('#compass').remove();
+
         // Expecting: TypeError: Cannot read property 'watchHeading' of undefined
+        // Rethrow if that's not what we got.
         if (exc.name !== 'TypeError') {
             throw exc;
         }
