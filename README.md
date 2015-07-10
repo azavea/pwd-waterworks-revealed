@@ -60,8 +60,9 @@ or
 
 then,
 
-```phonegap run [ios, android]```
+```phonegap build [ios, android]```
 
-This prepares the build directories in `./plaforms/[ios, android]`
-Open the appropriate project file in the IDE for that platform and build
-normally.
+This prepares the build directories in `./plaforms/[ios, android]`. If properly
+setup it will also actually compile the application. In either case, you can
+open the appropriate project file in the IDE for that platform and build or test
+in a simulator.
