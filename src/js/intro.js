@@ -8,6 +8,12 @@ var $introduction = $('#introduction'),
 module.exports = {
     init: function (options) {
 
+        setAnimationHeight();
+
+        $(window).resize(function(){
+            setAnimationHeight();
+        });
+
         $introduction.on('click', animateOpenCircle);
 
         $('#button-close-introduction').on('click', animateSwitchMap);
@@ -21,6 +27,11 @@ module.exports = {
 
     }
 };
+
+function setAnimationHeight() {
+    var animationHeight = window.innerHeight - $('#align-footer').outerHeight() - $('#align-heading').outerHeight();
+    $('#align-animation').height(animationHeight);
+}
 
 function isOdd(num) {
     return num % 2;
