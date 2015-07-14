@@ -25,6 +25,18 @@
                         {
                             "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"StatusBar\"><param name=\"ios-package\" value=\"CDVStatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"StatusBarOverlaysWebView\" value=\"true\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -46,6 +58,9 @@
             "PACKAGE_NAME": "com.azavea.pwd-waterworks-revealed"
         },
         "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.azavea.pwd-waterworks-revealed"
+        },
+        "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.azavea.pwd-waterworks-revealed"
         }
     },
