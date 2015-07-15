@@ -23,10 +23,6 @@ module.exports = {
                 .map(getZoneById)
                 .doAction(onZoneFinished);
 
-        zoneChangeStream
-            .filter(_.isObject)
-            .onValue(switchToZone);
-
         initStatus();
 
         zones.forEach(function(z) {
@@ -35,11 +31,13 @@ module.exports = {
                 firstPhoto.caption = DEFAULT_PRIMARY_CAPTION;
             }
         });
+
         return {
             zones: zones,
             activeQuest: ACTIVE_QUEST,
             zoneDiffProperty: zoneDiffProperty,
             zoneStatusChangeStream: finishedStream,
+            zoneChangeStream: zoneChangeStream,
             showDeck: showDeck,
             setCardValue: setCardValue
         };

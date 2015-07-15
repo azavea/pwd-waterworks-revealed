@@ -1,0 +1,84 @@
+.enterarea {
+  z-index: 20000;
+  position: absolute;
+  background-color: #fff;
+  min-height: 80vh;
+  bottom: 0;
+  width: 100%;
+  max-height: 100vh;
+  transform: translate(0, 100%);
+  transition: .75s all ease-in-out;
+  -webkit-transform: translate(0, 100%);
+  -webkit-transition: 0.75s all ease-in-out;
+  display: table;
+
+  &.active {
+    transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    transition: .75s all ease-in-out;
+    -webkit-transition: 0.75s all ease-in-out;
+  }
+  &.enterarea-dismissed {
+    min-height: initial;
+    max-height: initial;
+    transition: .75s all ease-in-out;
+    -webkit-transition: 0.75s all ease-in-out;
+  }
+}
+
+.enterarea-container {
+  width: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  padding: 3rem 2rem;
+  @media screen and (max-height: 460px) {
+    padding: 3rem .5rem;
+  }
+}
+
+.enterarea-image {
+  width: 20rem;
+  height: 20rem;
+  border-radius: 100%;
+  background-size: cover;
+  margin: 0 auto 4rem;
+  @media screen and (max-height: 460px) {
+    width: 12rem;
+    height: 12rem;
+    margin: 0 auto 2rem;
+  }
+  .enterarea-dismissed & {
+    display: none;
+  }
+}
+
+.enterarea-message {
+  margin-bottom: 4rem;
+  @media screen and (max-height: 460px) {
+    margin-bottom: 2rem;
+    font-size: 18px;
+  }
+  .enterarea-dismissed & {
+    font-size: 1.6rem;
+    text-align: left;
+    margin: 0;
+    padding-right: 80px;
+  }
+}
+
+.enterarea-button {
+  &.btn-secondary {
+      margin-right: 1rem;
+    }
+  .enterarea-dismissed & {
+    font-size: 1.2rem;
+  }
+  .enterarea-dismissed &.btn-secondary {
+    display: none;
+  }
+  .enterarea-dismissed &.btn-primary {
+    position: absolute;
+    right: 2rem;
+    top: 20px;
+  }
+}
