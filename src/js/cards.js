@@ -8,7 +8,7 @@ var $ = require('./jqueryBacon').$,
     zoneTemplate = require('../templates/zone.ejs'),
     audioPlayerTemplate = require('../templates/audioPlayer.ejs');
 
-$.mobile = require('jquery-mobile');
+//$.mobile = require('jquery-mobile');
 
 var deckFinishedBus = new Bacon.Bus();
 
