@@ -46,8 +46,17 @@ function crossFade($fromEl, $toEl, fadeLength, delay, toggleClass) {
     if (!delay) { delay = 200; }
     if (!toggleClass) { toggleClass = 'active'; }
 
-    $fromEl.fadeOut(fadeLength).delay(delay).toggleClass(toggleClass);
-    $toEl.fadeIn(fadeLength).delay(delay).toggleClass(toggleClass);
+    $fromEl.fadeOut(fadeLength, function() {
+        setTimeout(function() {
+            $fromEl.toggleClass(toggleClass);
+        }, delay);
+    });
+
+    $toEl.fadeIn(fadeLength, function() {
+        setTimeout(function() {
+            $toEl.toggleClass(toggleClass);
+        }, delay);
+    });
 }
 
 module.exports = {

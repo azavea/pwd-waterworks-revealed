@@ -5,7 +5,7 @@ var Bacon = require('baconjs');
 module.exports = {
     init: function(options) {
         var active = isActive(options.$enableMockButton),
-            mockEnabledProp = Bacon.fromEventTarget(options.$enableMockButton, 'toggle')
+            mockEnabledProp = Bacon.fromEventTarget(options.$enableMockButton, 'click')
                 .map(isActive, options.$enableMockButton)
                 .toProperty(active),
             geoProp = getLocationStream(navigator.geolocation).toProperty(),
@@ -28,7 +28,7 @@ module.exports = {
 };
 
 function isActive($button) {
-    return $button.data('toggles') && $button.data('toggles').active;
+    return $button.find('input:checked').val() === 'true';
 }
 
 function getLocationStream(geoProvider) {

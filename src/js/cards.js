@@ -23,8 +23,8 @@ function init() {
     cardHolder.on('click', '.card .card-content.slider', toggleCardContent);
 
     // Allow swipe events to move through the card stack.
-    cardHolder.on('swiperight', swipeNavigateCards);
-    cardHolder.on('swipeleft', swipeNavigateCards);
+    cardHolder.on('swipeRight', swipeNavigateCards);
+    cardHolder.on('swipeLeft', swipeNavigateCards);
     cardHolder.on('click', '.poster', handleVideoTap);
 }
 
@@ -137,7 +137,7 @@ function swipeNavigateCards(e) {
 
     // Proxy the swipe events to the next and back/close buttons since they have
     // all the logic wired up already.
-    if (type === 'swipeleft') {
+    if (type === 'swipeLeft') {
         // Don't allow users to swipe away the
         // last card in the deck.
         if ($thisCard.hasClass('last')) {
@@ -156,7 +156,7 @@ function swipeNavigateCards(e) {
             // No next card so close the deck.
             closeDeck($thisCard);
         }
-    } else if (type === 'swiperight') {
+    } else if (type === 'swipeRight') {
         if ($thisCard.prev().hasClass('card')){
             $thisCard
                 .addClass('next')
@@ -195,8 +195,27 @@ function toggleCardContent(e) {
     if (e.target.tagName === 'VIDEO') { return; }
 
     // Find all current captions and open them.
-    var captions = $('#card-holder .card').find('.slider');
-    captions.slideToggle(200);
+    var $captions = $('#card-holder .card').find('.slider');
+    $captions.each(function() {
+        var $caption = $(this);
+        var animationSpeed = 200; // ms
+        // Toggle the element to slide off the bottom of the frame.
+        // Find the height of the item and set the bottom position to the
+        // negative value. This effectivly positions it just below the frame.
+        // Not truly hidden.
+        if ($caption.hasClass('caption-hidden')) {
+            $caption.removeClass('caption-hidden');
+            $caption.animate({
+                bottom: '0'
+            }, animationSpeed);
+        } else {
+            var offset = $caption.height() * -1;
+            $caption.addClass('caption-hidden');
+            $caption.animate({
+                bottom: offset + 'px'
+            }, animationSpeed);
+        }
+    });
 }
 
 module.exports = {
