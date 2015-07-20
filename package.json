@@ -36,8 +36,7 @@
     "jquery": "./src/js/shim/jquery.js",
     "bootstrap": "./src/js/shim/bootstrap.min.js",
     "bootstrap-dialog": "./src/js/shim/bootstrap-dialog.min.js",
-    "Snap": "./src/js/shim/snap.min.js",
-    "toggles": "./src/js/shim/toggles.js"
+    "Snap": "./src/js/shim/snap.min.js"
   },
   "browserify-shim": {
     "zepto": {
@@ -56,10 +55,6 @@
     },
     "Snap": {
       "exports": "Snap"
-    },
-    "toggles": {
-      "depends": "jquery:jQuery",
-      "exports": "toggles"
     }
   }
 }
