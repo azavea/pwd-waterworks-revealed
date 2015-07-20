@@ -1,0 +1,5 @@
+name: zepto
+repo: https://github.com/madrobby/zepto
+sha: 225f93e
+version: 1.1.6
+custom build: MODULES="zepto event ajax form fx fx_methods data deferred callbacks selector touch" npm run-script dist
