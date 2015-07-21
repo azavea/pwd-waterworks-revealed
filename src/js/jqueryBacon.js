@@ -5,4 +5,6 @@ var Bacon = require('baconjs'),
 
 $.extend($.fn, Bacon.$);
 
-exports.$ = $;
+module.exports = {
+    $: $
+};

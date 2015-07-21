@@ -2,7 +2,6 @@
 
 var $ = require('jquery'),
     _ = require('lodash'),
-    jqToggle = require('toggles'),
     Snap = require('Snap'),
     path = require('path'),
     pageManager = require('./pages'),
@@ -24,21 +23,12 @@ function init(options) {
     });
 
     initSnap();
-    initToggleButtons();
     initQuestProgress(questManager);
     initCompass();
     initZoneConfirmation(questManager);
 
     $('.menu-link').on('click', toggleMenu);
     $('.menu').on('click', 'a', togglePages);
-}
-
-function initToggleButtons() {
-    $('.toggles').toggles({
-        height: 35,
-        width: 100,
-        on: false
-    });
 }
 
 function initCompass() {

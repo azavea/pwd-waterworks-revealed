@@ -14,7 +14,6 @@
     <link href="sass/lib/bootstrap-dialog.min.css" rel="stylesheet">
     <link href="sass/lib/fontello.css" rel="stylesheet">
     <link href="sass/lib/leaflet.css" rel="stylesheet">
-    <link href="sass/lib/toggles-full.css" rel="stylesheet">
     <link href="bundle.css" rel="stylesheet">
 </head>
 <body>
@@ -179,8 +178,11 @@
                 </div>
                 <div class="page-content scrollable toggle-modern">
                   <div>
-                    <label>Enable Mock Locations:</label>
-                    <div class="toggles" id="enable-mock-location"></div>
+                    <label for="enable-mock-location" >Enable Mock Locations:</label>
+                    <div id="enable-mock-location">
+                        <input type="radio" name="mock-location" value="false" checked>Off
+                        <input type="radio" name="mock-location" value="true">On
+                    </div>
                   </div>
                   <hr>
                   <a class="btn btn-danger btn-block" data-toggle="modaloverlay" href="#reset-quests">Reset Quests</a>

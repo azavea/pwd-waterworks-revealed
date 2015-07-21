@@ -10,10 +10,9 @@
     "baconjs": "^0.7.10",
     "fastclick": "^1.0.6",
     "grunt": "^0.4.4",
-    "jquery": "^1.11.1",
-    "jquery-mobile": "^1.4.1",
     "leaflet": "0.7.x",
-    "lodash": "^2.4.1"
+    "lodash": "^2.4.1",
+    "zepto": "0.0.4"
   },
   "devDependencies": {
     "browserify": "^4.0.0",
@@ -33,13 +32,16 @@
     "phonegap": "^5.0.0-0.28.1"
   },
   "browser": {
+    "zepto": "./src/js/lib/zepto.js",
+    "jquery": "./src/js/shim/jquery.js",
     "bootstrap": "./src/js/shim/bootstrap.min.js",
     "bootstrap-dialog": "./src/js/shim/bootstrap-dialog.min.js",
-    "Snap": "./src/js/shim/snap.min.js",
-    "toggles": "./src/js/shim/toggles.js",
-    "jquery-mobile": "./src/js/shim/jquery.mobile.min.js"
+    "Snap": "./src/js/shim/snap.min.js"
   },
   "browserify-shim": {
+    "zepto": {
+      "exports": "$"
+    },
     "bootstrap": {
       "depends": "jquery:jQuery",
       "exports": "bootstrap"
@@ -53,17 +55,6 @@
     },
     "Snap": {
       "exports": "Snap"
-    },
-    "toggles": {
-      "depends": "jquery:jQuery",
-      "exports": "toggles"
-    },
-    "jquery": "$",
-    "jquery-mobile": {
-      "exports": "$.mobile",
-      "depends": [
-        "jquery:$"
-      ]
     }
   }
 }

@@ -58,7 +58,6 @@ module.exports = function(grunt) {
             'sass/lib/fontello.css',
             'sass/lib/bootstrap.min.css',
             'sass/lib/bootstrap-dialog.min.css',
-            'sass/lib/toggles-full.css',
             'sass/fonts/*',
             'tiles/**/*',
             'img/**/*',

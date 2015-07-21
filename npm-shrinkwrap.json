@@ -6015,6 +6015,11 @@
           "resolved": "https://registry.npmjs.org/shelljs/-/shelljs-0.1.4.tgz"
         }
       }
+    },
+    "zepto": {
+      "version": "0.0.4",
+      "from": "zepto@",
+      "resolved": "https://registry.npmjs.org/zepto/-/zepto-0.0.4.tgz"
     }
   }
 }
