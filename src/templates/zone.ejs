@@ -1,5 +1,16 @@
 <div class="overlay" data-zone="<%= zone.id %>" style="display:none">
     <div class="cards">
+        <% if (showIntroCard) { %>
+            <div class="card introcard">
+                <div class="card-header">Align your device!</div>
+                <!-- TODO: Add BG image here -->
+                <div class="card-visual fullsize" style="background-image: url();"></div>
+                <div class="card-content footer">
+                    <p>When you enter a quest, you will be asked to align the photo on your device with the environment around you.</p>
+                    <button class="introbutton">Get Started</button>
+                </div>
+            </div>
+        <% } %>
         <div class="card-header">
             <span class="close-deck">&times;</span>
             <%= audioPlayer %>
@@ -7,9 +18,15 @@
         <div class="card card-fullimage">
             <div class="card-visual fullsize" style="background-image: url('<%= primaryPath %><%= zone.primaryItems[0].name %>.jpg');">
             </div>
+            <!-- Remove captions at request of client. Keep the structure around in case we want to add them back -->
+            <!--
             <div class="card-content slider">
                 <%- zone.primaryItems[0].caption %>
                 <strong><%- zone.primaryItems[0].credit %></strong>
+            </div>
+            -->
+            <div class="instructions">
+                Swipe left to continue
             </div>
         </div>
         <div class="card next">
@@ -32,9 +49,15 @@
             <% } else { %>
                 <div class="card-visual" style="background-image: url('<%= primaryPath %><%= zone.primaryItems[1].name %>.jpg');">
                 </div>
+                <!-- Remove captions at request of client. Keep the structure around in case we want to add them back -->
+                <!--
                 <div class="card-content slider">
                     <%- zone.primaryItems[1].caption %>
                     <strong><%- zone.primaryItems[1].credit %></strong>
+                </div>
+                -->
+                <div class="instructions">
+                    Swipe left to continue
                 </div>
             <% } %>
         </div>
@@ -42,9 +65,15 @@
             <div class="card next">
                 <div class="card-visual" style="background-image: url('<%= secondaryPath %><%= item.name %>.jpg');"></div>
                 <div class="card-icon"></div>
+                <!-- Remove captions at request of client. Keep the structure around in case we want to add them back -->
+                <!--
                 <div class="card-content slider">
                     <%- item.caption %>
                     <strong><%- item.credit %></strong>
+                </div>
+                -->
+                <div class="instructions">
+                    Swipe left to continue
                 </div>
             </div>
         <% }); %>

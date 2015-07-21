@@ -8,7 +8,8 @@ var $ = require('./jqueryBacon').$,
     zoneTemplate = require('../templates/zone.ejs'),
     audioPlayerTemplate = require('../templates/audioPlayer.ejs');
 
-var deckFinishedBus = new Bacon.Bus();
+var deckFinishedBus = new Bacon.Bus(),
+    showIntroCard = true;
 
 function init() {
     var cardHolder = $('#card-holder');
@@ -34,10 +35,10 @@ function openZoneDeck(zone, activeQuest) {
             secondaryPath: directory + '/secondary/',
             mediaPath: directory + '/media/',
             zone: zone,
+            showIntroCard: showIntroCard
         };
 
     context.audioPlayer = audioPlayerTemplate(context);
-
     var html = zoneTemplate(context);
     addDeckToPage(html);
 
@@ -55,6 +56,25 @@ function addDeckToPage(html) {
 
         // Now that our card holder has a deck in it prepare audio.
         setUpAudio();
+
+        handleIntroCard();
+}
+
+function handleIntroCard() {
+    if (showIntroCard) {
+        var $introCard = $('#card-holder').find('.card.introcard');
+        $introCard.find('button.introbutton').on('click', function() {
+            $introCard.fadeOut(200, function() {
+                $introCard.remove();
+            });
+
+            // We only want to show the intro instruction card on the first
+            // zone opened. After that set to false and never show it again.
+            // But the user must first click the button to surpress the
+            // popup again.
+            showIntroCard = false;
+        });
+    }
 }
 
 function setUpAudio() {
@@ -116,6 +136,11 @@ function finishZone(e) {
 }
 
 function swipeNavigateCards(e) {
+    if (showIntroCard) {
+        // If the intro card is still visible, disable swipe events.
+        return;
+    }
+
     var $target = $(e.currentTarget),
         type = e.type,
         $thisCard = $target.find('.card.active'),
@@ -162,9 +187,7 @@ function swipeNavigateCards(e) {
                 .prev()
                 .addClass('active')
                 .removeClass('prev');
-        } else {
-            closeDeck($thisCard);
-        }
+        } // If no more cards before this one, do nothing.
     }
 }
 
