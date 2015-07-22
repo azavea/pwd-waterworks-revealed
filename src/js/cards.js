@@ -38,11 +38,7 @@ function openZoneDeck(zone, activeQuest) {
             secondaryPath: directory + '/secondary/',
             mediaPath: directory + '/media/',
             zone: zone,
-            showIntroCard: showIntroCard,
-            audioCacheBuster: (function(){
-                var d = new Date();
-                return d.getTime();
-            })() // self executing function to get a unix timestamp.
+            showIntroCard: showIntroCard
         };
 
     context.audioPlayer = audioPlayerTemplate(context);
