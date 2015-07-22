@@ -38,7 +38,11 @@ function openZoneDeck(zone, activeQuest) {
             secondaryPath: directory + '/secondary/',
             mediaPath: directory + '/media/',
             zone: zone,
-            showIntroCard: showIntroCard
+            showIntroCard: showIntroCard,
+            audioCacheBuster: (function(){
+                var d = new Date();
+                return d.getTime();
+            })() // self executing function to get a unix timestamp.
         };
 
     context.audioPlayer = audioPlayerTemplate(context);
@@ -116,6 +120,19 @@ function closeDeck($card) {
     try {
         // Attempt to stop any sound that is playing before we close.
         $('#card-holder').find('audio').get(0).pause();
+
+        // Null out the audio source to prevent further download.
+        $('#card-holder').find('audio source').attr('src', null);
+
+        // Chrome has a weird issue with audio loading resources dynamically.
+        // It will just hang forever and queue up new ones that will be listed
+        // as "pending" in the network forever. Calling window.stop() kills all
+        // the open connections.
+        // https://github.com/videojs/video.js/issues/455#issuecomment-122403204
+        // https://stackoverflow.com/questions/16137381
+        if (window.stop) {
+            window.stop();
+        }
     } catch (exc) {
         // Expecting: TypeError "Cannot read property 'pause' of undefined"
         if (exc.name !== 'TypeError') {
@@ -176,6 +193,16 @@ function swipeNavigateCards(e) {
             if ($thisCard.hasClass('first')) {
                 // Remove the alignment message in the header as we move away.
                 $target.find('.card-header .alignment-message').fadeOut(200);
+
+                // Attempt to start the audio if it exists.
+                try {
+                    $target.find('audio').get(0).play();
+                } catch (exc) {
+                    // Expecting: TypeError "Cannot read property 'play' of undefined"
+                    if (exc.name !== 'TypeError') {
+                        throw exc;
+                    }
+                }
             }
         } // No more cards? We are on the exit card, which has a close button.
     } else if (type === 'swipeRight') {
