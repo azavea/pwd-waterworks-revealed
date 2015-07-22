@@ -120,10 +120,6 @@ function closeBootstrapDialog(dialog) {
     dialog.close();
 }
 
-function switchToZone(zone) {
-    cards.openZoneDeck(zone, ACTIVE_QUEST);
-}
-
 function showDeck(zone) {
     cards.openZoneDeck(zone, ACTIVE_QUEST);
 }
