@@ -145,7 +145,9 @@ function changeZoneStyle(showDeck, zone) {
 
         // Once a zone has been entered, a user can click on the marker
         // to launch the card deck instead of having to revisit the zone.
-        addZoneClickEvent(zone, showDeck);
+        if (!zone.clickStream) {
+            addZoneClickEvent(zone, showDeck);
+        }
     } else {
         zone.layer.setStyle(zoneStyle.unstarted);
         removeZoneClickEvent(zone);
