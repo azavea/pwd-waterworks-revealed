@@ -7,12 +7,12 @@ Prototype app to guide users on "quests" which reveal interesting things about t
 
 This application is build using PhoneGap/Cordova which allows for a native application on Android and iOS to be build using HTML/CSS/JS. Here's how to set everything up to use it for Water Works Revealed.
 
-##### Clone the repo
+#### Clone the repo
 ```shell
 git clone git@github.com:azavea/pwd-waterworks-revealed
 ```
 
-##### Set up grunt
+#### Set up grunt
 ```shell
 npm install -g grunt-cli phonegap
 npm install
@@ -20,12 +20,16 @@ grunt
 ```
 You may need to run the first install command as a super user (sudo).
 
-##### Try a build cycle
+#### Try a build cycle
 Modify `src/index.html`, and then build:
 ```shell
 grunt
 ```
-##### Using the PhoneGap Developer App
+
+#### Local Testing
+The application is designed and intended to by run on a touch device. You can run the built site in a standard browser (Firefox and Chrome have been tested thoroughly) with the caveat that you must be running in mobile emulation mode (supported in the aforementioned browsers' developer tools) to ensure touch events are properly triggered.
+
+#### Using the PhoneGap Developer App
 
 If you want to more quickly view changes to the app during development, you can skip the publish and build process by using the PhoneGap Developer App. Instructions to install the app on your machine and development device can be found at [http://app.phonegap.com/](http://app.phonegap.com/) and are reproduced here:
 
@@ -37,7 +41,7 @@ If you want to more quickly view changes to the app during development, you can 
 
 Once you are connected to the application on the device, run `grunt watch` locally. The app will reload on the device anytime grunt catches a change.
 
-##### Update Map Tiles
+#### Update Map Tiles
 
 Map tiles were generated in MapBox Studio (https://www.mapbox.com/mapbox-studio/).
 To alter them you will need a running copy of mapbox studio. The current project was created by Daniel (https://github.com/dmcglone/mapbox-studio-pencil.tm2).
