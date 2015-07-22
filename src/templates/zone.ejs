@@ -2,7 +2,7 @@
     <div class="cards">
         <% if (showIntroCard) { %>
             <div class="card introcard">
-                <div class="card-header">Align your device!</div>
+                <div class="alignment-message">Align your device!</div>
                 <!-- TODO: Add BG image here -->
                 <div class="card-visual fullsize" style="background-image: url();"></div>
                 <div class="card-content footer">
@@ -12,10 +12,11 @@
             </div>
         <% } %>
         <div class="card-header">
+            <div class="alignment-message">Align your device!</div>
             <span class="close-deck">&times;</span>
             <%= audioPlayer %>
         </div>
-        <div class="card card-fullimage">
+        <div class="card card-fullimage first">
             <div class="card-visual fullsize" style="background-image: url('<%= primaryPath %><%= zone.primaryItems[0].name %>.jpg');">
             </div>
             <!-- Remove captions at request of client. Keep the structure around in case we want to add them back -->
@@ -26,7 +27,7 @@
             </div>
             -->
             <div class="instructions">
-                Swipe left to continue
+                <button class="nextslide">Next</button>
             </div>
         </div>
         <div class="card next">

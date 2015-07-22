@@ -18,6 +18,17 @@
             right: 0;
             background-color: black;
             z-index: 5500;
+
+            .alignment-message {
+                position: absolute;
+                z-index: 100;
+                width: 100%;
+                background-color: black;
+                padding: 15px 10px;
+                font-size: 20px;
+                color: white;
+                font-weight: bold;
+            }
         }
 
         .card-header {
@@ -43,6 +54,18 @@
                 text-align: right;
                 font-size: 30px;
                 padding: 5px 10px;
+            }
+
+            .alignment-message {
+                width: 100%;
+                height: calc(100% + 2px);
+                position: absolute;
+                background-color: black;
+                color: white;
+                padding: 15px 10px;
+                font-size: 20px;
+                top:0;
+                left:0;
             }
         }
 
@@ -70,39 +93,6 @@
                 background-color: rgba(255, 255, 255, 0.8);
             }
 
-            > .card-header {
-                height: 44px;
-                padding: 10px;
-                position: absolute;
-                width: 100%;
-                top: 0;
-                z-index: 9;
-
-                a {
-                    padding: 2px;
-                    color: white;
-                    cursor: pointer;
-
-                    &.left {
-                        float: left;
-                    }
-                    &.right {
-                        float: right;
-                    }
-                    &[data-navigate="close"] {
-                        font-size: 3.6rem;
-                        padding: 0px 8px;
-                        font-weight: 700;
-                        line-height: 1;
-                    }
-
-                    > span.glyphicon {
-                        font-size: 2.1rem;
-                        line-height: 1.4;
-                        padding: 0 2px;
-                    }
-                }
-            }
             > .card-visual {
                 height: 100%;
                 width: 100%;

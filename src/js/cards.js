@@ -24,6 +24,9 @@ function init() {
     // Allow swipe events to move through the card stack.
     cardHolder.on('swipeRight', swipeNavigateCards);
     cardHolder.on('swipeLeft', swipeNavigateCards);
+    cardHolder.on('click', '.nextslide', function() {
+        cardHolder.trigger('swipeLeft');
+    });
     cardHolder.on('click', '.poster', handleVideoTap);
 }
 
@@ -137,7 +140,7 @@ function finishZone(e) {
 
 function swipeNavigateCards(e) {
     if (showIntroCard) {
-        // If the intro card is still visible, disable swipe events.
+        // If the intro card is still visible, cancel out of swipe events.
         return;
     }
 
@@ -161,12 +164,6 @@ function swipeNavigateCards(e) {
     // Proxy the swipe events to the next and back/close buttons since they have
     // all the logic wired up already.
     if (type === 'swipeLeft') {
-        // Don't allow users to swipe away the
-        // last card in the deck.
-        if ($thisCard.hasClass('last')) {
-            return;
-        }
-
         // If there is another card in the stack, move to it.
         if ($thisCard.next().hasClass('card')) {
             $thisCard
@@ -175,10 +172,12 @@ function swipeNavigateCards(e) {
                 .next()
                 .addClass('active')
                 .removeClass('next');
-        } else {
-            // No next card so close the deck.
-            closeDeck($thisCard);
-        }
+
+            if ($thisCard.hasClass('first')) {
+                // Remove the alignment message in the header as we move away.
+                $target.find('.card-header .alignment-message').fadeOut(200);
+            }
+        } // No more cards? We are on the exit card, which has a close button.
     } else if (type === 'swipeRight') {
         if ($thisCard.prev().hasClass('card')){
             $thisCard
@@ -187,6 +186,11 @@ function swipeNavigateCards(e) {
                 .prev()
                 .addClass('active')
                 .removeClass('prev');
+
+            if ($thisCard.prev().hasClass('first')) {
+                // Remove the alignment message in the header as we move away.
+                $target.find('.card-header .alignment-message').fadeIn(200);
+            }
         } // If no more cards before this one, do nothing.
     }
 }
