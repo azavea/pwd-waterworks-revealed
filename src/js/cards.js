@@ -85,21 +85,28 @@ function setUpAudio() {
         $audioButton = $audioPlayer.find('.audio-control'),
         $audioEl = $('#card-holder').find('audio'),
         sound = $audioEl.get(0),
-        playingClass = 'playing';
+        playingClass = 'playing',
+        playMessage = 'Play Audio',
+        pauseMessage = 'Pause Audio',
+        replayMessage = 'Play Again';
 
-    // Reset on sound completion.
+    // Update UI on audio events.
     $audioEl.on('ended', function() {
-        $audioButton.removeClass(playingClass).text('Play Again');
+        $audioButton.removeClass(playingClass).text(replayMessage);
+    });
+    $audioEl.on('playing', function() {
+        $audioButton.addClass(playingClass).text(pauseMessage);
+    });
+    $audioEl.on('pause', function() {
+        $audioButton.removeClass(playingClass).text(playMessage);
     });
 
     // Single button audio player.
     $audioButton.on('click', function() {
         if ($(this).hasClass(playingClass)) {
             sound.pause();
-            $(this).removeClass(playingClass).text('Play Audio');
         } else {
             sound.play();
-            $(this).addClass(playingClass).text('Pause Audio');
         }
     });
 
@@ -190,11 +197,20 @@ function swipeNavigateCards(e) {
                 // Remove the alignment message in the header as we move away.
                 $target.find('.card-header .alignment-message').fadeOut(200);
 
-                // Attempt to start the audio if it exists.
+                // Attempt to start the audio if it exists and the
+                // circumstances are correct.
                 try {
-                    $target.find('audio').get(0).play();
+                    // Only play unplayed audio. Determine this by looking at
+                    // the current time and the duration of the audio clip. If
+                    // they are both zero or undefined, then it is safe to
+                    // assume that the audio has never been played.
+                    var sound = $target.find('audio').get(0);
+
+                    if (!sound.currentTime && !sound.duration) {
+                        sound.play();
+                    }
                 } catch (exc) {
-                    // Expecting: TypeError "Cannot read property 'play' of undefined"
+                    // Expecting: TypeError "Cannot read property ... of undefined"
                     if (exc.name !== 'TypeError') {
                         throw exc;
                     }
