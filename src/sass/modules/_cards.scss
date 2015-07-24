@@ -23,7 +23,7 @@
                 position: absolute;
                 z-index: 100;
                 width: 100%;
-                background-color: black;
+                background-color: #123030;
                 padding: 15px 10px;
                 font-size: 20px;
                 color: white;
@@ -65,6 +65,7 @@
                 position: absolute;
                 background-color: black;
                 color: white;
+                background-color: #123030;
                 padding: 15px 10px;
                 font-size: 20px;
                 top:0;
@@ -318,4 +319,8 @@
     width: 25px;
     margin-top: -10px;
     margin-right: 10px;
+}
+
+.alignment-background {
+    background-color: #F6F4E8 !important;
 }
