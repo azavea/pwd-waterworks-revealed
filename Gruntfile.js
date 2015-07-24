@@ -50,20 +50,22 @@ module.exports = function(grunt) {
         cssVendorPath    = distDir + 'vendor.css',
         cssMinBundlePath = distDir + 'bundle.min.css',
         zipFilePath = tempDir + 'app.zip',
-        appAssets = [
+        watchAssets = [
             'config.xml',
             'index.html',
-            'quests/**/*',
             'sass/lib/leaflet.css',
             'sass/lib/fontello.css',
             'sass/lib/bootstrap.min.css',
             'sass/lib/bootstrap-dialog.min.css',
             'sass/font/*',
             'sass/fonts/*',
-            'tiles/**/*',
             'img/**/*',
             'quests.json'
-        ];
+        ],
+        appAssets = watchAssets.concat([
+            'quests/**/*',
+            'tiles/**/*'
+        ]);
 
     grunt.initConfig({
         jshint: {
@@ -160,7 +162,7 @@ module.exports = function(grunt) {
                 tasks: ['quests', 'copy']
             },
             assets: {
-                files: appAssets,
+                files: watchAssets,
                 tasks: ['copy:app']
             }
         }

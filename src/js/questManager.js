@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _ = require('lodash'),
     $ = require('jquery'),
@@ -118,10 +118,6 @@ function onZoneFinished(zone) {
 
 function closeBootstrapDialog(dialog) {
     dialog.close();
-}
-
-function switchToZone(zone) {
-    cards.openZoneDeck(zone, ACTIVE_QUEST);
 }
 
 function showDeck(zone) {

@@ -8,7 +8,8 @@ var $ = require('./jqueryBacon').$,
     zoneTemplate = require('../templates/zone.ejs'),
     audioPlayerTemplate = require('../templates/audioPlayer.ejs');
 
-var deckFinishedBus = new Bacon.Bus();
+var deckFinishedBus = new Bacon.Bus(),
+    showIntroCard = true;
 
 function init() {
     var cardHolder = $('#card-holder');
@@ -23,6 +24,9 @@ function init() {
     // Allow swipe events to move through the card stack.
     cardHolder.on('swipeRight', swipeNavigateCards);
     cardHolder.on('swipeLeft', swipeNavigateCards);
+    cardHolder.on('click', '.nextslide', function() {
+        cardHolder.trigger('swipeLeft');
+    });
     cardHolder.on('click', '.poster', handleVideoTap);
 }
 
@@ -34,10 +38,10 @@ function openZoneDeck(zone, activeQuest) {
             secondaryPath: directory + '/secondary/',
             mediaPath: directory + '/media/',
             zone: zone,
+            showIntroCard: showIntroCard
         };
 
     context.audioPlayer = audioPlayerTemplate(context);
-
     var html = zoneTemplate(context);
     addDeckToPage(html);
 
@@ -55,6 +59,25 @@ function addDeckToPage(html) {
 
         // Now that our card holder has a deck in it prepare audio.
         setUpAudio();
+
+        handleIntroCard();
+}
+
+function handleIntroCard() {
+    if (showIntroCard) {
+        var $introCard = $('#card-holder').find('.card.introcard');
+        $introCard.find('button.introbutton').on('click', function() {
+            $introCard.fadeOut(200, function() {
+                $introCard.remove();
+            });
+
+            // We only want to show the intro instruction card on the first
+            // zone opened. After that set to false and never show it again.
+            // But the user must first click the button to surpress the
+            // popup again.
+            showIntroCard = false;
+        });
+    }
 }
 
 function setUpAudio() {
@@ -62,21 +85,28 @@ function setUpAudio() {
         $audioButton = $audioPlayer.find('.audio-control'),
         $audioEl = $('#card-holder').find('audio'),
         sound = $audioEl.get(0),
-        playingClass = 'playing';
+        playingClass = 'playing',
+        playMessage = 'Play Audio',
+        pauseMessage = 'Pause Audio',
+        replayMessage = 'Play Again';
 
-    // Reset on sound completion.
+    // Update UI on audio events.
     $audioEl.on('ended', function() {
-        $audioButton.removeClass(playingClass).text('Play Again');
+        $audioButton.removeClass(playingClass).text(replayMessage);
+    });
+    $audioEl.on('playing', function() {
+        $audioButton.addClass(playingClass).text(pauseMessage);
+    });
+    $audioEl.on('pause', function() {
+        $audioButton.removeClass(playingClass).text(playMessage);
     });
 
     // Single button audio player.
     $audioButton.on('click', function() {
         if ($(this).hasClass(playingClass)) {
             sound.pause();
-            $(this).removeClass(playingClass).text('Play Audio');
         } else {
             sound.play();
-            $(this).addClass(playingClass).text('Pause Audio');
         }
     });
 
@@ -93,6 +123,19 @@ function closeDeck($card) {
     try {
         // Attempt to stop any sound that is playing before we close.
         $('#card-holder').find('audio').get(0).pause();
+
+        // Null out the audio source to prevent further download.
+        $('#card-holder').find('audio source').attr('src', null);
+
+        // Chrome has a weird issue with audio loading resources dynamically.
+        // It will just hang forever and queue up new ones that will be listed
+        // as "pending" in the network forever. Calling window.stop() kills all
+        // the open connections.
+        // https://github.com/videojs/video.js/issues/455#issuecomment-122403204
+        // https://stackoverflow.com/questions/16137381
+        if (window.stop) {
+            window.stop();
+        }
     } catch (exc) {
         // Expecting: TypeError "Cannot read property 'pause' of undefined"
         if (exc.name !== 'TypeError') {
@@ -116,6 +159,11 @@ function finishZone(e) {
 }
 
 function swipeNavigateCards(e) {
+    if (showIntroCard) {
+        // If the intro card is still visible, cancel out of swipe events.
+        return;
+    }
+
     var $target = $(e.currentTarget),
         type = e.type,
         $thisCard = $target.find('.card.active'),
@@ -136,12 +184,6 @@ function swipeNavigateCards(e) {
     // Proxy the swipe events to the next and back/close buttons since they have
     // all the logic wired up already.
     if (type === 'swipeLeft') {
-        // Don't allow users to swipe away the
-        // last card in the deck.
-        if ($thisCard.hasClass('last')) {
-            return;
-        }
-
         // If there is another card in the stack, move to it.
         if ($thisCard.next().hasClass('card')) {
             $thisCard
@@ -150,10 +192,31 @@ function swipeNavigateCards(e) {
                 .next()
                 .addClass('active')
                 .removeClass('next');
-        } else {
-            // No next card so close the deck.
-            closeDeck($thisCard);
-        }
+
+            if ($thisCard.hasClass('first')) {
+                // Remove the alignment message in the header as we move away.
+                $target.find('.card-header .alignment-message').fadeOut(200);
+
+                // Attempt to start the audio if it exists and the
+                // circumstances are correct.
+                try {
+                    // Only play unplayed audio. Determine this by looking at
+                    // the current time and the duration of the audio clip. If
+                    // they are both zero or undefined, then it is safe to
+                    // assume that the audio has never been played.
+                    var sound = $target.find('audio').get(0);
+
+                    if (!sound.currentTime && !sound.duration) {
+                        sound.play();
+                    }
+                } catch (exc) {
+                    // Expecting: TypeError "Cannot read property ... of undefined"
+                    if (exc.name !== 'TypeError') {
+                        throw exc;
+                    }
+                }
+            }
+        } // No more cards? We are on the exit card, which has a close button.
     } else if (type === 'swipeRight') {
         if ($thisCard.prev().hasClass('card')){
             $thisCard
@@ -162,9 +225,12 @@ function swipeNavigateCards(e) {
                 .prev()
                 .addClass('active')
                 .removeClass('prev');
-        } else {
-            closeDeck($thisCard);
-        }
+
+            if ($thisCard.prev().hasClass('first')) {
+                // Remove the alignment message in the header as we move away.
+                $target.find('.card-header .alignment-message').fadeIn(200);
+            }
+        } // If no more cards before this one, do nothing.
     }
 }
 

@@ -1,6 +1,6 @@
 <% if (zone.audio) { %>
     <span class="audio-control playing">Pause Audio</span>
-    <audio autoplay>
+    <audio preload="none">
         <% _.each(zone.audio.files, function(file) { %>
             <source src="<%= mediaPath %><%= file.file %>" type="<%= file.type %>" />
         <% }); %>
