@@ -82,10 +82,9 @@
             <% if (zone.primaryItems[1].type && zone.primaryItems[1].type === 'video') { %>
                 <div class="card-visual">
                     <div class="flex">
-                        <video controls
-                                style="width:100%;"
-                                src="<%= mediaPath %><%= zone.primaryItems[1].name %>"
-                                poster="<%= mediaPath %><%= zone.primaryItems[1].poster %>">
+                        <video style="width:100%;"
+                               poster="<%= mediaPath %><%= zone.primaryItems[1].poster %>">
+                            <source src="<%= mediaPath %><%= zone.primaryItems[1].name %>" type="video/mp4" />
                         </video>
                         <div class="poster">
                             <div class="poster-inner">

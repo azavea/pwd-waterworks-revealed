@@ -251,6 +251,10 @@ function handleVideoTap(e) {
         $poster.show();
         $video.hide();
     });
+
+    $video.on('click', function() {
+        $video.get(0).pause();
+    });
 }
 
 function toggleCardContent(e) {
