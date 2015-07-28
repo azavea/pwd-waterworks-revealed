@@ -4,10 +4,60 @@
             <div class="card introcard">
                 <div class="alignment-message">Align your device!</div>
                 <!-- TODO: Add BG image here -->
-                <div class="card-visual fullsize" style="background-image: url();"></div>
-                <div class="card-content footer">
+                <div class="card-visual alignment-background fullsize" style="background-image: url();">
+
+                    <svg class="align-animation-container" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 366.7 290" preserveAspectRatio="">
+                        <g class="align-animation-scene">
+                            <polygon fill="#008983" points="102.7,44 181.3,6.6 259.9,44     "/>
+                            <rect x="118.7" y="144" fill="#008983" width="125" height="13"/>
+                            <rect x="102.7" y="160" fill="#008983" width="156" height="12"/>
+                            <g>
+                                <rect x="130.7" y="47" fill="#008983" width="13" height="94"/>
+                                <rect x="217.7" y="47" fill="#008983" width="13" height="94"/>
+                                <rect x="173.7" y="47" fill="#008983" width="13" height="94"/>
+                            </g>
+                        </g>
+                        <g class="align-animation-hand">
+                            <path fill="#D3B72A" d="M165.6,128.2c0,0,7.5-2.2,9.6,1.3s-0.2,8.4-2.5,11.3s-7.1,5.1-7.1,5.1"/>
+                            <path fill="#D3B72A" d="M165.6,146.5c0,0,7.5-2.2,9.6,1.3c2.2,3.5-0.2,8.4-2.5,11.3c-2.4,2.9-7.1,5.1-7.1,5.1"/>
+                            <path fill="#D3B72A" d="M165.3,165.1c0,0,7.5-2.2,9.6,1.3c2.2,3.5-0.2,8.4-2.5,11.3c-2.4,2.9-7.1,5.1-7.1,5.1"/>
+                            <path fill="#D3B72A" d="M165,182.5c0,0,7.5-2.2,9.6,1.3c2.2,3.5-0.2,8.4-2.5,11.3s-7.1,5.1-7.1,5.1"/>
+                            <path fill="#D3B72A" d="M76.2,253.7l4.1-13.7c0,0,3-1.2,0-6.2c-3-4.9-2.1-25.4-0.8-27.4c1.2-2,2.2-15.4,2.2-15.4s1.9-12.5,1.5-14.5
+                                c-0.4-2,0.1-17.6,0.1-17.6s8.9-7,7.7-8.2c0,0,6.5-18,7.8-16.4c1.2,1.6,5.3-1.2,7,8.2c1.6,9.4-2,18-2,18l-2,3.6l2.9,9.4l32.7,31.6
+                                l9.4,27.1l-20.1,20.4"/>
+                            <g>
+                                <g>
+                                    <g>
+                                        <path fill="#123030" d="M167.7,222c0,5.5-4.5,10-10,10h-44c-5.5,0-10-4.5-10-10v-93c0-5.5,4.5-10,10-10h44c5.5,0,10,4.5,10,10
+                                            V222z"/>
+                                    </g>
+                                    <g>
+                                        <path fill="#F6F4E8" d="M162.7,218C162.7,218,162.7,218,162.7,218l-54,0c0,0,0,0,0,0v-88c0,0,0,0,0,0h54c0,0,0,0,0,0V218z"/>
+                                    </g>
+                                </g>
+                            </g>
+                            <path fill="#D3B72A" d="M83.5,158.9c0,0,8.9-7,7.7-8.2c0,0,6.5-18,7.8-16.4c1.2,1.6,5.3-1.2,7,8.2c1.6,9.4-2,18-2,18l-2,3.6"/>
+                            <path fill="#D3B72A" d="M82,205.8c0,0,8.4-8.9,7.1-10.2c0,0,5.1-21.8,6.5-20c1.4,1.9,5.2-1.8,7.6,9.3c2.4,11.1-0.7,21.5-0.7,21.5
+                                l-1.8,4.4"/>
+
+                                <rect x="64.9" y="238.1" transform="matrix(0.9224 0.3862 -0.3862 0.9224 112.224 -13.5455)" fill="#D3B72A" width="49.9" height="68.9"/>
+                            <g>
+                                <polygon fill="#008983" points="114.1,164 135.3,153.9 156.5,164         "/>
+                                <rect x="118.7" y="192" fill="#008983" width="33" height="4"/>
+                                <rect x="113.7" y="197" fill="#008983" width="43" height="4"/>
+                                <g>
+                                    <rect x="121.7" y="165" fill="#008983" width="3" height="26"/>
+                                    <rect x="145.7" y="165" fill="#008983" width="3" height="26"/>
+                                    <rect x="133.7" y="165" fill="#008983" width="3" height="26"/>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+
+                </div>
+                <div class="card-content text-center footer">
                     <p>When you enter a quest, you will be asked to align the photo on your device with the environment around you.</p>
-                    <button class="introbutton">Get Started</button>
+                    <button class="introbutton btn enterarea-button btn-primary btn-lg btn-large enter ">Get Started</button>
                 </div>
             </div>
         <% } %>
@@ -26,8 +76,9 @@
                 <strong><%- zone.primaryItems[0].credit %></strong>
             </div>
             -->
-            <div class="instructions">
-                <button class="nextslide">Next</button>
+            <div class="instructions text-center">
+                <p>Align the photo on your device with the environment around you.</p>
+                <button class="nextslide btn enterarea-button btn-primary btn-lg btn-large enter ">Okay, it's aligned!</button>
             </div>
         </div>
         <div class="card next">
@@ -57,8 +108,8 @@
                     <strong><%- zone.primaryItems[1].credit %></strong>
                 </div>
                 -->
-                <div class="instructions">
-                    Swipe left to continue
+                <div class="instructions text-center">
+                    <img class="icon-swipe" src="img/icon_swipe-left.png">Swipe left to continue
                 </div>
             <% } %>
         </div>
@@ -73,8 +124,8 @@
                     <strong><%- item.credit %></strong>
                 </div>
                 -->
-                <div class="instructions">
-                    Swipe left to continue
+                <div class="instructions text-center">
+                    <img class="icon-swipe" src="img/icon_swipe-left.png">Swipe left to continue
                 </div>
             </div>
         <% }); %>

@@ -23,7 +23,7 @@
                 position: absolute;
                 z-index: 100;
                 width: 100%;
-                background-color: black;
+                background-color: #123030;
                 padding: 15px 10px;
                 font-size: 20px;
                 color: white;
@@ -40,7 +40,6 @@
             font-size: 20px;
             color: white;
             font-weight: bold;
-            border-bottom: 1px solid white;
 
             .audio-control {
                 padding: 5px;
@@ -54,6 +53,10 @@
                 text-align: right;
                 font-size: 30px;
                 padding: 5px 10px;
+                cursor: pointer;
+                &:hover {
+                    opacity: .5;
+                }
             }
 
             .alignment-message {
@@ -62,6 +65,7 @@
                 position: absolute;
                 background-color: black;
                 color: white;
+                background-color: #123030;
                 padding: 15px 10px;
                 font-size: 20px;
                 top:0;
@@ -309,4 +313,14 @@
         -webkit-transform: translate3d(-125%,0,0);
         transform: translate3d(-125%,0,0);
     }
+}
+
+.icon-swipe {
+    width: 25px;
+    margin-top: -10px;
+    margin-right: 10px;
+}
+
+.alignment-background {
+    background-color: #F6F4E8 !important;
 }
