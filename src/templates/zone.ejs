@@ -3,9 +3,7 @@
         <% if (showIntroCard) { %>
             <div class="card introcard">
                 <div class="alignment-message">Align your device!</div>
-                <!-- TODO: Add BG image here -->
-                <div class="card-visual alignment-background fullsize" style="background-image: url();">
-
+                <div class="card-visual alignment-background fullsize">
                     <svg class="align-animation-container" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 366.7 290" preserveAspectRatio="">
                         <g class="align-animation-scene">
                             <polygon fill="#008983" points="102.7,44 181.3,6.6 259.9,44     "/>
@@ -53,7 +51,6 @@
                             </g>
                         </g>
                     </svg>
-
                 </div>
                 <div class="card-content text-center footer">
                     <p>When you enter a quest, you will be asked to align the photo on your device with the environment around you.</p>
@@ -66,6 +63,11 @@
             <span class="close-deck">&times;</span>
             <%= audioPlayer %>
         </div>
+
+        <div class="instructions text-center instructions-default">
+            <img class="icon-swipe" src="img/icon_swipe-left.png">Swipe left to continue
+        </div>
+
         <div class="card card-fullimage first">
             <div class="card-visual fullsize" style="background-image: url('<%= primaryPath %><%= zone.primaryItems[0].name %>.jpg');">
             </div>
@@ -76,19 +78,18 @@
                 <strong><%- zone.primaryItems[0].credit %></strong>
             </div>
             -->
-            <div class="instructions text-center">
+            <div class="instructions text-center instructions-first">
                 <p>Align the photo on your device with the environment around you.</p>
                 <button class="nextslide btn enterarea-button btn-primary btn-lg btn-large enter ">Okay, it's aligned!</button>
             </div>
         </div>
-        <div class="card next">
+        <div class="card next second">
             <% if (zone.primaryItems[1].type && zone.primaryItems[1].type === 'video') { %>
                 <div class="card-visual">
                     <div class="flex">
-                        <video controls
-                                style="width:100%;"
-                                src="<%= mediaPath %><%= zone.primaryItems[1].name %>"
-                                poster="<%= mediaPath %><%= zone.primaryItems[1].poster %>">
+                        <video style="width:100%;"
+                               poster="<%= mediaPath %><%= zone.primaryItems[1].poster %>">
+                            <source src="<%= mediaPath %><%= zone.primaryItems[1].name %>" type="video/mp4" />
                         </video>
                         <div class="poster">
                             <div class="poster-inner">
@@ -108,9 +109,6 @@
                     <strong><%- zone.primaryItems[1].credit %></strong>
                 </div>
                 -->
-                <div class="instructions text-center">
-                    <img class="icon-swipe" src="img/icon_swipe-left.png">Swipe left to continue
-                </div>
             <% } %>
         </div>
         <% _.each(zone.secondaryItems, function(item) { %>
@@ -124,9 +122,6 @@
                     <strong><%- item.credit %></strong>
                 </div>
                 -->
-                <div class="instructions text-center">
-                    <img class="icon-swipe" src="img/icon_swipe-left.png">Swipe left to continue
-                </div>
             </div>
         <% }); %>
         <div class="card next last">

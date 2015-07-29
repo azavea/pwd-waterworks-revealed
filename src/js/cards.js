@@ -194,8 +194,12 @@ function swipeNavigateCards(e) {
                 .removeClass('next');
 
             if ($thisCard.hasClass('first')) {
-                // Remove the alignment message in the header as we move away.
+                // As we move away, remove the alignment message in the header,
+                // fade the first card out and bring up the global swipe
+                // instructions.
                 $target.find('.card-header .alignment-message').fadeOut(200);
+                $target.find('.instructions-default').fadeIn(600);
+                $thisCard.fadeOut(600);
 
                 // Attempt to start the audio if it exists and the
                 // circumstances are correct.
@@ -227,8 +231,12 @@ function swipeNavigateCards(e) {
                 .removeClass('prev');
 
             if ($thisCard.prev().hasClass('first')) {
-                // Remove the alignment message in the header as we move away.
+                // As we transition to the first card, bring back the alignment
+                // message in the header, fade the first card in and hide the
+                // global swipe instructions.
                 $target.find('.card-header .alignment-message').fadeIn(200);
+                $target.find('.instructions-default').fadeOut(600);
+                $thisCard.prev().fadeIn(600);
             }
         } // If no more cards before this one, do nothing.
     }
@@ -250,6 +258,10 @@ function handleVideoTap(e) {
     $video.on('ended', function() {
         $poster.show();
         $video.hide();
+    });
+
+    $video.on('click', function() {
+        $video.get(0).pause();
     });
 }
 
