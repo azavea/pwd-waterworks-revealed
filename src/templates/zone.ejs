@@ -124,6 +124,17 @@
                 -->
             </div>
         <% }); %>
+        <% if (zone.historicContext) { %>
+            <div class="card next">
+                <div class="card-visual">
+                    <div class="historic-context">
+                        <p><%= zone.historicContext.text %></p>
+                        <p>&mdash; <%= zone.historicContext.attribution %></p>
+                    </div>
+                </div>
+                <div class="card-icon"></div>
+            </div>
+        <% } %>
         <div class="card next last">
             <div class="card-visual"></div>
             <div class="card-icon"></div>

@@ -295,6 +295,14 @@
                     color: $wr-gray;
                 }
             }
+
+            .historic-context {
+                color: white;
+                padding: 25% 10%;
+                font-size: 20px;
+                display: table-cell;
+                vertical-align: middle;
+            }
         }
     }
 }

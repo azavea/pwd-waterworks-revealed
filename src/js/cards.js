@@ -45,6 +45,8 @@ function openZoneDeck(zone, activeQuest) {
     var html = zoneTemplate(context);
     addDeckToPage(html);
 
+    adjustHistoricContentFontSize();
+
     $('#finish-zone').on('click', finishZone);
 
     deckFinishedBus.push(zone.id);
@@ -292,6 +294,29 @@ function toggleCardContent(e) {
             }, animationSpeed);
         }
     });
+}
+
+/**
+ * Make the font size of the historic context screen large enough to fill the
+ * appropriate space. This helps make the text look good on various devices.
+ */
+function adjustHistoricContentFontSize() {
+    var $contextEl = $('#card-holder').find('.historic-context'),
+        $contextText = $contextEl.find('p'),
+        parentHeight = $contextEl.parent().height(),
+        fontSize = 12,
+        increment = 2;
+
+    do {
+        $contextText.css('font-size', fontSize + 'px');
+        fontSize += increment;
+    } while(parentHeight > $contextEl.height());
+
+    // We might have gone over. If so back off one notch.
+    if (parentHeight < $contextEl.height()) {
+        fontSize -= increment;
+        $contextText.css('font-size', fontSize + 'px');
+    }
 }
 
 module.exports = {
