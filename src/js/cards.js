@@ -46,6 +46,9 @@ function openZoneDeck(zone, activeQuest) {
     addDeckToPage(html);
 
     adjustHistoricContentFontSize();
+    $(window).on('orientationchange', function() {
+        setTimeout(adjustHistoricContentFontSize, 1000);
+    });
 
     $('#finish-zone').on('click', finishZone);
 
@@ -303,9 +306,9 @@ function toggleCardContent(e) {
 function adjustHistoricContentFontSize() {
     var $contextEl = $('#card-holder').find('.historic-context'),
         $contextText = $contextEl.find('p'),
-        parentHeight = $contextEl.parent().height(),
+        parentHeight = $contextEl.parent().height() - 50, // 50px accounts for the bottom bar.
         fontSize = 12,
-        increment = 2;
+        increment = 1;
 
     do {
         $contextText.css('font-size', fontSize + 'px');
