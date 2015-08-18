@@ -43,9 +43,10 @@ for quest in os.listdir(quest_dir):
         }
 
         for zone in sorted(os.listdir(questPath)):
-            with open(os.path.join(questPath, zone, 'zone.json')) as f:
-                data = json.load(f)
-                output[quest]['zones'].append(data)
+            if os.path.isdir(os.path.join(questPath, zone)):
+                with open(os.path.join(questPath, zone, 'zone.json')) as f:
+                    data = json.load(f)
+                    output[quest]['zones'].append(data)
 
 with open(output_path, 'w') as output_file:
     json.dump(output, output_file, indent=4)
