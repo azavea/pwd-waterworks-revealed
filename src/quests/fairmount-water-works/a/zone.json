@@ -3,14 +3,6 @@
     "title": "Rustic Pavilion",
     "location": [39.9656, -75.1828],
     "radius": 5,
-    "audio": {
-        "files": [
-            {
-                "file": "test.mp3",
-                "type": "audio/mpeg"
-            }
-        ]
-    },
     "primaryItems": [
         {
             "name": "AP1",

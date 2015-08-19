@@ -15,15 +15,6 @@
                         "credit": "Photo by James A. Cremer, Courtesy of Fairmount Park Archives"
                     }
                 ], 
-                "radius": 5, 
-                "location": [
-                    39.9656, 
-                    -75.1828
-                ], 
-                "historicContext": {
-                    "text": "By the 1840s the chaste, neoclassical architecture of the buildings, the landscaped garden, and the promenades up to and around the reservoirs on \"Fair Mount,\" as the rise was identified as early as 1687 on a map of Philadelphia, were major attractions. Ornamental sculptures, fountains, and airy gazebos added to the visual pleasure of the site.", 
-                    "attribution": "Jane Mork Gibson"
-                }, 
                 "secondaryItems": [
                     {
                         "caption": "Rustic Pavilion looking north from South Cliffside Path, 1876", 
@@ -41,14 +32,15 @@
                         "credit": "Photo Courtesy of A. Leonard Pundt, 2015"
                     }
                 ], 
-                "audio": {
-                    "files": [
-                        {
-                            "type": "audio/mpeg", 
-                            "file": "test.mp3"
-                        }
-                    ]
+                "location": [
+                    39.9656, 
+                    -75.1828
+                ], 
+                "historicContext": {
+                    "text": "By the 1840s the chaste, neoclassical architecture of the buildings, the landscaped garden, and the promenades up to and around the reservoirs on \"Fair Mount,\" as the rise was identified as early as 1687 on a map of Philadelphia, were major attractions. Ornamental sculptures, fountains, and airy gazebos added to the visual pleasure of the site.", 
+                    "attribution": "Jane Mork Gibson"
                 }, 
+                "radius": 5, 
                 "id": "a"
             }, 
             {
@@ -67,6 +59,15 @@
                         "caption": ""
                     }
                 ], 
+                "radius": 5, 
+                "location": [
+                    39.9658, 
+                    -75.183
+                ], 
+                "historicContext": {
+                    "text": "For the general public as well as for those with engineering or technical interests, the technological components at Fairmount made the waterworks a unique wonder &mdash; the turning of the massive waterwheels, the action of the powerful pumps, and the sparkling reservoirs containing the city's water supply. This was what made it different from other garden spots, and lent excitement and edification to the visit.", 
+                    "attribution": "Jane Mork Gibson"
+                }, 
                 "secondaryItems": [
                     {
                         "caption": "Old Mill House and Forebay from Central Cliffside Path, c.1875", 
@@ -89,15 +90,14 @@
                         "credit": "Courtesy of Philadelphia Bureau of Water, Annual Report. Philadelphia Water Department Archives"
                     }
                 ], 
-                "location": [
-                    39.9658, 
-                    -75.183
-                ], 
-                "historicContext": {
-                    "text": "For the general public as well as for those with engineering or technical interests, the technological components at Fairmount made the waterworks a unique wonder &mdash; the turning of the massive waterwheels, the action of the powerful pumps, and the sparkling reservoirs containing the city's water supply. This was what made it different from other garden spots, and lent excitement and edification to the visit.", 
-                    "attribution": "Jane Mork Gibson"
+                "audio": {
+                    "files": [
+                        {
+                            "type": "audio/mpeg", 
+                            "file": "view-d.mp3"
+                        }
+                    ]
                 }, 
-                "radius": 5, 
                 "id": "d"
             }, 
             {

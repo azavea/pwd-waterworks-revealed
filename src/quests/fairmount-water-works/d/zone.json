@@ -3,6 +3,14 @@
     "title": "Old Mill House & Forebay",
     "location": [39.9658, -75.1830],
     "radius": 5,
+    "audio": {
+        "files": [
+            {
+                "file": "view-d.mp3",
+                "type": "audio/mpeg"
+            }
+        ]
+    },
     "primaryItems": [
         {
             "name": "DP1",
