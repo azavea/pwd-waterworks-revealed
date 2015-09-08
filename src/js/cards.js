@@ -27,7 +27,7 @@ function init() {
     cardHolder.on('click', '.nextslide', function() {
         cardHolder.trigger('swipeLeft');
     });
-    cardHolder.on('click', '.poster', handleVideoTap);
+    prepareVideoHandling(cardHolder);
 }
 
 function openZoneDeck(zone, activeQuest) {
@@ -247,28 +247,33 @@ function swipeNavigateCards(e) {
     }
 }
 
-function handleVideoTap(e) {
-    var $poster = $(e.currentTarget),
-        $video = $poster.closest('.flex').find('video');
+function prepareVideoHandling(cardHolder) {
+    var handleVideoTap = function(e) {
+        var $poster = $(e.currentTarget),
+            $video = $poster.closest('.flex').find('video');
 
-    $poster.hide();
-    $video.show();
-    $video.get(0).play();
+        $poster.hide();
+        $video.show();
+        $video.get(0).play();
 
-    $video.on('pause', function() {
-        $poster.show();
-        $video.hide();
-    });
+        $video.on('pause', function() {
+            $poster.show();
+            $video.hide();
+        });
 
-    $video.on('ended', function() {
-        $poster.show();
-        $video.hide();
-    });
+        $video.on('ended', function() {
+            $poster.show();
+            $video.hide();
+            cardHolder.trigger('swipeLeft');
+        });
 
-    $video.on('click', function() {
-        $video.get(0).pause();
-    });
-}
+        $video.on('click', function() {
+            $video.get(0).pause();
+        });
+    };
+
+    cardHolder.on('click', '.poster', handleVideoTap);
+};
 
 function toggleCardContent(e) {
     // Not the most beautiful but a workable solution. If the tap came from a
