@@ -62,10 +62,10 @@ function addDeckToPage(html) {
         .first()
         .fadeIn(400);
 
-        // Now that our card holder has a deck in it prepare audio.
-        setUpAudio();
+    // Now that our card holder has a deck in it prepare audio.
+    setUpAudio();
 
-        handleIntroCard();
+    handleIntroCard();
 }
 
 function handleIntroCard() {
@@ -273,7 +273,7 @@ function prepareVideoHandling(cardHolder) {
     };
 
     cardHolder.on('click', '.poster', handleVideoTap);
-};
+}
 
 function toggleCardContent(e) {
     // Not the most beautiful but a workable solution. If the tap came from a
