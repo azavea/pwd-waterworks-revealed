@@ -3,11 +3,9 @@
 var $ = require('jquery'),
     _ = require('lodash'),
     Snap = require('Snap'),
-    path = require('path'),
     pageManager = require('./pages'),
     progressTemplate = require('../templates/progress.ejs'),
-    zoneUtils = require('./zoneUtils'),
-    zoneConfirmationTemplate = require('../templates/zoneConfirmation.ejs');
+    zoneUtils = require('./zoneUtils');
 
 var snap,
     questManager;
@@ -25,7 +23,6 @@ function init(options) {
     initSnap();
     initQuestProgress(questManager);
     initCompass();
-    initZoneConfirmation(questManager);
 
     $('.menu-link').on('click', toggleMenu);
     $('.menu').on('click', 'a', togglePages);
@@ -133,82 +130,6 @@ function togglePages(e) {
     } else {
         toggleMenu();
     }
-}
-
-function initZoneConfirmation(questManager) {
-    questManager.zoneChangeStream
-        .doAction(hideZoneConfirmation)
-        .filter(_.isObject)
-        .doAction(updateDialog, questManager)
-        .onValue(activateZoneConfirmation);
-}
-
-function updateDialog(questManager, zone) {
-    var $dialog = $('#enterarea'),
-        context = {
-            zone: zone,
-            mediaPath: getConfirmationMediaPath(questManager, zone)
-        };
-
-    $dialog.html(zoneConfirmationTemplate(context));
-
-    bindConfirmationButtonEvents($dialog, questManager, zone);
-}
-
-function getConfirmationMediaPath(questManager, zone) {
-    var basePath = path.join('quests', questManager.activeQuest, zone.id),
-        mediaPath;
-
-    if (zone.primaryItems[1].type && zone.primaryItems[1].type === 'video') {
-        mediaPath = path.join(basePath, 'media', zone.primaryItems[1].poster);
-    } else {
-        mediaPath = path.join(basePath, 'primary', zone.primaryItems[1].name + '.jpg');
-    }
-
-    return mediaPath;
-}
-
-function bindConfirmationButtonEvents($dialog, questManager, zone) {
-    $dialog
-        .find('.enterarea-button.enter')
-        .click(function() {
-            startZone(questManager, zone);
-        });
-
-    $dialog
-        .find('.enterarea-button.dismiss')
-        .click(function() {
-            dismissZoneConfirmation();
-        });
-}
-
-function activateZoneConfirmation(zone) {
-    if (zone.status === zoneUtils.STATUS_FINISHED) {
-        // If the zone has already been completed, only show the small
-        // zone confirmation window.
-        $('#enterarea').addClass('enterarea-dismissed active');
-    } else {
-        $('#enterarea').removeClass('enterarea-dismissed').addClass('active');
-    }
-}
-
-function dismissZoneConfirmation() {
-    $('#enterarea').addClass('enterarea-dismissed');
-}
-
-function hideZoneConfirmation() {
-    var $dialog = $('#enterarea');
-
-    if ($dialog.hasClass('enterarea-dismissed')) {
-        $dialog.removeClass('active');
-    } else {
-        $dialog.removeClass('active enterarea-dismissed');
-    }
-}
-
-function startZone(questManager, zone) {
-    hideZoneConfirmation();
-    questManager.showDeck(zone);
 }
 
 module.exports = {
