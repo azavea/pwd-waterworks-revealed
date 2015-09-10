@@ -2,7 +2,7 @@
     "id": "f",
     "title": "Forebay Bridge",
     "location": [39.96635728332038, -75.18312335014343],
-    "radius": 5,
+    "radius": 4,
     "primaryItems": [
         {
             "name": "FP1",

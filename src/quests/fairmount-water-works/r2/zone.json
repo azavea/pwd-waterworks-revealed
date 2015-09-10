@@ -2,7 +2,7 @@
     "id": "r2",
     "title": "Decks",
     "location": [39.96684037188947, -75.18459856510162],
-    "radius": 5,
+    "radius": 4,
     "primaryItems": [
         {
             "name": "RC13_amphitheater_view",

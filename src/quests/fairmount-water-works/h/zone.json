@@ -2,7 +2,7 @@
     "id": "h",
     "title": "New Mill House Deck",
     "location": [39.966745810140395, -75.18343716859818],
-    "radius": 5,
+    "radius": 4,
     "primaryItems": [
         {
             "name": "HP1",

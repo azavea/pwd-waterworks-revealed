@@ -2,7 +2,7 @@
     "id": "l",
     "title": "Deck of Old Mill House",
     "location": [39.965898859947075, -75.18313139677048],
-    "radius": 5,
+    "radius": 4,
     "primaryItems": [
         {
             "name": "LP1",
