@@ -33,8 +33,8 @@
                     }
                 ], 
                 "location": [
-                    39.9656, 
-                    -75.1828
+                    39.965672730693555, 
+                    -75.18278002738953
                 ], 
                 "historicContext": {
                     "text": "By the 1840s the chaste, neoclassical architecture of the buildings, the landscaped garden, and the promenades up to and around the reservoirs on \"Fair Mount,\" as the rise was identified as early as 1687 on a map of Philadelphia, were major attractions. Ornamental sculptures, fountains, and airy gazebos added to the visual pleasure of the site.", 
@@ -61,8 +61,8 @@
                 ], 
                 "radius": 5, 
                 "location": [
-                    39.9658, 
-                    -75.183
+                    39.965905027098046, 
+                    -75.18299728631973
                 ], 
                 "historicContext": {
                     "text": "For the general public as well as for those with engineering or technical interests, the technological components at Fairmount made the waterworks a unique wonder &mdash; the turning of the massive waterwheels, the action of the powerful pumps, and the sparkling reservoirs containing the city's water supply. This was what made it different from other garden spots, and lent excitement and edification to the visit.", 
@@ -127,8 +127,8 @@
                     }
                 ], 
                 "location": [
-                    39.9666, 
-                    -75.1831
+                    39.96665535964932, 
+                    -75.18315017223358
                 ], 
                 "historicContext": {
                     "text": "From 1815 to the consolidation of the city with its districts in 1854, Fairmount Water Works was the sole pumping station supplying Philadelphia with water, and for part of that time it also supplied the districts of Spring Garden, Northern Liberties, and Southwark. After water power replaced steam, which used expensive fuel to power the waterworks' pumps, the financial rewards for the city were considerable. In 1844 the city purchased the Lemon Hill property, which had once belonged to Robert Morris and was directly upstream from the works, to prevent industries from locating on water lots so close to the city's water supply.", 
@@ -179,8 +179,8 @@
                     }
                 ], 
                 "location": [
-                    39.9664, 
-                    -75.18307
+                    39.96635728332038, 
+                    -75.18312335014343
                 ], 
                 "historicContext": {
                     "text": "The development of this remarkable facility was not fully envisioned or planned as an entirety from the beginning; rather, it evolved over decades in response to happenstance, exigencies of the moment, and technological advances.", 
@@ -221,14 +221,14 @@
                     }
                 ], 
                 "location": [
-                    39.96676, 
-                    -75.18342
+                    39.966745810140395, 
+                    -75.18343716859818
                 ], 
                 "historicContext": {
                     "text": "For foreign and native travelers in the nineteenth century making the grand tour of the United States it was unthinkable to be in Philadelphia without visiting the Fairmount Water Works on the banks of the Schuylkill River.", 
                     "attribution": "Jane Mork Gibson"
                 }, 
-                "radius": 5, 
+                "radius": 4, 
                 "id": "h"
             }, 
             {
@@ -331,8 +331,8 @@
                     }
                 ], 
                 "location": [
-                    39.96665, 
-                    -75.18344
+                    39.96667180520207, 
+                    -75.18341839313507
                 ], 
                 "historicContext": {
                     "text": "The south garden at the waterworks had been built by 1835, and soon the idea of a large urban recreational park caught the fancy of many citizens, with additional land being acquired for today's Fairmount Park. By the time of the consolidation of the city in 1854, however, additional pumping stations that had already been erected by the districts along the river eliminated the city's dependency on water power at Fairmount. Although technological improvements were made with the installation of water turbines beginning in 1851, Fairmount Water Works began to deteriorate by the 1880s. River pollution reached untenable proportions in the 1890s, and the facility was decommissioned as a pumping station in 1911.", 
@@ -378,8 +378,8 @@
                     }
                 ], 
                 "location": [
-                    39.96593, 
-                    -75.18319
+                    39.965898859947075, 
+                    -75.18313139677048
                 ], 
                 "historicContext": {
                     "text": "In 1911 the city passed an ordinance giving the Fairmount buildings along the river to the mayor for use as a public aquarium and another ordinance giving the site of Fairmount's reservoirs to the Commissioners of Fairmount Park for construction of a public art museum. Fairmount Water Works, with its history of devotion to the public good, would still play an active role in the lives of Philadelphia's citizens.", 
@@ -420,8 +420,8 @@
                     }
                 ], 
                 "location": [
-                    39.96628, 
-                    -75.18359
+                    39.966293556488324, 
+                    -75.18359810113907
                 ], 
                 "historicContext": {
                     "text": "Many persons were instrumental in the creation and the operation of Fairmount Water Works. Most noted among them were Frederick Graff (1774-1847) and his son, Frederic Graff, Jr. (1817\u00ad\u20101890). As a young man, the elder Graff was an assistant to the architect and engineer Benjamin Henry Latrobe. Graff served as superintendent of the first Philadelphia Waterworks at Centre Square, the site today of City Hall, from 1805 and continued at Fairmount until his death in 1847. Responsible for the design of the Fairmount Water Works facility &mdash; the buildings, most of the machinery, the distribution system, the gardens immediately surrounding the waterworks &mdash; he, in effect, ran the waterworks. Graff, Jr., continued the tradition, serving from 1847 to 1856 and again from 1867 to 1872, becoming a leading civil engineer in his own right, and playing a major role in the development of Fairmount Park.", 
@@ -457,8 +457,8 @@
                     }
                 ], 
                 "location": [
-                    39.96667, 
-                    -75.18398
+                    39.966696473523754, 
+                    -75.18413186073303
                 ], 
                 "historicContext": null, 
                 "radius": 5, 
@@ -548,14 +548,14 @@
                     }
                 ], 
                 "location": [
-                    39.96679, 
-                    -75.18462
+                    39.96684037188947, 
+                    -75.18459856510162
                 ], 
                 "historicContext": {
                     "text": "In 1975 the American Society of Civil Engineers declared Fairmount Waterworks a National Historic Civil Engineering Landmark and on May 11, 1976, it was designated a National Historic Landmark by the U.S. Secretary of the Interior. In 1977 the American Society of Mechanical Engineers made the waterworks a National Historic Mechanical Engineering Landmark. Despite its multiple &mdash; award status, the facility continued to deteriorate and in 1984 was included in the report to Congress by the Secretary of the Interior on damaged and threatened national landmarks.", 
                     "attribution": "Jane Mork Gibson"
                 }, 
-                "radius": 5, 
+                "radius": 4, 
                 "id": "r2"
             }
         ]
