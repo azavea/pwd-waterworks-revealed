@@ -1,6 +1,7 @@
 'use strict';
 
-var $ = require('jquery');
+var $ = require('jquery'),
+    utils = require('./utils');
 
 var $introduction = $('#introduction'),
     $circle = $('#overlay-circle');
@@ -11,6 +12,13 @@ module.exports = {
         $introduction.on('click', animateOpenCircle);
 
         $('#button-close-introduction').on('click', animateSwitchMap);
+
+        var opts = {
+            subElement: 'p',
+            offset: 120,
+            allowUpscale: false
+        };
+        utils.adjustFontSizeToEl($('#intro-content'), $introduction, opts);
 
         // TODO: Switch to bootstrap's $.support.transition.end; see http://stackoverflow.com/a/13862291
         $introduction.on('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function(e) {
