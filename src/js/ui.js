@@ -182,8 +182,14 @@ function bindConfirmationButtonEvents($dialog, questManager, zone) {
         });
 }
 
-function activateZoneConfirmation() {
-    $('#enterarea').removeClass('enterarea-dismissed').addClass('active');
+function activateZoneConfirmation(zone) {
+    if (zone.status === zoneUtils.STATUS_FINISHED) {
+        // If the zone has already been completed, only show the small
+        // zone confirmation window.
+        $('#enterarea').addClass('enterarea-dismissed active');
+    } else {
+        $('#enterarea').removeClass('enterarea-dismissed').addClass('active');
+    }
 }
 
 function dismissZoneConfirmation() {
