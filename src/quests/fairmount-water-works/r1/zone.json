@@ -2,7 +2,7 @@
     "id": "r1",
     "title": "Decks",
     "location": [39.96697, -75.18454],
-    "radius": 5,
+    "radius": 4,
     "primaryItems": [
         {
             "name": "RP1",

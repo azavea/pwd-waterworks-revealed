@@ -1,8 +1,8 @@
 {
     "id": "n",
     "title": "Cliff Side Path",
-    "location": [39.96628, -75.18359],
-    "radius": 5,
+    "location": [39.966293556488324, -75.18359810113907],
+    "radius": 4,
     "primaryItems": [
         {
             "name": "NP1",

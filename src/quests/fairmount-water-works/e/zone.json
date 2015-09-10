@@ -1,8 +1,8 @@
 {
     "id": "e",
     "title": "Forebay & New Mill House",
-    "location": [39.9666, -75.1831],
-    "radius": 5,
+    "location": [39.96665535964932, -75.18315017223358],
+    "radius": 4,
     "primaryItems": [
         {
             "name": "EP1",

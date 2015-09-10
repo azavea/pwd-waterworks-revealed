@@ -2,7 +2,7 @@
     "id": "i",
     "title": "Deck",
     "location": [39.96686, -75.18396],
-    "radius": 5,
+    "radius": 4,
     "primaryItems": [
         {
             "name": "IP1",

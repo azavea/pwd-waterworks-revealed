@@ -2,7 +2,7 @@
     "id": "j",
     "title": "Reservoir",
     "location": [39.96669, -75.18356],
-    "radius": 5,
+    "radius": 4,
     "primaryItems": [
         {
             "name": "JP1",
