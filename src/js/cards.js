@@ -4,6 +4,7 @@ var $ = require('./jqueryBacon').$,
     _ = require('lodash'),
     path = require('path'),
     Bacon = require('baconjs'),
+    utils = require('./utils'),
     zoneUtils = require('./zoneUtils'),
     zoneTemplate = require('../templates/zone.ejs'),
     audioPlayerTemplate = require('../templates/audioPlayer.ejs');
@@ -42,12 +43,24 @@ function openZoneDeck(zone, activeQuest) {
         };
 
     context.audioPlayer = audioPlayerTemplate(context);
+
     var html = zoneTemplate(context);
     addDeckToPage(html);
 
-    adjustHistoricContentFontSize();
+    var $contextEl = $('#card-holder').find('.historic-context'),
+        $container = $contextEl.parent(),
+        options = {
+            allowUpscale: true,
+            subElement: 'p',
+            offset: 50
+        };
+    // Make the font size of the historic context screen large enough to fill the
+    // appropriate space. This helps make the text look good on various devices.
+    utils.adjustFontSizeToEl($contextEl, $container, options);
     $(window).on('orientationchange', function() {
-        setTimeout(adjustHistoricContentFontSize, 1000);
+        setTimeout(function() {
+            utils.adjustFontSizeToEl($contextEl, $container, options);
+        }, 1000);
     });
 
     $('#finish-zone').on('click', finishZone);
@@ -302,29 +315,6 @@ function toggleCardContent(e) {
             }, animationSpeed);
         }
     });
-}
-
-/**
- * Make the font size of the historic context screen large enough to fill the
- * appropriate space. This helps make the text look good on various devices.
- */
-function adjustHistoricContentFontSize() {
-    var $contextEl = $('#card-holder').find('.historic-context'),
-        $contextText = $contextEl.find('p'),
-        parentHeight = $contextEl.parent().height() - 50, // 50px accounts for the bottom bar.
-        fontSize = 12,
-        increment = 1;
-
-    do {
-        $contextText.css('font-size', fontSize + 'px');
-        fontSize += increment;
-    } while(parentHeight > $contextEl.height());
-
-    // We might have gone over. If so back off one notch.
-    if (parentHeight < $contextEl.height()) {
-        fontSize -= increment;
-        $contextText.css('font-size', fontSize + 'px');
-    }
 }
 
 module.exports = {
