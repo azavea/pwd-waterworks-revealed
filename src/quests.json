@@ -548,8 +548,8 @@
                     }
                 ], 
                 "location": [
-                    39.96684037188947, 
-                    -75.18459856510162
+                    39.96688, 
+                    -75.18458
                 ], 
                 "historicContext": {
                     "text": "In 1975 the American Society of Civil Engineers declared Fairmount Waterworks a National Historic Civil Engineering Landmark and on May 11, 1976, it was designated a National Historic Landmark by the U.S. Secretary of the Interior. In 1977 the American Society of Mechanical Engineers made the waterworks a National Historic Mechanical Engineering Landmark. Despite its multiple-award status, the facility continued to deteriorate and in 1984 was included in the report to Congress by the Secretary of the Interior on damaged and threatened national landmarks.", 
@@ -557,6 +557,32 @@
                 }, 
                 "radius": 4, 
                 "id": "r2"
+            }, 
+            {
+                "title": "Fishway", 
+                "primaryItems": [
+                    {
+                        "caption": "", 
+                        "name": "Fishway", 
+                        "credit": ""
+                    }, 
+                    {
+                        "poster": "quillback.png", 
+                        "credit": "", 
+                        "type": "video", 
+                        "name": "quillback.mp4", 
+                        "caption": ""
+                    }
+                ], 
+                "radius": 4, 
+                "location": [
+                    39.9668, 
+                    -75.18462
+                ], 
+                "historicContext": {
+                    "text": "The Fairmount Dam fishway helps fish pass through the furthest downstream passage of the Delaware River Basin to reach the ocean, allowing direct passage to their spawning areas. American shad, the main target of the fishway, are a fish that spawn genetically, meaning that a population of shad will spawn at the same area for numerous generations."
+                }, 
+                "id": "r3"
             }
         ]
     }
