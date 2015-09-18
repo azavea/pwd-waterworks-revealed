@@ -1,0 +1,23 @@
+{
+    "id": "r3",
+    "title": "Fishway",
+    "location": [39.96680, -75.18462],
+    "radius": 4,
+    "primaryItems": [
+        {
+            "name": "Fishway",
+            "caption": "",
+            "credit": ""
+        },
+        {
+            "name": "quillback.mp4",
+            "poster": "quillback.png",
+            "type": "video",
+            "caption": "",
+            "credit": ""
+        }
+    ],
+    "historicContext": {
+        "text": "The Fairmount Dam fishway helps fish pass through the furthest downstream passage of the Delaware River Basin to reach the ocean, allowing direct passage to their spawning areas. American shad, the main target of the fishway, are a fish that spawn genetically, meaning that a population of shad will spawn at the same area for numerous generations."
+    }
+}
