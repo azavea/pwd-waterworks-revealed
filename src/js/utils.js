@@ -34,10 +34,12 @@ function adjustFontSizeToEl($target, $container, options) {
     var parentHeight = $container.height() - options.offset,
         fontSize = 12,
         increment = 1,
+        lineHeightMultiplier = 1.5, // Set line height to be 1.5 times the font-size, a commonly recommended guideline
         maxFontSize = options.allowUpscale ? Infinity : Number($contextText.css('font-size').replace('px', ''));
 
     do {
         $contextText.css('font-size', fontSize + 'px');
+        $contextText.css('line-height', (fontSize * lineHeightMultiplier) + 'px');
         fontSize += increment;
     } while(parentHeight > $target.height() && fontSize <= maxFontSize);
 
@@ -45,6 +47,7 @@ function adjustFontSizeToEl($target, $container, options) {
     if (parentHeight < $target.height()) {
         fontSize -= increment;
         $contextText.css('font-size', fontSize + 'px');
+        $contextText.css('line-height', (fontSize * lineHeightMultiplier) + 'px');
     }
 }
 
