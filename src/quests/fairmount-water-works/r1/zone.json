@@ -3,6 +3,14 @@
     "title": "Decks",
     "location": [39.96697, -75.18454],
     "radius": 4,
+    "audio": {
+        "files": [
+            {
+                "file": "view-r1.mp3",
+                "type": "audio/mpeg"
+            }
+        ]
+    },
     "primaryItems": [
         {
             "name": "RP1",
