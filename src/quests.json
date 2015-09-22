@@ -478,6 +478,15 @@
                         "credit": "Photo by James A. Cremer, Courtesy of Fairmount Park Archives"
                     }
                 ], 
+                "radius": 4, 
+                "location": [
+                    39.96697, 
+                    -75.18454
+                ], 
+                "historicContext": {
+                    "text": "Fairmount Water Works today maintains its graceful presence in the Philadelphia landscape and serves as a picturesque reminder of the past when its buildings, gardens, and dam were depicted in drawings, paintings, woodcuts, lithographs, and engravings.", 
+                    "attribution": "Jane Mork Gibson"
+                }, 
                 "secondaryItems": [
                     {
                         "caption": "New Mill House and Distribution Arch from Eagle Pavilion, 1875", 
@@ -490,15 +499,14 @@
                         "credit": "Photo Courtesy of Fairmount Park Archives"
                     }
                 ], 
-                "location": [
-                    39.96697, 
-                    -75.18454
-                ], 
-                "historicContext": {
-                    "text": "Fairmount Water Works today maintains its graceful presence in the Philadelphia landscape and serves as a picturesque reminder of the past when its buildings, gardens, and dam were depicted in drawings, paintings, woodcuts, lithographs, and engravings.", 
-                    "attribution": "Jane Mork Gibson"
+                "audio": {
+                    "files": [
+                        {
+                            "type": "audio/mpeg", 
+                            "file": "view-r1.mp3"
+                        }
+                    ]
                 }, 
-                "radius": 4, 
                 "id": "r1"
             }, 
             {
