@@ -18,7 +18,7 @@ npm install -g grunt-cli phonegap
 npm install
 grunt
 ```
-You may need to run the first install command as a super user (sudo).
+You may need to run the first install command as a super user (sudo). On OS X, you might also need to ensure you're using Node version 0.10.4x and its version of `npm` for `npm install` to work correctly.
 
 #### Try a build cycle
 Modify `src/index.html`, and then build:
