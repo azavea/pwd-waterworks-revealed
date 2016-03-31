@@ -289,6 +289,13 @@ function prepareVideoHandling(cardHolder) {
 }
 
 function toggleCardContent(e) {
+    // Don't toggle captions on taps received by the first card in a slideshow
+    // and the first a/v media card in a slideshow beginning with a video.
+    if ($('.second.next').length ||
+        $('.next.second').length ||
+        $('.second.active .card-visual .flex').length) {
+        return;
+    }
     // Not the most beautiful but a workable solution. If the tap came from a
     // video, ignore it and move on.
     if (e.target.tagName === 'VIDEO') { return; }
@@ -305,7 +312,7 @@ function toggleCardContent(e) {
         if ($caption.hasClass('caption-hidden')) {
             $caption.removeClass('caption-hidden');
             $caption.animate({
-                bottom: '0'
+                bottom: '60px'
             }, animationSpeed);
         } else {
             var offset = $caption.height() * -1;

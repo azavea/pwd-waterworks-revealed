@@ -63,7 +63,6 @@
             <span class="close-deck">&times;</span>
             <%= audioPlayer %>
         </div>
-
         <div class="instructions text-center instructions-default">
             <img class="icon-swipe" src="img/icon_swipe-left.png">Swipe left to continue
         </div>
@@ -71,13 +70,6 @@
         <div class="card card-fullimage first">
             <div class="card-visual fullsize" style="background-image: url('<%= primaryPath %><%= zone.primaryItems[0].name %>.jpg');">
             </div>
-            <!-- Remove captions at request of client. Keep the structure around in case we want to add them back -->
-            <!--
-            <div class="card-content slider">
-                <%- zone.primaryItems[0].caption %>
-                <strong><%- zone.primaryItems[0].credit %></strong>
-            </div>
-            -->
             <div class="instructions text-center instructions-first">
                 <p>Align the photo on your device with the environment around you.</p>
                 <button class="nextslide btn enterarea-button btn-primary btn-lg btn-large enter ">Okay, it's aligned!</button>
@@ -102,26 +94,20 @@
             <% } else { %>
                 <div class="card-visual" style="background-image: url('<%= primaryPath %><%= zone.primaryItems[1].name %>.jpg');">
                 </div>
-                <!-- Remove captions at request of client. Keep the structure around in case we want to add them back -->
-                <!--
                 <div class="card-content slider">
                     <%- zone.primaryItems[1].caption %>
                     <strong><%- zone.primaryItems[1].credit %></strong>
                 </div>
-                -->
             <% } %>
         </div>
         <% _.each(zone.secondaryItems, function(item) { %>
             <div class="card next">
                 <div class="card-visual" style="background-image: url('<%= secondaryPath %><%= item.name %>.jpg');"></div>
                 <div class="card-icon"></div>
-                <!-- Remove captions at request of client. Keep the structure around in case we want to add them back -->
-                <!--
                 <div class="card-content slider">
                     <%- item.caption %>
                     <strong><%- item.credit %></strong>
                 </div>
-                -->
             </div>
         <% }); %>
         <% if (zone.historicContext) { %>
