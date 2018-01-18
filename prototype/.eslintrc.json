@@ -1,0 +1,15 @@
+{
+    "extends": [
+        "plugin:prettier/recommended"
+    ],
+    "parser": "babel-eslint",
+    "rules": {
+        "prettier/prettier": [
+            "warn",
+            {
+                "tabWidth": 4,
+                "singleQuote": true
+            }
+        ]
+    }
+}
