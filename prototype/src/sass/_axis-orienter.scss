@@ -1,0 +1,66 @@
+.axis-orienter {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    position: relative;
+    transition: opacity 400ms 300ms;
+
+    &.-done {
+        opacity: 0;
+    }
+
+    > .heading {
+        flex: none;
+        padding: 4rem;
+        color: #333;
+        font-size: 7.2rem;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    > .canvas {
+        display: flex;
+        flex: auto;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        > .device,
+        > .target {
+            position: absolute;
+            width: 120px;
+            height: 180px;
+            border: 4px solid black;
+            border-radius: 2px;
+        }
+
+        > .target {
+            border-style: dashed;
+        }
+
+        > .device {
+            border-style: solid;
+            background-color: black;
+
+            &.-on {
+                background-color: gold;
+            }
+        }
+    }
+
+    &.-alpha > .canvas {
+        > .device,
+        > .target {
+            transform: translateX(var(--offset));
+        }
+    }
+
+    &.-beta > .canvas {
+        > .device,
+        > .target {
+            transform: translateY(var(--offset));
+        }
+    }
+}

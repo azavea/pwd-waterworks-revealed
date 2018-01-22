@@ -1,0 +1,47 @@
+.alpha-orienter {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    position: relative;
+    background-color: #efefef;
+
+    > .heading {
+        flex: none;
+    }
+
+    > .canvas {
+        display: flex;
+        flex: auto;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        > .device,
+        > .target {
+            position: absolute;
+            width: 120px;
+            height: 180px;
+            border: 4px solid black;
+            border-radius: 2px;
+        }
+
+        > .target {
+            border-style: dashed;
+            transform: translateX(var(--offset));
+            transform-origin: 50% 50%;
+        }
+
+        > .device {
+            border-style: solid;
+            background-color: black;
+            transform: translateX(var(--offset));
+            transform-origin: 50% 50%;
+
+            &.-on {
+                background-color: gold;
+            }
+        }
+    }
+}
