@@ -20,6 +20,10 @@
     align-items: stretch;
     justify-content: flex-start;
 
+    > .the-map {
+        height: 100%;
+    }
+
     > .device-orienter {
         flex: none;
         width: 100%;

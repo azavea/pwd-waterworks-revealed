@@ -19,3 +19,10 @@ export const orienterStates = {
 export const cssOffsetPropertyName = '--offset';
 
 export const hideOrienterDelay = 700;
+
+export const zone = {
+    lat: 39.961347,
+    lng: -75.154108,
+    radius: 10,
+    bearing: 120
+};

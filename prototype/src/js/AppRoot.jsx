@@ -1,17 +1,22 @@
 import React from 'react';
+import MapPanel from './MapPanel';
 import DeviceOrienter from './DeviceOrienter';
 
 export default class AppRoot extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showOrienter: true
+            showOrienter: false
         };
     }
 
     render() {
-        const orienter = this.state.showOrienter ? <DeviceOrienter /> : null;
+        const panel = this.state.showOrienter ? (
+            <DeviceOrienter />
+        ) : (
+            <MapPanel />
+        );
 
-        return <div className="app-root">{orienter}</div>;
+        return <div className="app-root">{panel}</div>;
     }
 }
