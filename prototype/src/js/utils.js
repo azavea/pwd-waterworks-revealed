@@ -1,5 +1,5 @@
-export function delay(duration, func) {
-    return window.setTimeout(func, duration);
+export function delay(duration, func, ...params) {
+    return window.setTimeout(func, duration, params);
 }
 
 export function cancelDelay(id) {

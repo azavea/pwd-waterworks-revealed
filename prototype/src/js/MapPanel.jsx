@@ -1,6 +1,7 @@
 import React from 'react';
-import { Map, TileLayer, Marker, GeoJSON } from 'react-leaflet';
+import { Map, TileLayer, Circle, GeoJSON } from 'react-leaflet';
 import { areas } from './areas.geojson';
+import { zone } from './constants';
 
 export default class MapPanel extends React.Component {
     constructor(props) {
@@ -17,16 +18,32 @@ export default class MapPanel extends React.Component {
     //     const geojson = GeoJSON(areas, {});
     // }
 
+    handleZoneClick = (zone, event) => {
+        this.props.onZoneClick(zone);
+    };
+
     render() {
-        const position = [this.state.lat, this.state.lng];
+        const mapPosition = [this.state.lat, this.state.lng];
+
         return (
-            <Map className="the-map" center={position} zoom={this.state.zoom}>
+            <Map
+                className="the-map"
+                center={mapPosition}
+                zoom={this.state.zoom}
+            >
                 <TileLayer
                     url="https://990.azavea.com/floorplan/{z}/{x}/{y}.png"
                     minZoom={20}
                     maxZoom={22}
                 />
-                <Marker position={position} />
+                <Circle
+                    center={[zone.lat, zone.lng]}
+                    color=""
+                    fillColor="gold"
+                    fillOpacity={0.7}
+                    radius={zone.radius}
+                    onClick={e => this.handleZoneClick(zone, e)}
+                />
             </Map>
         );
     }

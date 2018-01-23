@@ -2,6 +2,8 @@ import React from 'react';
 import AlphaOrienter from './AlphaOrienter';
 import BetaOrienter from './BetaOrienter';
 import { orienterStates } from './constants';
+import { delay } from './utils';
+const classNames = require('classnames');
 
 export default class DeviceOrienter extends React.Component {
     constructor(props) {
@@ -15,7 +17,9 @@ export default class DeviceOrienter extends React.Component {
     }
 
     componentDidMount() {
-        this.initOrientationListener();
+        delay(1000, () => {
+            this.initOrientationListener();
+        });
     }
 
     componentWillUnmount() {
@@ -79,11 +83,11 @@ export default class DeviceOrienter extends React.Component {
     };
 
     onAlphaAlignmentComplete = () => {
-        this.setState({ orienterState: orienterStates.alphaAligned });
+        this.setState({ orienterState: orienterStates.alphaOriented });
     };
 
     onBetaAlignmentComplete = () => {
-        this.setState({ orienterState: orienterStates.betaAligned });
+        this.setState({ orienterState: orienterStates.betaOriented });
     };
 
     render() {
@@ -99,15 +103,16 @@ export default class DeviceOrienter extends React.Component {
                     />
                 );
                 break;
-            case orienterStates.betaAligned:
+            case orienterStates.betaOriented:
                 orienter = (
                     <AlphaOrienter
                         alpha={alpha}
+                        target={this.props.zone.bearing}
                         onAlignmentComplete={this.onAlphaAlignmentComplete}
                     />
                 );
                 break;
-            case orienterStates.alphaAligned:
+            case orienterStates.alphaOriented:
                 orienter = (
                     <div className="success">
                         <h1>:)</h1>

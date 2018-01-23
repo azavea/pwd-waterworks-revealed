@@ -5,14 +5,13 @@ import {
     hideOrienterDelay
 } from './constants';
 import { delay, cancelDelay } from './utils';
-
 const classNames = require('classnames');
 
 export default class BetaOrienter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            offset: 1
+            offset: null
         };
     }
 
@@ -23,10 +22,9 @@ export default class BetaOrienter extends React.Component {
 
     hideIfDone() {
         if (!this.delay && this.state.offset === 0) {
-            this.delay = delay(
-                hideOrienterDelay,
-                this.props.onAlignmentComplete
-            );
+            this.delay = delay(hideOrienterDelay, () => {
+                this.props.onAlignmentComplete();
+            });
         } else if (this.delay && this.state.offset !== 0) {
             cancelDelay(this.delay);
             this.delay = null;
@@ -80,10 +78,15 @@ export default class BetaOrienter extends React.Component {
         });
 
         const headingText =
-            offset === 0 ? '✅' : 'Raise your phone until almost upright';
+            offset === 0 ? 'Nice!' : 'Raise your phone until almost upright';
 
         const deviceClassName = classNames('device', {
-            '-on': offset === 0
+            '-on': offset === 0,
+            '-hide': offset === null
+        });
+
+        const targetClassName = classNames('target', {
+            '-hide': offset === null
         });
 
         return (
@@ -96,7 +99,7 @@ export default class BetaOrienter extends React.Component {
                     }}
                 >
                     <div
-                        className="target"
+                        className={targetClassName}
                         ref={el => {
                             this.targetEl = el;
                         }}

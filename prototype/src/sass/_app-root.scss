@@ -24,9 +24,27 @@
         height: 100%;
     }
 
-    > .device-orienter {
+    > .zone-panel {
+        position: absolute;
+        bottom: 0;
         flex: none;
         width: 100%;
-        height: 100%;
+        animation: drawerReveal 500ms;
+        z-index: 10000;
+
+        &.-orienter {
+            max-height: 80%;
+        }
+
+        &.-tour {
+            height: 100%;
+        }
+    }
+}
+
+@keyframes drawerReveal {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
     }
 }

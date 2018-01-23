@@ -5,7 +5,6 @@ import {
     hideOrienterDelay
 } from './constants';
 import { delay, cancelDelay } from './utils';
-
 const classNames = require('classnames');
 
 export default class AlphaOrienter extends React.Component {
@@ -23,10 +22,9 @@ export default class AlphaOrienter extends React.Component {
 
     hideIfDone() {
         if (!this.delay && this.state.offset === 0) {
-            this.delay = delay(
-                hideOrienterDelay,
-                this.props.onAlignmentComplete
-            );
+            this.delay = delay(hideOrienterDelay, () => {
+                this.props.onAlignmentComplete();
+            });
         } else if (this.delay && this.state.offset !== 0) {
             cancelDelay(this.delay);
             this.delay = null;
@@ -51,7 +49,8 @@ export default class AlphaOrienter extends React.Component {
     }
 
     calculateNormalizedOffset(reading) {
-        const { target, slack } = alphaConstants;
+        const { slack } = alphaConstants;
+        const target = this.props.target;
         let minThreshold = target - slack;
         if (minThreshold < 0) {
             minThreshold += 360;
@@ -116,10 +115,16 @@ export default class AlphaOrienter extends React.Component {
             '-done': offset === 0
         });
 
-        const headingText = offset === 0 ? '✅' : 'Turn until the boxes align';
+        const headingText =
+            offset === 0 ? 'Nice!' : 'Turn until the boxes align';
 
         const deviceClassName = classNames('device', {
-            '-on': offset === 0
+            '-on': offset === 0,
+            '-hide': offset === null
+        });
+
+        const targetClassName = classNames('target', {
+            '-hide': offset === null
         });
 
         return (
@@ -132,7 +137,7 @@ export default class AlphaOrienter extends React.Component {
                     }}
                 >
                     <div
-                        className="target"
+                        className={targetClassName}
                         ref={el => {
                             this.targetEl = el;
                         }}

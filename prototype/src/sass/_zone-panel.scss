@@ -1,0 +1,30 @@
+.zone-panel {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    justify-content: flex-end;
+    background-color: #efefef;
+
+    > .device-orienter {
+        flex: auto;
+        margin-bottom: 8rem;
+    }
+
+    > .zone-tour {
+        flex: auto;
+    }
+
+    > .heading {
+        margin: 4rem 2.4rem 1.6rem;
+        font-size: 4.8rem;
+        font-weight: 700;
+        text-align: left;
+    }
+
+    > .desc {
+        margin: 1.6rem 2.4rem 2.4rem;
+        font-size: 2.4rem;
+        font-weight: 400;
+        text-align: left;
+    }
+}
