@@ -6,7 +6,8 @@ export default class AppRoot extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedZone: null
+            selectedZone: null,
+            zonePanelMounted: false
         };
     }
 

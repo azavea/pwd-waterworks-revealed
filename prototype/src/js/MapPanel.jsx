@@ -1,6 +1,7 @@
 import React from 'react';
 import { Map, TileLayer, Circle, GeoJSON } from 'react-leaflet';
 import { areas } from './areas.geojson';
+import { zones } from './zones';
 import { zone } from './constants';
 
 export default class MapPanel extends React.Component {
@@ -18,12 +19,28 @@ export default class MapPanel extends React.Component {
     //     const geojson = GeoJSON(areas, {});
     // }
 
+    generateZones() {
+        return zones.map(zone => (
+            <Circle
+                key={zone.name}
+                center={[zone.lat, zone.lng]}
+                color=""
+                fillColor="gold"
+                fillOpacity={0.7}
+                radius={zone.radius}
+                onClick={e => this.handleZoneClick(zone, e)}
+            />
+        ));
+    }
+
     handleZoneClick = (zone, event) => {
         this.props.onZoneClick(zone);
     };
 
     render() {
         const mapPosition = [this.state.lat, this.state.lng];
+
+        const zones = this.generateZones();
 
         return (
             <Map
@@ -36,14 +53,7 @@ export default class MapPanel extends React.Component {
                     minZoom={20}
                     maxZoom={22}
                 />
-                <Circle
-                    center={[zone.lat, zone.lng]}
-                    color=""
-                    fillColor="gold"
-                    fillOpacity={0.7}
-                    radius={zone.radius}
-                    onClick={e => this.handleZoneClick(zone, e)}
-                />
+                {zones}
             </Map>
         );
     }
