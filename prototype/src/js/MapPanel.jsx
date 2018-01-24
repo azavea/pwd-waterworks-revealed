@@ -1,17 +1,48 @@
 import React from 'react';
-import { Map, TileLayer, Circle, GeoJSON } from 'react-leaflet';
+import { Map, TileLayer, Circle, CircleMarker, GeoJSON } from 'react-leaflet';
 import { areas } from './areas';
 import { zones } from './zones';
+import { initialMapCenter, initialZoom, geolocationOptions } from './constants';
 
 export default class MapPanel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            lat: 39.96133,
-            lng: -75.15416,
-            zoom: 20
+            lat: null,
+            lng: null
         };
     }
+
+    componentDidMount() {
+        this.initGeolocation();
+    }
+
+    componentWillUnmount() {
+        navigator.geolocation.clearWatch(this.geolocationId);
+    }
+
+    initGeolocation() {
+        if ('geolocation' in navigator) {
+            this.geolocationId = navigator.geolocation.watchPosition(
+                this.onLocationChange,
+                this.onLocationError,
+                geolocationOptions
+            );
+        } else {
+            console.log('Geolocation not supported');
+        }
+    }
+
+    onLocationChange = position => {
+        this.setState({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        });
+    };
+
+    onLocationError = error => {
+        console.log(error);
+    };
 
     generateZones() {
         return zones.map(zone => (
@@ -77,15 +108,26 @@ export default class MapPanel extends React.Component {
     };
 
     render() {
-        const mapPosition = [this.state.lat, this.state.lng];
-
         const zoneFeatures = this.generateZones();
+
+        const geolocationMarker =
+            this.state.lat && this.state.lng ? (
+                <CircleMarker
+                    center={[this.state.lat, this.state.lng]}
+                    color="white"
+                    weight={3}
+                    fillColor="#3F88F0"
+                    fillOpacity={0.9}
+                    radius={8}
+                    interactive={false}
+                />
+            ) : null;
 
         return (
             <Map
                 className="the-map"
-                center={mapPosition}
-                zoom={this.state.zoom}
+                center={initialMapCenter}
+                zoom={initialZoom}
             >
                 <TileLayer
                     url="https://990.azavea.com/floorplan/{z}/{x}/{y}.png"
@@ -98,6 +140,7 @@ export default class MapPanel extends React.Component {
                     onEachFeature={this.configArea}
                 />
                 {zoneFeatures}
+                {geolocationMarker}
             </Map>
         );
     }

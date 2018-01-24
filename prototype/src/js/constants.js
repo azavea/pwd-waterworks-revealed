@@ -10,6 +10,14 @@ export const betaConstants = {
     max: 90
 };
 
+export const initialMapCenter = [39.96133, -75.15416];
+
+export const initialZoom = 20;
+
+export const geolocationOptions = {
+    enableHighAccuracy: true
+};
+
 export const cssOffsetPropertyName = '--offset';
 
 export const hideOrienterDelay = 700;
