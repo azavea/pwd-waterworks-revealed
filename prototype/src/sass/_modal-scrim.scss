@@ -1,0 +1,22 @@
+.modal-scrim {
+    > .zone-panel {
+        position: absolute;
+        bottom: 0;
+        flex: none;
+        width: 100%;
+        animation: drawerReveal 500ms;
+        z-index: 10000;
+
+        &.-hide {
+            animation: drawerHide 500ms;
+        }
+
+        &.-orienter {
+            max-height: 80%;
+        }
+
+        &.-tour {
+            height: 100%;
+        }
+    }
+}

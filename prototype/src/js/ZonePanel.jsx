@@ -1,7 +1,6 @@
 import React from 'react';
 import DeviceOrienter from './DeviceOrienter';
 import ZoneTour from './ZoneTour';
-import { delay } from './utils';
 const classNames = require('classnames');
 
 export default class ZonePanel extends React.Component {
@@ -21,7 +20,8 @@ export default class ZonePanel extends React.Component {
 
         const zonePanelClassName = classNames('zone-panel', {
             '-orienter': !this.state.oriented,
-            '-tour': this.state.oriented
+            '-tour': this.state.oriented,
+            '-hide': this.props.hide
         });
 
         return (

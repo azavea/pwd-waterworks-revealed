@@ -1,13 +1,14 @@
 import React from 'react';
 import MapPanel from './MapPanel';
 import ZonePanel from './ZonePanel';
+import { delay } from './utils';
 
 export default class AppRoot extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             selectedZone: null,
-            zonePanelMounted: false
+            hidingZonePanel: false
         };
     }
 
@@ -15,9 +16,24 @@ export default class AppRoot extends React.Component {
         this.setState({ selectedZone: zone });
     };
 
+    handleScrimClick = event => {
+        if (event.target === event.currentTarget) {
+            this.setState({ hidingZonePanel: true });
+            delay(500, () => {
+                this.setState({ selectedZone: null });
+                this.setState({ hidingZonePanel: false });
+            });
+        }
+    };
+
     render() {
         const zonePanel = this.state.selectedZone ? (
-            <ZonePanel zone={this.state.selectedZone} />
+            <div className="modal-scrim" onClick={this.handleScrimClick}>
+                <ZonePanel
+                    zone={this.state.selectedZone}
+                    hide={this.state.hidingZonePanel}
+                />
+            </div>
         ) : null;
 
         return (
