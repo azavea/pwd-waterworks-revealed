@@ -18,12 +18,16 @@ export default class AppRoot extends React.Component {
 
     handleScrimClick = event => {
         if (event.target === event.currentTarget) {
-            this.setState({ hidingZonePanel: true });
-            delay(500, () => {
-                this.setState({ selectedZone: null });
-                this.setState({ hidingZonePanel: false });
-            });
+            this.closeZonePanel();
         }
+    };
+
+    closeZonePanel = () => {
+        this.setState({ hidingZonePanel: true });
+        delay(500, () => {
+            this.setState({ selectedZone: null });
+            this.setState({ hidingZonePanel: false });
+        });
     };
 
     render() {
@@ -32,6 +36,7 @@ export default class AppRoot extends React.Component {
                 <ZonePanel
                     zone={this.state.selectedZone}
                     hide={this.state.hidingZonePanel}
+                    closeZonePanel={this.closeZonePanel}
                 />
             </div>
         ) : null;

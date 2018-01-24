@@ -27,7 +27,7 @@ export default class MapPanel extends React.Component {
                 color=""
                 fillColor="gold"
                 fillOpacity={0.7}
-                radius={zone.radius}
+                radius={zone.radius || 3}
                 onClick={e => this.handleZoneClick(zone, e)}
             />
         ));

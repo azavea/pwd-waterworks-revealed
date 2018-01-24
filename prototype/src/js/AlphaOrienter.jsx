@@ -23,7 +23,7 @@ export default class AlphaOrienter extends React.Component {
     hideIfDone() {
         if (!this.delay && this.state.offset === 0) {
             this.delay = delay(hideOrienterDelay, () => {
-                this.props.onAlignmentComplete();
+                this.props.onOrientationComplete();
             });
         } else if (this.delay && this.state.offset !== 0) {
             cancelDelay(this.delay);

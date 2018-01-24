@@ -1,7 +1,6 @@
 import React from 'react';
 import AlphaOrienter from './AlphaOrienter';
 import BetaOrienter from './BetaOrienter';
-import { orienterStates } from './constants';
 import { delay } from './utils';
 const classNames = require('classnames');
 
@@ -10,7 +9,7 @@ export default class DeviceOrienter extends React.Component {
         super(props);
         this.state = {
             supportedEventName: null,
-            orienterState: orienterStates.start,
+            betaOriented: false,
             alpha: NaN,
             beta: NaN
         };
@@ -82,46 +81,29 @@ export default class DeviceOrienter extends React.Component {
         });
     };
 
-    onAlphaAlignmentComplete = () => {
-        this.setState({ orienterState: orienterStates.alphaOriented });
+    onAlphaOrientationComplete = () => {
+        this.props.onOrientationComplete();
     };
 
-    onBetaAlignmentComplete = () => {
-        this.setState({ orienterState: orienterStates.betaOriented });
+    onBetaOrientationComplete = () => {
+        this.setState({ betaOriented: true });
     };
 
     render() {
         const { alpha, beta } = this.state;
 
-        let orienter;
-        switch (this.state.orienterState) {
-            case orienterStates.start:
-                orienter = (
-                    <BetaOrienter
-                        beta={beta}
-                        onAlignmentComplete={this.onBetaAlignmentComplete}
-                    />
-                );
-                break;
-            case orienterStates.betaOriented:
-                orienter = (
-                    <AlphaOrienter
-                        alpha={alpha}
-                        target={this.props.zone.bearing}
-                        onAlignmentComplete={this.onAlphaAlignmentComplete}
-                    />
-                );
-                break;
-            case orienterStates.alphaOriented:
-                orienter = (
-                    <div className="success">
-                        <h1>:)</h1>
-                    </div>
-                );
-                break;
-            default:
-                orienter = null;
-        }
+        const orienter = this.state.betaOriented ? (
+            <AlphaOrienter
+                alpha={alpha}
+                target={this.props.zone.bearing}
+                onOrientationComplete={this.onAlphaOrientationComplete}
+            />
+        ) : (
+            <BetaOrienter
+                beta={beta}
+                onOrientationComplete={this.onBetaOrientationComplete}
+            />
+        );
 
         return <div className="device-orienter">{orienter}</div>;
     }
