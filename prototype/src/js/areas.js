@@ -1,17 +1,17 @@
-{
-    "type": "FeatureCollection",
-    "features": [
+export const areas = {
+    type: 'FeatureCollection',
+    features: [
         {
-            "type": "Feature",
-            "properties": {
-                "id": 0,
-                "type": "Lounge",
-                "name": "",
-                "area": 119
+            type: 'Feature',
+            properties: {
+                id: 0,
+                type: 'Lounge',
+                name: '',
+                area: 119
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15448543971175, 39.96125652642846],
                         [-75.15453394915988, 39.96125728377812],
@@ -23,21 +23,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 1,
-                "type": "Meeting",
-                "name": "Salta",
-                "area": 64
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 1,
+                type: 'Meeting',
+                name: 'Salta',
+                area: 64
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15448195486407, 39.96128081156567],
                         [-75.15445928195419, 39.961279795340296],
@@ -51,16 +51,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 2,
-                "type": "Phone",
-                "name": "",
-                "area": 24
+            type: 'Feature',
+            properties: {
+                id: 2,
+                type: 'Phone',
+                name: '',
+                area: 24
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15445551709382, 39.96126691002052],
                         [-75.15443333708049, 39.96126591588717],
@@ -72,16 +72,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 3,
-                "type": "Phone",
-                "name": "",
-                "area": 24
+            type: 'Feature',
+            properties: {
+                id: 3,
+                type: 'Phone',
+                name: '',
+                area: 24
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15445533502945, 39.96126799994896],
                         [-75.15445462832358, 39.961278559510376],
@@ -93,21 +93,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 4,
-                "type": "Meeting",
-                "name": "Saigon",
-                "area": 133
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 4,
+                type: 'Meeting',
+                name: 'Saigon',
+                area: 133
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15438434101046, 39.961278668010294],
                         [-75.15434003028453, 39.96127668195355],
@@ -119,21 +119,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 5,
-                "type": "Meeting",
-                "name": "Mumbai",
-                "area": 137
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 5,
+                type: 'Meeting',
+                name: 'Mumbai',
+                area: 137
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15433850234942, 39.96127661346977],
                         [-75.15429256508695, 39.96127455451039],
@@ -145,21 +145,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 6,
-                "type": "Meeting",
-                "name": "Nairobi",
-                "area": 182
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 6,
+                type: 'Meeting',
+                name: 'Nairobi',
+                area: 182
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15423623986231, 39.961242700337685],
                         [-75.1542340098551, 39.961271929998],
@@ -171,16 +171,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 7,
-                "type": "Storage",
-                "name": "",
-                "area": 89
+            type: 'Feature',
+            properties: {
+                id: 7,
+                type: 'Storage',
+                name: '',
+                area: 89
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15417403726228, 39.96123991234546],
                         [-75.1541718072551, 39.961269142007005],
@@ -192,16 +192,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 8,
-                "type": "Work",
-                "name": "",
-                "area": 100
+            type: 'Feature',
+            properties: {
+                id: 8,
+                type: 'Work',
+                name: '',
+                area: 100
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15414288667537, 39.961238516140206],
                         [-75.15414065666818, 39.96126774580235],
@@ -214,21 +214,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 9,
-                "type": "Conference",
-                "name": "Sydney",
-                "area": 337
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 9,
+                type: 'Conference',
+                name: 'Sydney',
+                area: 337
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15422808203805, 39.961209604530936],
                         [-75.15412917378261, 39.961205171346776],
@@ -240,16 +240,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 10,
-                "type": "Phone",
-                "name": "",
-                "area": 26
+            type: 'Feature',
+            properties: {
+                id: 10,
+                type: 'Phone',
+                name: '',
+                area: 26
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.1541275819616, 39.96120509999944],
                         [-75.1541114151978, 39.961204375386096],
@@ -261,16 +261,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 11,
-                "type": "Phone",
-                "name": "",
-                "area": 26
+            type: 'Feature',
+            properties: {
+                id: 11,
+                type: 'Phone',
+                name: '',
+                area: 26
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15412888549245, 39.96118801404643],
                         [-75.15411271872867, 39.96118728943287],
@@ -282,21 +282,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 12,
-                "type": "Meeting",
-                "name": "Jakarta",
-                "area": 60
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 12,
+                type: 'Meeting',
+                name: 'Jakarta',
+                area: 60
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15387616812876, 39.96118788039487],
                         [-75.15387496964004, 39.96121007185445],
@@ -308,21 +308,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 13,
-                "type": "Meeting",
-                "name": "Shanghai",
-                "area": 134
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 13,
+                type: 'Meeting',
+                name: 'Shanghai',
+                area: 134
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.1538748376711, 39.96121180162891],
                         [-75.1538744983227, 39.961216249617],
@@ -339,21 +339,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 14,
-                "type": "Meeting",
-                "name": "Tokyo",
-                "area": 193
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 14,
+                type: 'Meeting',
+                name: 'Tokyo',
+                area: 193
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15387264537003, 39.96124053707227],
                         [-75.1538699871361, 39.96127537968381],
@@ -369,21 +369,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 15,
-                "type": "Meeting",
-                "name": "Kiev",
-                "area": 198
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 15,
+                type: 'Meeting',
+                name: 'Kiev',
+                area: 198
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15381359319761, 39.96129499092327],
                         [-75.15386830385846, 39.96129744311615],
@@ -398,21 +398,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 16,
-                "type": "Meeting",
-                "name": "Madrid",
-                "area": 248
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 16,
+                type: 'Meeting',
+                name: 'Madrid',
+                area: 248
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15388364120572, 39.96133496964575],
                         [-75.15388121728515, 39.96136674096854],
@@ -430,21 +430,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 17,
-                "type": "Conference",
-                "name": "Istanbul",
-                "area": 1555
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 17,
+                type: 'Conference',
+                name: 'Istanbul',
+                area: 1555
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15397337018769, 39.96133998321412],
                         [-75.15398302769331, 39.96121487971253],
@@ -459,16 +459,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 18,
-                "type": "Mechanical",
-                "name": "",
-                "area": 137
+            type: 'Feature',
+            properties: {
+                id: 18,
+                type: 'Mechanical',
+                name: '',
+                area: 137
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15412568127714, 39.96128446689659],
                         [-75.15412407071622, 39.96130557719755],
@@ -486,21 +486,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 19,
-                "type": "Meeting",
-                "name": "London",
-                "area": 122
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 19,
+                type: 'Meeting',
+                name: 'London',
+                area: 122
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15394927649406, 39.96140167140431],
                         [-75.15391048614875, 39.96139993278039],
@@ -512,21 +512,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 20,
-                "type": "Meeting",
-                "name": "Springfield",
-                "area": 142
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 20,
+                type: 'Meeting',
+                name: 'Springfield',
+                area: 142
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15388384469799, 39.96136795681914],
                         [-75.15388163084917, 39.961396974631676],
@@ -540,21 +540,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 21,
-                "type": "Relax",
-                "name": "Stockholm",
-                "area": 71
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 21,
+                type: 'Relax',
+                name: 'Stockholm',
+                area: 71
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15385768614955, 39.96139707033126],
                         [-75.15385580354315, 39.96142174604219],
@@ -566,16 +566,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 22,
-                "type": "IT",
-                "name": "IT",
-                "area": 95
+            type: 'Feature',
+            properties: {
+                id: 22,
+                type: 'IT',
+                name: 'IT',
+                area: 95
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15412785087149, 39.96137790161883],
                         [-75.15409827754803, 39.96137657611103],
@@ -588,16 +588,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 23,
-                "type": "IT",
-                "name": "Lab",
-                "area": 229
+            type: 'Feature',
+            properties: {
+                id: 23,
+                type: 'IT',
+                name: 'Lab',
+                area: 229
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15412937883423, 39.96137797010374],
                         [-75.15413179736868, 39.96134626938431],
@@ -609,21 +609,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 24,
-                "type": "Relax",
-                "name": "Oslo",
-                "area": 60
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 24,
+                type: 'Relax',
+                name: 'Oslo',
+                area: 60
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15421402026172, 39.96138667983315],
                         [-75.15420143922718, 39.96138119992705],
@@ -636,16 +636,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 25,
-                "type": "Phone",
-                "name": "",
-                "area": 25
+            type: 'Feature',
+            properties: {
+                id: 25,
+                type: 'Phone',
+                name: '',
+                area: 25
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15423002517352, 39.9613876882345],
                         [-75.15423085738541, 39.961376780096366],
@@ -657,16 +657,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 26,
-                "type": "Phone",
-                "name": "",
-                "area": 24
+            type: 'Feature',
+            properties: {
+                id: 26,
+                type: 'Phone',
+                name: '',
+                area: 24
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15425317206153, 39.961376009148275],
                         [-75.15425312088931, 39.9613766798833],
@@ -679,21 +679,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 27,
-                "type": "Meeting",
-                "name": "New York",
-                "area": 141
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 27,
+                type: 'Meeting',
+                name: 'New York',
+                area: 141
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.1542819056012, 39.9614142727822],
                         [-75.1542847465973, 39.961377034703304],
@@ -705,21 +705,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 28,
-                "type": "Meeting",
-                "name": "Toronto",
-                "area": 142
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 28,
+                type: 'Meeting',
+                name: 'Toronto',
+                area: 142
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15432038368785, 39.9614162149125],
                         [-75.15432324122128, 39.96137876007326],
@@ -731,21 +731,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 29,
-                "type": "Meeting",
-                "name": "Chicago",
-                "area": 58
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 29,
+                type: 'Meeting',
+                name: 'Chicago',
+                area: 58
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15435992759645, 39.961399001031545],
                         [-75.15436134155011, 39.96138046777045],
@@ -757,16 +757,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 30,
-                "type": "Phone",
-                "name": "",
-                "area": 26
+            type: 'Feature',
+            properties: {
+                id: 30,
+                type: 'Phone',
+                name: '',
+                area: 26
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15437484792803, 39.96141865605623],
                         [-75.15437620801724, 39.961400828823685],
@@ -778,16 +778,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 31,
-                "type": "Phone",
-                "name": "",
-                "area": 27
+            type: 'Feature',
+            properties: {
+                id: 31,
+                type: 'Phone',
+                name: '',
+                area: 27
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15437463078142, 39.96140075813033],
                         [-75.15437327069222, 39.96141858536288],
@@ -799,16 +799,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 32,
-                "type": "Storage",
-                "name": "",
-                "area": 117
+            type: 'Feature',
+            properties: {
+                id: 32,
+                type: 'Storage',
+                name: '',
+                area: 117
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15428483008789, 39.96137594035843],
                         [-75.15428644603494, 39.961354759481054],
@@ -821,16 +821,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 33,
-                "type": "Shower",
-                "name": "Shower",
-                "area": 59
+            type: 'Feature',
+            properties: {
+                id: 33,
+                type: 'Shower',
+                name: 'Shower',
+                area: 59
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15425245495277, 39.96134996304025],
                         [-75.15423294734369, 39.96134938615962],
@@ -843,16 +843,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 34,
-                "type": "Bathroom",
-                "name": "Women's Room",
-                "area": 261
+            type: 'Feature',
+            properties: {
+                id: 34,
+                type: 'Bathroom',
+                name: "Women's Room",
+                area: 261
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15423141940859, 39.96134931767591],
                         [-75.15413619593072, 39.96134501422612],
@@ -864,16 +864,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 35,
-                "type": "Shower",
-                "name": "Shower",
-                "area": 59
+            type: 'Feature',
+            properties: {
+                id: 35,
+                type: 'Shower',
+                name: 'Shower',
+                area: 59
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15423751239474, 39.96128955013243],
                         [-75.15425688293087, 39.96129041834156],
@@ -886,16 +886,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 36,
-                "type": "Bathroom",
-                "name": "Men's Room",
-                "area": 261
+            type: 'Feature',
+            properties: {
+                id: 36,
+                type: 'Bathroom',
+                name: "Men's Room",
+                area: 261
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15423394297972, 39.96131624018348],
                         [-75.15413871680799, 39.961311972041315],
@@ -907,21 +907,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 37,
-                "type": "Lounge",
-                "name": "",
-                "area": 120
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 37,
+                type: 'Lounge',
+                name: '',
+                area: 120
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15395077026695, 39.961402836443355],
                         [-75.15395319149364, 39.961371100447],
@@ -933,21 +933,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 38,
-                "type": "Bike Storage",
-                "name": "Amsterdam",
-                "area": 434
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 38,
+                type: 'Bike Storage',
+                name: 'Amsterdam',
+                area: 434
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15434419191098, 39.96129798013318],
                         [-75.15439791683559, 39.961300388122915],
@@ -959,21 +959,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 39,
-                "type": "Activity",
-                "name": "Athens",
-                "area": 887
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 39,
+                type: 'Activity',
+                name: 'Athens',
+                area: 887
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15449400695036, 39.961424280265994],
                         [-75.15442120524219, 39.96142101170084],
@@ -986,16 +986,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 40,
-                "type": "Kitchen",
-                "name": "",
-                "area": 1329
+            type: 'Feature',
+            properties: {
+                id: 40,
+                type: 'Kitchen',
+                name: '',
+                area: 1329
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15397175873439, 39.96134100907464],
                         [-75.15388525265904, 39.96133394378517],
@@ -1012,16 +1012,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 41,
-                "type": "Work Bar",
-                "name": "",
-                "area": 341
+            type: 'Feature',
+            properties: {
+                id: 41,
+                type: 'Work Bar',
+                name: '',
+                area: 341
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15399024433933, 39.961371627677615],
                         [-75.15388274524788, 39.96136680945347],
@@ -1034,21 +1034,21 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "stroke": "#555555",
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                "fill": "#555555",
-                "fill-opacity": 0.5,
-                "id": 42,
-                "type": "Meeting",
-                "name": "Paris",
-                "area": 57
+            type: 'Feature',
+            properties: {
+                stroke: '#555555',
+                'stroke-width': 2,
+                'stroke-opacity': 1,
+                fill: '#555555',
+                'fill-opacity': 0.5,
+                id: 42,
+                type: 'Meeting',
+                name: 'Paris',
+                area: 57
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15388579693406, 39.961391635496],
                         [-75.15388734419167, 39.96136811367019],
@@ -1060,16 +1060,16 @@
             }
         },
         {
-            "type": "Feature",
-            "properties": {
-                "id": 43,
-                "type": "Lounge",
-                "name": "",
-                "area": 112
+            type: 'Feature',
+            properties: {
+                id: 43,
+                type: 'Lounge',
+                name: '',
+                area: 112
             },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
+            geometry: {
+                type: 'Polygon',
+                coordinates: [
                     [
                         [-75.15386991531177, 39.96129641725501],
                         [-75.15381370553285, 39.96129351813459],
@@ -1085,4 +1085,4 @@
             }
         }
     ]
-}
+};
