@@ -3,9 +3,9 @@ export const zones = [
         name: 'The Twilight Zone',
         desc:
             "You're traveling through another dimension, a dimension not only of sight and sound but of mind. A journey into a wondrous land whose boundaries are that of imagination.",
-        lat: 39.96133,
-        lng: -75.15393,
-        bearing: 0,
+        lat: 39.96142,
+        lng: -75.15414,
+        bearing: 5,
         tour: [
             {
                 image: 'twilight.jpg',
@@ -20,7 +20,7 @@ export const zones = [
             'In astronomy and astrobiology, the circumstellar habitable zone (CHZ), or simply the habitable zone, is the range of orbits around a star within which a planetary surface can support liquid water given sufficient atmospheric pressure.',
         lat: 39.96119,
         lng: -75.15405,
-        bearing: 90,
+        bearing: 185,
         tour: [
             {
                 image: 'habitable.gif',
@@ -35,7 +35,7 @@ export const zones = [
             'A demilitarized zone, DMZ or DZ[1] is an area in which treaties or agreements between nations, military powers or contending groups forbid military installations, activities or personnel. A DMZ often lies along an established frontier or boundary between two or more military powers or alliances.',
         lat: 39.961215,
         lng: -75.15427,
-        bearing: 180,
+        bearing: 275,
         tour: [
             {
                 image: 'demilitarized.jpg',
@@ -48,9 +48,9 @@ export const zones = [
         name: 'Eastern Time Zone',
         desc:
             'The Eastern Time Zone (ET) is a time zone encompassing 17 U.S. states in the eastern part of the contiguous United States, parts of eastern Canada, the state of Quintana Roo in Mexico, Panama in Central America, and the Caribbean Islands.',
-        lat: 39.96142,
-        lng: -75.15414,
-        bearing: 270,
+        lat: 39.96133,
+        lng: -75.15393,
+        bearing: 95,
         tour: [
             {
                 image: 'easterntime.jpg',

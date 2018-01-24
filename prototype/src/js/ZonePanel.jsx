@@ -17,6 +17,7 @@ export default class ZonePanel extends React.Component {
     };
 
     handleTourComplete = () => {
+        this.props.zone.done = true;
         this.setState({ hide: true });
         this.props.closeZonePanel();
     };

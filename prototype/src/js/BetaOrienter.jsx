@@ -49,9 +49,9 @@ export default class BetaOrienter extends React.Component {
     }
 
     calculateNormalizedOffset(reading) {
-        const { target, slack, min, max } = betaConstants;
-        const minThreshold = Math.max(target - slack, min);
-        const maxThreshold = Math.min(target + slack, max);
+        const { target, buffer, min, max } = betaConstants;
+        const minThreshold = Math.max(target - buffer, min);
+        const maxThreshold = Math.min(target + buffer, max);
         let normalizedOffset = 0;
 
         if (reading < min) {

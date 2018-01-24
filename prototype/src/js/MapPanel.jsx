@@ -1,19 +1,31 @@
 import React from 'react';
 import { Map, TileLayer, Circle, CircleMarker, GeoJSON } from 'react-leaflet';
+import { point } from '@turf/helpers';
+import circle from '@turf/circle';
+import buffer from '@turf/buffer';
+import booleanWithin from '@turf/boolean-within';
 import { areas } from './areas';
 import { zones } from './zones';
-import { initialMapCenter, initialZoom, geolocationOptions } from './constants';
+import {
+    initialMapCenter,
+    initialZoom,
+    defaultZoneRadius,
+    zoneBuffer
+} from './constants';
 
 export default class MapPanel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             lat: null,
-            lng: null
+            lng: null,
+            acc: null,
+            zones: null
         };
     }
 
     componentDidMount() {
+        this.initZones();
         this.initGeolocation();
     }
 
@@ -21,41 +33,105 @@ export default class MapPanel extends React.Component {
         navigator.geolocation.clearWatch(this.geolocationId);
     }
 
+    initZones() {
+        this.setState({
+            zones: zones.map(zone => {
+                return Object.assign(zone, {
+                    polygon: circle(
+                        [zone.lng, zone.lat],
+                        zone.radius || defaultZoneRadius * 0.001,
+                        { units: 'kilometers' }
+                    ),
+                    done: false
+                });
+            })
+        });
+    }
+
     initGeolocation() {
         if ('geolocation' in navigator) {
             this.geolocationId = navigator.geolocation.watchPosition(
                 this.onLocationChange,
                 this.onLocationError,
-                geolocationOptions
+                { enableHighAccuracy: true }
             );
         } else {
             console.log('Geolocation not supported');
+            window.alert('Geolocation not supported');
         }
+    }
+
+    getCalibratedLatitude(lat) {
+        // return lat - 0.0004;
+        return lat;
+    }
+
+    getCalibratedLongitude(lng) {
+        return lng;
+    }
+
+    getCurrentZone() {
+        return this.state.zones.find(zone =>
+            booleanWithin(
+                point([this.state.lng, this.state.lat]),
+                buffer(zone.polygon, zoneBuffer, { units: 'kilometers' })
+            )
+        );
     }
 
     onLocationChange = position => {
         this.setState({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
+            lat: this.getCalibratedLatitude(position.coords.latitude),
+            lng: this.getCalibratedLongitude(position.coords.longitude),
+            acc: position.coords.accuracy
         });
+        const currentZone = this.getCurrentZone();
+        if (!currentZone && this.props.currentZone) {
+            this.props.onZoneLeave();
+        } else if (currentZone && currentZone != this.props.currentZone) {
+            this.props.onZoneEnter(currentZone);
+        }
     };
 
     onLocationError = error => {
-        console.log(error);
+        console.log('Geolocation error: ' + error.code + ': ' + error.message);
+        window.alert('Geolocation error: ' + error.code + ': ' + error.message);
     };
 
-    generateZones() {
+    getZoneColor(zone) {
+        if (zone === this.props.selectedZone) {
+            return '#B81190';
+        } else if (zone.done) {
+            return '#999';
+        } else if (zone === this.props.currentZone) {
+            return '#3F88F0';
+        } else {
+            return 'gold';
+        }
+    }
+
+    generateZoneFeatures() {
         return zones.map(zone => (
             <Circle
                 key={zone.name}
                 center={[zone.lat, zone.lng]}
-                color=""
-                fillColor="gold"
-                fillOpacity={0.7}
-                radius={zone.radius || 3}
+                weight={0}
+                fillColor={this.getZoneColor(zone)}
+                fillOpacity={0.6}
+                radius={zone.radius || defaultZoneRadius}
                 onClick={e => this.handleZoneClick(zone, e)}
             />
         ));
+    }
+
+    generateZonePolygons() {
+        return zones.map(zone =>
+            circle(
+                [zone.lng, zone.lat],
+                (zone.radius || defaultZoneRadius) * 0.001,
+                { units: 'kilometers' }
+            )
+        );
     }
 
     handleZoneClick = (zone, event) => {
@@ -108,26 +184,37 @@ export default class MapPanel extends React.Component {
     };
 
     render() {
-        const zoneFeatures = this.generateZones();
-
         const geolocationMarker =
             this.state.lat && this.state.lng ? (
-                <CircleMarker
-                    center={[this.state.lat, this.state.lng]}
-                    color="white"
-                    weight={3}
-                    fillColor="#3F88F0"
-                    fillOpacity={0.9}
-                    radius={8}
-                    interactive={false}
-                />
+                <React.Fragment>
+                    <Circle
+                        center={[this.state.lat, this.state.lng]}
+                        weight={0}
+                        fillColor="#3F88F0"
+                        fillOpacity={0.1}
+                        radius={this.state.acc}
+                        interactive={false}
+                    />
+                    <CircleMarker
+                        center={[this.state.lat, this.state.lng]}
+                        color="white"
+                        weight={8}
+                        fillColor="#3F88F0"
+                        fillOpacity={0.9}
+                        radius={18}
+                        interactive={false}
+                    />
+                </React.Fragment>
             ) : null;
+
+        const zoneFeatures = this.generateZoneFeatures();
 
         return (
             <Map
                 className="the-map"
                 center={initialMapCenter}
                 zoom={initialZoom}
+                zoomControl={false}
             >
                 <TileLayer
                     url="https://990.azavea.com/floorplan/{z}/{x}/{y}.png"

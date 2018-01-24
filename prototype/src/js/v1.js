@@ -4,11 +4,11 @@ import '../sass/v1.scss';
 const ORIENTATION_CONSTANTS = {
     alpha: {
         target: 180,
-        slack: 20
+        buffer: 20
     },
     beta: {
         target: 68,
-        slack: 13
+        buffer: 13
     },
     webkit: {
         accuracy: 50
@@ -41,12 +41,12 @@ function round(value, decimals) {
 function calculateNormalizedOffsetY(reading) {
     const containerSize = $canvas.outerHeight();
     const size = $device.outerHeight();
-    const { target, slack } = ORIENTATION_CONSTANTS.beta;
+    const { target, buffer } = ORIENTATION_CONSTANTS.beta;
 
     const min = 0;
     const max = 90;
-    const minThreshold = Math.max(target - slack, min);
-    const maxThreshold = Math.min(target + slack, max);
+    const minThreshold = Math.max(target - buffer, min);
+    const maxThreshold = Math.min(target + buffer, max);
 
     const maxOffset = (containerSize - size) / 2;
     let normalizedOffset = 0;
@@ -69,14 +69,14 @@ function calculateNormalizedOffsetY(reading) {
 function calculateNormalizedOffsetX(reading) {
     const containerSize = $canvas.outerWidth();
     const size = $device.outerWidth();
-    const { target, slack } = ORIENTATION_CONSTANTS.alpha;
+    const { target, buffer } = ORIENTATION_CONSTANTS.alpha;
 
     const opposite = (target + 180) % 360;
-    let minThreshold = target - slack;
+    let minThreshold = target - buffer;
     if (minThreshold < 0) {
         minThreshold += 360;
     }
-    const maxThreshold = (target + slack) % 360;
+    const maxThreshold = (target + buffer) % 360;
 
     const maxOffset = (containerSize - size) / 2;
     let normalizedOffset = 0,

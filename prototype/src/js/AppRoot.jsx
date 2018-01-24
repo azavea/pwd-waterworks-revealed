@@ -8,12 +8,21 @@ export default class AppRoot extends React.Component {
         super(props);
         this.state = {
             selectedZone: null,
+            currentZone: null,
             hidingZonePanel: false
         };
     }
 
     handleZoneClick = (zone, event) => {
         this.setState({ selectedZone: zone });
+    };
+
+    handleZoneEnter = zone => {
+        this.setState({ currentZone: zone });
+    };
+
+    handleZoneLeave = () => {
+        this.setState({ currentZone: null });
     };
 
     handleScrimClick = event => {
@@ -25,16 +34,24 @@ export default class AppRoot extends React.Component {
     closeZonePanel = () => {
         this.setState({ hidingZonePanel: true });
         delay(500, () => {
-            this.setState({ selectedZone: null });
-            this.setState({ hidingZonePanel: false });
+            this.setState({
+                selectedZone: null,
+                currentZone: null,
+                hidingZonePanel: false
+            });
         });
     };
 
     render() {
-        const zonePanel = this.state.selectedZone ? (
+        const zone =
+            (this.state.currentZone && !this.state.currentZone.done) ||
+            this.state.selectedZone ||
+            null;
+
+        const zonePanel = zone ? (
             <div className="modal-scrim" onClick={this.handleScrimClick}>
                 <ZonePanel
-                    zone={this.state.selectedZone}
+                    zone={zone}
                     hide={this.state.hidingZonePanel}
                     closeZonePanel={this.closeZonePanel}
                 />
@@ -43,7 +60,13 @@ export default class AppRoot extends React.Component {
 
         return (
             <div className="app-root">
-                <MapPanel onZoneClick={this.handleZoneClick} />
+                <MapPanel
+                    onZoneClick={this.handleZoneClick}
+                    onZoneEnter={this.handleZoneEnter}
+                    onZoneLeave={this.handleZoneLeave}
+                    currentZone={this.state.currentZone}
+                    selectedZone={this.state.selectedZone}
+                />
                 {zonePanel}
             </div>
         );

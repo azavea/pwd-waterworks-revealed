@@ -1,22 +1,21 @@
 export const alphaConstants = {
-    target: 180,
-    slack: 20
+    buffer: 20
 };
 
 export const betaConstants = {
     target: 68,
-    slack: 13,
+    buffer: 13,
     min: 0,
     max: 90
 };
 
 export const initialMapCenter = [39.96133, -75.15416];
 
-export const initialZoom = 20;
+export const initialZoom = 21;
 
-export const geolocationOptions = {
-    enableHighAccuracy: true
-};
+export const defaultZoneRadius = 5; // meters
+
+export const zoneBuffer = 0.003; // kilometers
 
 export const cssOffsetPropertyName = '--offset';
 

@@ -49,13 +49,13 @@ export default class AlphaOrienter extends React.Component {
     }
 
     calculateNormalizedOffset(reading) {
-        const { slack } = alphaConstants;
+        const { buffer } = alphaConstants;
         const target = this.props.target;
-        let minThreshold = target - slack;
+        let minThreshold = target - buffer;
         if (minThreshold < 0) {
             minThreshold += 360;
         }
-        const maxThreshold = (target + slack) % 360;
+        const maxThreshold = (target + buffer) % 360;
         const opposite = (target + 180) % 360;
 
         let normalizedOffset = 0,
