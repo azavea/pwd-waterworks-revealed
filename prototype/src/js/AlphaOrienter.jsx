@@ -4,7 +4,7 @@ import {
     cssOffsetPropertyName,
     hideOrienterDelay
 } from './constants';
-import { delay, cancelDelay } from './utils';
+import { delay, cancelDelay, calculateNormalizedAlphaOffset } from './utils';
 const classNames = require('classnames');
 
 export default class AlphaOrienter extends React.Component {
@@ -41,71 +41,14 @@ export default class AlphaOrienter extends React.Component {
     }
 
     calculateOffset(reading) {
-        const normalizedOffset = this.calculateNormalizedOffset(reading);
+        const normalizedOffset = calculateNormalizedAlphaOffset(
+            this.props.target,
+            reading
+        );
         const containerSize = this.containerEl.offsetWidth;
         const size = this.deviceEl.offsetWidth;
         const maxOffset = (containerSize - size) / 2;
         return normalizedOffset * maxOffset;
-    }
-
-    calculateNormalizedOffset(reading) {
-        const { buffer } = alphaConstants;
-        const target = this.props.target;
-        let minThreshold = target - buffer;
-        if (minThreshold < 0) {
-            minThreshold += 360;
-        }
-        const maxThreshold = (target + buffer) % 360;
-        const opposite = (target + 180) % 360;
-
-        let normalizedOffset = 0,
-            numerator = 0,
-            denominator = 0;
-
-        if (this.inRangeModulo(reading, minThreshold, maxThreshold, 360)) {
-            // within range
-            normalizedOffset = 0;
-        } else if (this.inRangeModulo(reading, opposite, minThreshold, 360)) {
-            // below range
-            numerator = reading - opposite;
-            if (numerator < 0) {
-                numerator += 360;
-            }
-            denominator = minThreshold - opposite;
-            if (denominator < 0) {
-                denominator += 360;
-            }
-            normalizedOffset = 1 - numerator / denominator;
-        } else if (this.inRangeModulo(reading, maxThreshold, opposite, 360)) {
-            // above range
-            numerator = reading - maxThreshold;
-            if (numerator < 0) {
-                numerator += 360;
-            }
-            denominator = opposite - maxThreshold;
-            if (denominator < 0) {
-                denominator += 360;
-            }
-            normalizedOffset = 0 - numerator / denominator;
-        } else {
-            // reading === opposite
-            normalizedOffset = 1;
-        }
-
-        return normalizedOffset;
-    }
-
-    inRangeModulo(x, min, max, modulo) {
-        if (max > min) {
-            // range does not span the MODULO
-            return x >= min && x <= max;
-        } else if (min === max) {
-            // just in case
-            return x === min;
-        } else {
-            // range spans the modulo
-            return (x >= min && x <= modulo) || (x >= 0 && x <= max);
-        }
     }
 
     render() {

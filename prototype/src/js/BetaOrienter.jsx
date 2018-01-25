@@ -4,7 +4,7 @@ import {
     cssOffsetPropertyName,
     hideOrienterDelay
 } from './constants';
-import { delay, cancelDelay } from './utils';
+import { delay, cancelDelay, calculateNormalizedBetaOffset } from './utils';
 const classNames = require('classnames');
 
 export default class BetaOrienter extends React.Component {
@@ -41,33 +41,11 @@ export default class BetaOrienter extends React.Component {
     }
 
     calculateOffset(reading) {
-        const normalizedOffset = this.calculateNormalizedOffset(reading);
+        const normalizedOffset = calculateNormalizedBetaOffset(reading);
         const containerSize = this.containerEl.offsetHeight;
         const size = this.deviceEl.offsetHeight;
         const maxOffset = (containerSize - size) / 2;
         return normalizedOffset * maxOffset;
-    }
-
-    calculateNormalizedOffset(reading) {
-        const { target, buffer, min, max } = betaConstants;
-        const minThreshold = Math.max(target - buffer, min);
-        const maxThreshold = Math.min(target + buffer, max);
-        let normalizedOffset = 0;
-
-        if (reading < min) {
-            normalizedOffset = 1;
-        } else if (reading < minThreshold) {
-            normalizedOffset = 1 - (reading - min) / (minThreshold - min);
-        } else if (reading >= minThreshold && reading <= maxThreshold) {
-            normalizedOffset = 0;
-        } else if (reading < max) {
-            normalizedOffset =
-                0 - (reading - maxThreshold) / (max - maxThreshold);
-        } else {
-            normalizedOffset = -1;
-        }
-
-        return normalizedOffset;
     }
 
     render() {
@@ -77,8 +55,14 @@ export default class BetaOrienter extends React.Component {
             '-done': offset === 0
         });
 
-        const headingText =
-            offset === 0 ? 'Nice!' : 'Raise your phone until almost upright';
+        let headingText;
+        if (offset < 0) {
+            headingText = 'Tile your phone away from you';
+        } else if (offset > 0) {
+            headingText = 'Raise your phone until almost upright';
+        } else {
+            headingText = 'Nice!';
+        }
 
         const deviceClassName = classNames('device', {
             '-on': offset === 0,
