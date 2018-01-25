@@ -1,0 +1,4 @@
+# Remove .babelrc files from node_modules because
+# parcel insists on trying to recompile dependencies that have them
+# See https://github.com/parcel-bundler/parcel/issues/13
+.babelrc
