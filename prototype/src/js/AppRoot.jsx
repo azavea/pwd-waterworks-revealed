@@ -22,7 +22,12 @@ export default class AppRoot extends React.Component {
     };
 
     handleZoneLeave = () => {
-        this.setState({ currentZone: null });
+        // This assumes the zonePanel is open and showing the currentZone.
+        // Upon leaving, change make the currentZone the selectedZone
+        // so that the panel doesn't automatically close.
+        // Functionally equivalent to leaving the zone then tapping it.
+        const current = this.state.currentZone;
+        this.setState({ currentZone: null, selectedZone: current });
     };
 
     handleScrimClick = event => {
@@ -44,8 +49,8 @@ export default class AppRoot extends React.Component {
 
     render() {
         const zone =
-            (this.state.currentZone && !this.state.currentZone.done) ||
             this.state.selectedZone ||
+            (this.state.currentZone && !this.state.currentZone.done) ||
             null;
 
         const zonePanel = zone ? (
