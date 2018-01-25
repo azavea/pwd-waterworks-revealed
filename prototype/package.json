@@ -17,7 +17,8 @@
         "react-leaflet": "^1.8.0"
     },
     "scripts": {
-        "start": "parcel src/index.html --https",
+        "start-local": "parcel src/index.html",
+        "start": "parcel src/index.html --https --no-hmr",
         "start-v1": "parcel src/v1.html"
     },
     "devDependencies": {
