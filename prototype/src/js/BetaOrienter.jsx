@@ -51,10 +51,6 @@ export default class BetaOrienter extends React.Component {
     render() {
         const { offset } = this.state;
 
-        const orienterClassName = classNames('axis-orienter -beta', {
-            '-done': offset === 0
-        });
-
         let headingText;
         if (offset < 0) {
             headingText = 'Tile your phone away from you';
@@ -74,7 +70,7 @@ export default class BetaOrienter extends React.Component {
         });
 
         return (
-            <div className={orienterClassName}>
+            <div className="axis-orienter -beta">
                 <h1 className="heading">{headingText}</h1>
                 <div
                     className="canvas"

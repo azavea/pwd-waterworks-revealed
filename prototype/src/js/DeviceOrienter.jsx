@@ -1,6 +1,7 @@
 import React from 'react';
 import AlphaOrienter from './AlphaOrienter';
 import BetaOrienter from './BetaOrienter';
+import { CSSTransition } from 'react-transition-group';
 import {
     delay,
     calculateNormalizedAlphaOffset,
@@ -14,6 +15,10 @@ export default class DeviceOrienter extends React.Component {
         this.state = {
             supportedEventName: null,
             betaOrientationComplete: false,
+            betaTransionedOut: false,
+            alphaOrientationComplete: false,
+            alphaTransitionedOut: false,
+            firstDeviceOrientationEventReceived: false,
             alpha: NaN,
             beta: NaN
         };
@@ -45,7 +50,7 @@ export default class DeviceOrienter extends React.Component {
             this.setState({ supportedEventName: supportedEventName });
             window.addEventListener(
                 supportedEventName,
-                this.handleDeviceOrientation,
+                this.onDeviceOrientation,
                 true
             );
         } else {
@@ -57,13 +62,32 @@ export default class DeviceOrienter extends React.Component {
         if (this.state.supportedEventName) {
             window.removeEventListener(
                 this.state.supportedEventName,
-                this.handleDeviceOrientation,
+                this.onDeviceOrientation,
                 true
             );
         }
     }
 
-    handleDeviceOrientation = event => {
+    onFirstDeviceOrientationEvent(alpha, beta) {
+        this.setState({ firstDeviceOrientationEventReceived: true });
+
+        if (this.isBetaOriented(beta)) {
+            this.setState({
+                betaOrientationComplete: true,
+                betaTransionedOut: true
+            });
+
+            if (this.isAlphaOriented(alpha)) {
+                this.setState({
+                    alphaOrientationComplete: true,
+                    alphaTransionedOut: true
+                });
+                this.props.onOrientationComplete();
+            }
+        }
+    }
+
+    onDeviceOrientation = event => {
         let alpha;
 
         if (event.webkitCompassHeading) {
@@ -77,6 +101,10 @@ export default class DeviceOrienter extends React.Component {
             alpha = NaN;
         }
 
+        if (!this.state.firstDeviceOrientationEventReceived) {
+            this.onFirstDeviceOrientationEvent(alpha, event.beta);
+        }
+
         this.setState({
             alpha: alpha,
             beta: event.beta
@@ -84,63 +112,82 @@ export default class DeviceOrienter extends React.Component {
     };
 
     onAlphaOrientationComplete = () => {
-        this.props.onOrientationComplete();
+        this.setState({ alphaOrientationComplete: true });
     };
 
     onBetaOrientationComplete = () => {
         this.setState({ betaOrientationComplete: true });
     };
 
-    isBetaOriented() {
-        return calculateNormalizedBetaOffset(this.state.beta) === 0;
+    onAlphaTransitionOutComplete = () => {
+        this.setState({ alphaTransitionedOut: true });
+        this.props.onOrientationComplete();
+    };
+
+    onBetaTransitionOutComplete = () => {
+        this.setState({ betaTransionedOut: true });
+    };
+
+    isBetaOriented(beta) {
+        return calculateNormalizedBetaOffset(beta) === 0;
     }
 
-    isAlphaOriented() {
+    isAlphaOriented(alpha) {
         return (
-            calculateNormalizedAlphaOffset(
-                this.props.zone.bearing,
-                this.state.alpha
-            ) === 0
+            calculateNormalizedAlphaOffset(this.props.zone.bearing, alpha) === 0
         );
-    }
-
-    determineOrienter() {
-        const { alpha, beta } = this.state;
-
-        const alphaOrienter = (
-            <AlphaOrienter
-                alpha={alpha}
-                target={this.props.zone.bearing}
-                onOrientationComplete={this.onAlphaOrientationComplete}
-            />
-        );
-
-        const betaOrienter = (
-            <BetaOrienter
-                beta={beta}
-                onOrientationComplete={this.onBetaOrientationComplete}
-            />
-        );
-
-        if (!this.state.betaOrientationComplete) {
-            if (this.isBetaOriented()) {
-                this.setState({ betaOrientationComplete: true });
-                return alphaOrienter;
-            } else {
-                return betaOrienter;
-            }
-        } else {
-            if (this.isAlphaOriented()) {
-                this.onAlphaOrientationComplete();
-                return null;
-            } else {
-                return alphaOrienter;
-            }
-        }
     }
 
     render() {
-        const orienter = this.determineOrienter();
-        return <div className="device-orienter">{orienter}</div>;
+        const { alpha, beta } = this.state;
+
+        const alphaOrienter = (
+            <CSSTransition
+                in={
+                    this.state.firstDeviceOrientationEventReceived &&
+                    this.state.betaTransionedOut &&
+                    !this.state.alphaOrientationComplete
+                }
+                key="alpha"
+                classNames=""
+                timeout={100}
+                mountOnEnter={true}
+                unmountOnExit={true}
+                onExited={this.onAlphaTransitionOutComplete}
+            >
+                <AlphaOrienter
+                    alpha={alpha}
+                    target={this.props.zone.bearing}
+                    onOrientationComplete={this.onAlphaOrientationComplete}
+                />
+            </CSSTransition>
+        );
+
+        const betaOrienter = (
+            <CSSTransition
+                in={
+                    this.state.firstDeviceOrientationEventReceived &&
+                    !this.state.betaOrientationComplete
+                }
+                key="beta"
+                classNames=""
+                timeout={100}
+                mountOnEnter={true}
+                unmountOnExit={true}
+                onExited={this.onBetaTransitionOutComplete}
+            >
+                <BetaOrienter
+                    beta={beta}
+                    onOrientationComplete={this.onBetaOrientationComplete}
+                />
+            </CSSTransition>
+        );
+
+        return (
+            <div className="device-orienter">
+                {betaOrienter}
+                {alphaOrienter}
+            </div>
+        );
     }
 }

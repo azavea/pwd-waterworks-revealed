@@ -10,7 +10,7 @@ export const zones = [
             {
                 image: 'twilight.jpg',
                 caption:
-                    'The Twilight Zone is an American media franchise based on the anthology television series created by Rod Serling. The episodes are in various genres, including fantasy, science fiction, suspense, and psychological thriller, often concluding with a macabre or unexpected twist, and usually with a moral. A popular and critical success, it introduced many Americans to common science fiction and fantasy tropes. The original series, shot entirely in black and white, ran on CBS for five seasons from 1959 to 1964.'
+                    'The Twilight Zone is an American media franchise based on the anthology television series created by Rod Serling. The episodes are in various genres, including fantasy, science fiction, suspense, and psychological thriller, often concluding with a macabre or unexpected twist, and usually with a moral. A popular and critical success, it introduced Americans to common science fiction and fantasy tropes. The original series, shot entirely in black and white, ran on CBS for five seasons from 1959 to 1964.'
             }
         ]
     },
@@ -32,7 +32,7 @@ export const zones = [
     {
         name: 'Demilitarized Zone',
         desc:
-            'A demilitarized zone, DMZ or DZ[1] is an area in which treaties or agreements between nations, military powers or contending groups forbid military installations, activities or personnel. A DMZ often lies along an established frontier or boundary between two or more military powers or alliances.',
+            'A demilitarized zone, DMZ or DZ[1] is an area in which treaties or agreements between nations, military powers or contending groups forbid military installations, activities or personnel.',
         lat: 39.961215,
         lng: -75.15427,
         bearing: 275,
@@ -47,7 +47,7 @@ export const zones = [
     {
         name: 'Eastern Time Zone',
         desc:
-            'The Eastern Time Zone (ET) is a time zone encompassing 17 U.S. states in the eastern part of the contiguous United States, parts of eastern Canada, the state of Quintana Roo in Mexico, Panama in Central America, and the Caribbean Islands.',
+            'The Eastern Time Zone (ET) encompasses 17 U.S. states in the eastern part of the contiguous United States, parts of eastern Canada, the state of Quintana Roo in Mexico, Panama in Central America, and the Caribbean Islands.',
         lat: 39.96133,
         lng: -75.15393,
         bearing: 95,

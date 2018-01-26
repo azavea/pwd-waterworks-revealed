@@ -1,22 +1,38 @@
 .modal-scrim {
+    cursor: default;
+
     > .zone-panel {
         position: absolute;
         bottom: 0;
         flex: none;
         width: 100%;
-        animation: drawerReveal 500ms;
         z-index: 10000;
-
-        &.-hide {
-            animation: drawerHide 500ms;
-        }
+        transition: height 300ms ease-in;
 
         &.-orienter {
-            max-height: 80%;
+            height: 80%;
         }
 
         &.-tour {
             height: 100%;
         }
+    }
+
+    &.-enter > .zone-panel {
+        transform: translateY(100%);
+    }
+
+    &.-enter-active > .zone-panel {
+        transform: translateY(0);
+        transition: transform 300ms ease-in;
+    }
+
+    &.-exit > .zone-panel {
+        transform: translateY(0);
+    }
+
+    &.-exit-active > .zone-panel {
+        transform: translateY(100%);
+        transition: transform 300ms ease-in;
     }
 }

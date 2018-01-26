@@ -54,10 +54,6 @@ export default class AlphaOrienter extends React.Component {
     render() {
         const { offset } = this.state;
 
-        const orienterClassName = classNames('axis-orienter -alpha', {
-            '-done': offset === 0
-        });
-
         const headingText =
             offset === 0 ? 'Nice!' : 'Turn until the boxes align';
 
@@ -71,7 +67,7 @@ export default class AlphaOrienter extends React.Component {
         });
 
         return (
-            <div className={orienterClassName}>
+            <div className="axis-orienter -alpha">
                 <h1 className="heading">{headingText}</h1>
                 <div
                     className="canvas"

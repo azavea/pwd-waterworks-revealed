@@ -8,22 +8,62 @@
     > .device-orienter {
         flex: auto;
         margin-bottom: 8rem;
+
+        &.-enter {
+            opacity: 0.01;
+        }
+
+        &.-enter-active {
+            opacity: 1;
+            transition: opacity 300ms ease-in;
+        }
+
+        &.-exit {
+            opacity: 1;
+        }
+
+        &.-exit-active {
+            opacity: 0.01;
+            transition: opacity 300ms ease-in;
+        }
     }
 
     > .zone-tour {
         flex: auto;
+
+        &.-enter {
+            opacity: 0.01;
+            flex: none;
+        }
+
+        &.-enter-active {
+            opacity: 1;
+            flex: auto;
+            transition: opacity 300ms ease-in, flex 300ms ease-in;
+        }
+
+        &.-exit {
+            opacity: 1;
+        }
+
+        &.-exit-active {
+            opacity: 0.01;
+            transition: opacity 300ms ease-in;
+        }
     }
 
     > .heading {
-        margin: 4rem 2.4rem 1.6rem;
-        font-size: 4.8rem;
+        flex: none;
+        margin: 4rem 4rem 1.6rem;
+        font-size: 5.6rem;
         font-weight: 700;
         text-align: left;
     }
 
     > .desc {
-        margin: 1.6rem 2.4rem 2.4rem;
-        font-size: 2.4rem;
+        flex: none;
+        margin: 1.6rem 4rem 2.4rem;
+        font-size: 4rem;
         font-weight: 400;
         text-align: left;
     }

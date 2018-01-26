@@ -119,7 +119,7 @@ export default class MapPanel extends React.Component {
                 fillColor={this.getZoneColor(zone)}
                 fillOpacity={0.6}
                 radius={zone.radius || defaultZoneRadius}
-                onClick={e => this.handleZoneClick(zone, e)}
+                onClick={e => this.onZoneClick(zone, e)}
             />
         ));
     }
@@ -134,7 +134,7 @@ export default class MapPanel extends React.Component {
         );
     }
 
-    handleZoneClick = (zone, event) => {
+    onZoneClick = (zone, event) => {
         this.props.onZoneClick(zone);
     };
 
