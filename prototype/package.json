@@ -18,8 +18,7 @@
     },
     "scripts": {
         "start-local": "parcel src/index.html",
-        "start": "parcel src/index.html --https --no-hmr",
-        "start-v1": "parcel src/v1.html"
+        "start": "parcel src/index.html --https --no-hmr"
     },
     "devDependencies": {
         "babel-eslint": "^8.2.1",
