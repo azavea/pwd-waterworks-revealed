@@ -12,6 +12,7 @@ import {
     defaultZoneRadius,
     zoneBuffer
 } from './constants';
+require('leaflet-path-drag');
 
 export default class MapPanel extends React.Component {
     constructor(props) {
@@ -20,6 +21,7 @@ export default class MapPanel extends React.Component {
             lat: null,
             lng: null,
             acc: null,
+            detectLocation: true,
             zones: null
         };
     }
@@ -80,10 +82,22 @@ export default class MapPanel extends React.Component {
     }
 
     onLocationChange = position => {
+        if (!this.state.detectLocation) {
+            return;
+        }
+
+        this.setLocation(
+            this.getCalibratedLatitude(position.coords.latitude),
+            this.getCalibratedLongitude(position.coords.longitude),
+            position.coords.accuracy
+        );
+    };
+
+    setLocation(lat, lng, acc) {
         this.setState({
-            lat: this.getCalibratedLatitude(position.coords.latitude),
-            lng: this.getCalibratedLongitude(position.coords.longitude),
-            acc: position.coords.accuracy
+            lat: lat,
+            lng: lng,
+            acc: acc
         });
         const currentZone = this.getCurrentZone();
         if (!currentZone && this.props.currentZone) {
@@ -91,11 +105,26 @@ export default class MapPanel extends React.Component {
         } else if (currentZone && currentZone != this.props.currentZone) {
             this.props.onZoneEnter(currentZone);
         }
-    };
+    }
 
     onLocationError = error => {
         console.log('Geolocation error: ' + error.code + ': ' + error.message);
         window.alert('Geolocation error: ' + error.code + ': ' + error.message);
+    };
+
+    onLocationMarkerClick = event => {
+        if (!this.state.detectLocation) {
+            this.setState({ detectLocation: true });
+        }
+    };
+
+    onLocationMarkerDragStart = event => {
+        this.setState({ detectLocation: false });
+    };
+
+    onLocationMarkerDragEnd = event => {
+        const latlng = this.locationMarker.leafletElement.getLatLng();
+        this.setLocation(latlng.lat, latlng.lng);
     };
 
     getZoneColor(zone) {
@@ -184,25 +213,38 @@ export default class MapPanel extends React.Component {
     };
 
     render() {
+        const geolocationAccuracyCircle =
+            this.state.detectLocation && this.state.lat && this.state.lng ? (
+                <Circle
+                    center={[this.state.lat, this.state.lng]}
+                    weight={0}
+                    fillColor="#3F88F0"
+                    fillOpacity={0.1}
+                    radius={this.state.acc || 0}
+                    interactive={false}
+                />
+            ) : null;
         const geolocationMarker =
             this.state.lat && this.state.lng ? (
                 <React.Fragment>
-                    <Circle
-                        center={[this.state.lat, this.state.lng]}
-                        weight={0}
-                        fillColor="#3F88F0"
-                        fillOpacity={0.1}
-                        radius={this.state.acc}
-                        interactive={false}
-                    />
+                    {geolocationAccuracyCircle}
                     <CircleMarker
                         center={[this.state.lat, this.state.lng]}
                         color="white"
                         weight={8}
-                        fillColor="#3F88F0"
+                        fillColor={
+                            this.state.detectLocation ? '#3F88F0' : '#B81190'
+                        }
                         fillOpacity={0.9}
                         radius={18}
                         interactive={false}
+                        draggable={true}
+                        onClick={this.onLocationMarkerClick}
+                        onDragstart={this.onLocationMarkerDragStart}
+                        onDragend={this.onLocationMarkerDragEnd}
+                        ref={el => {
+                            this.locationMarker = el;
+                        }}
                     />
                 </React.Fragment>
             ) : null;
