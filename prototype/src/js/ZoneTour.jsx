@@ -5,9 +5,9 @@ const classNames = require('classnames');
 export default class ZoneTour extends React.Component {
     render() {
         const { zone } = this.props;
-        const imageName = zone.tour[0].image;
+        const imageName = zone && zone.tour[0].image;
         const imageUrl = images[imageName];
-        const caption = zone.tour[0].caption;
+        const caption = zone && zone.tour[0].caption;
 
         return (
             <div className="zone-tour" onClick={this.props.onTourComplete}>
