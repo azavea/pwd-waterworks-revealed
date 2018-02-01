@@ -22,45 +22,56 @@
         justify-content: center;
         min-height: 64rem;
 
-        > .device,
-        > .target {
+        > .illustration {
             position: absolute;
-            width: 120px;
-            height: 180px;
-            border: 4px solid black;
-            border-radius: 2px;
+            width: 108px;
+            height: 222px;
             opacity: 1;
             transition: opacity 500ms;
 
             &.-hide {
                 opacity: 0;
             }
-        }
 
-        > .target {
-            border-style: dashed;
-        }
+            &.-target {
+                .outer {
+                    fill: none;
+                }
 
-        > .device {
-            border-style: solid;
-            background-color: black;
+                .inner {
+                    fill: gold;
+                    fill-opacity: 0.3;
+                    stroke: #b81190;
+                    stroke-width: 4px;
+                    stroke-dasharray: 6;
+                }
 
-            &.-on {
-                background-color: gold;
+                &.-on .inner {
+                    fill-opacity: 1;
+                    stroke-width: 0;
+                }
+            }
+
+            &.-device {
+                .outer {
+                    fill: #000;
+                }
+
+                &.-on .outer {
+                    fill: #b81190;
+                }
             }
         }
     }
 
     &.-alpha > .canvas {
-        > .device,
-        > .target {
+        > .illustration {
             transform: translateX(var(--offset));
         }
     }
 
     &.-beta > .canvas {
-        > .device,
-        > .target {
+        > .illustration {
             transform: translateY(var(--offset));
         }
     }

@@ -5,6 +5,9 @@ import {
     hideOrienterDelay
 } from './constants';
 import { delay, cancelDelay, calculateNormalizedBetaOffset } from './utils';
+import DeviceSVG from './DeviceSVG';
+import TargetSVG from './TargetSVG';
+
 const classNames = require('classnames');
 
 export default class BetaOrienter extends React.Component {
@@ -60,12 +63,13 @@ export default class BetaOrienter extends React.Component {
             headingText = 'Nice!';
         }
 
-        const deviceClassName = classNames('device', {
+        const deviceClassName = classNames('illustration -device', {
             '-on': offset === 0,
             '-hide': offset === null
         });
 
-        const targetClassName = classNames('target', {
+        const targetClassName = classNames('illustration -target', {
+            '-on': offset === 0,
             '-hide': offset === null
         });
 
@@ -83,13 +87,17 @@ export default class BetaOrienter extends React.Component {
                         ref={el => {
                             this.targetEl = el;
                         }}
-                    />
+                    >
+                        <TargetSVG />
+                    </div>
                     <div
                         className={deviceClassName}
                         ref={el => {
                             this.deviceEl = el;
                         }}
-                    />
+                    >
+                        <DeviceSVG />
+                    </div>
                 </div>
             </div>
         );

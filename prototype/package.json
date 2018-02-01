@@ -32,6 +32,7 @@
         "eslint-plugin-prettier": "^2.5.0",
         "node-sass": "^4.7.2",
         "parcel-bundler": "^1.4.1",
-        "prettier": "^1.10.2"
+        "prettier": "^1.10.2",
+        "svg-to-react-cli": "^1.5.0"
     }
 }
