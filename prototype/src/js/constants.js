@@ -9,6 +9,8 @@ export const betaConstants = {
     max: 90
 };
 
+export const geolocationAccuracyThreshold = 20; // meters
+
 export const cssOffsetPropertyName = '--offset';
 
 export const hideOrienterDelay = 700;

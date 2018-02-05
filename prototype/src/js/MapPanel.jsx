@@ -4,8 +4,11 @@ import { point } from '@turf/helpers';
 import circle from '@turf/circle';
 import buffer from '@turf/buffer';
 import booleanWithin from '@turf/boolean-within';
+import { geolocationAccuracyThreshold } from './constants';
+
 // import * as World from './worlds/office';   // azavea office
 import * as World from './worlds/franklin-square'; // franklin square
+
 require('leaflet-path-drag');
 
 export default class MapPanel extends React.Component {
@@ -77,6 +80,10 @@ export default class MapPanel extends React.Component {
 
     onLocationChange = position => {
         if (!this.state.detectLocation) {
+            return;
+        }
+
+        if (position.coords.accuracy > geolocationAccuracyThreshold) {
             return;
         }
 
