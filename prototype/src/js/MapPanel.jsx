@@ -4,14 +4,7 @@ import { point } from '@turf/helpers';
 import circle from '@turf/circle';
 import buffer from '@turf/buffer';
 import booleanWithin from '@turf/boolean-within';
-import { areas } from './areas';
-import { zones } from './zones';
-import {
-    initialMapCenter,
-    initialZoom,
-    defaultZoneRadius,
-    zoneBuffer
-} from './constants';
+import * as World from './worlds/office';
 require('leaflet-path-drag');
 
 export default class MapPanel extends React.Component {
@@ -37,11 +30,11 @@ export default class MapPanel extends React.Component {
 
     initZones() {
         this.setState({
-            zones: zones.map(zone => {
+            zones: World.zones.map(zone => {
                 return Object.assign(zone, {
                     polygon: circle(
                         [zone.lng, zone.lat],
-                        zone.radius || defaultZoneRadius * 0.001,
+                        zone.radius || World.defaultZoneRadius * 0.001,
                         { units: 'kilometers' }
                     ),
                     done: false
@@ -76,7 +69,7 @@ export default class MapPanel extends React.Component {
         return this.state.zones.find(zone =>
             booleanWithin(
                 point([this.state.lng, this.state.lat]),
-                buffer(zone.polygon, zoneBuffer, { units: 'kilometers' })
+                buffer(zone.polygon, World.zoneBuffer, { units: 'kilometers' })
             )
         );
     }
@@ -140,24 +133,24 @@ export default class MapPanel extends React.Component {
     }
 
     generateZoneFeatures() {
-        return zones.map(zone => (
+        return World.zones.map(zone => (
             <Circle
                 key={zone.name}
                 center={[zone.lat, zone.lng]}
                 weight={0}
                 fillColor={this.getZoneColor(zone)}
                 fillOpacity={0.6}
-                radius={zone.radius || defaultZoneRadius}
+                radius={zone.radius || World.defaultZoneRadius}
                 onClick={e => this.onZoneClick(zone, e)}
             />
         ));
     }
 
     generateZonePolygons() {
-        return zones.map(zone =>
+        return World.zones.map(zone =>
             circle(
                 [zone.lng, zone.lat],
-                (zone.radius || defaultZoneRadius) * 0.001,
+                (zone.radius || World.defaultZoneRadius) * 0.001,
                 { units: 'kilometers' }
             )
         );
@@ -165,51 +158,6 @@ export default class MapPanel extends React.Component {
 
     onZoneClick = (zone, event) => {
         this.props.onZoneClick(zone);
-    };
-
-    getAreaColor(areaType) {
-        // colors from http://www.colourlovers.com/palette/1473/Ocean_Five
-        // actually from http://www.colourlovers.com/palette/932683/Compatible
-        let color;
-        switch (areaType) {
-            case 'Meeting':
-                color = '#8EBE94';
-                break;
-            case 'Phone':
-                color = '#4E395D';
-                break;
-            case 'Lounge':
-                color = '#DC5B3E';
-                break;
-            case 'Relax':
-                color = '#827085';
-                break;
-            case 'Conference':
-                color = '#CCFC8E';
-                break;
-            default:
-                color = '#CCC';
-                break;
-        }
-        return color;
-    }
-
-    styleArea = (feature, layer) => {
-        return {
-            fillColor: this.getAreaColor(feature.properties.type),
-            weight: 0,
-            opacity: 1.0,
-            fillOpacity: 0.6
-        };
-    };
-
-    configArea = (feature, layer) => {
-        return {
-            fillColor: this.getAreaColor(feature.properties.type),
-            weight: 0,
-            opacity: 1.0,
-            fillOpacity: 0.6
-        };
     };
 
     render() {
@@ -251,23 +199,25 @@ export default class MapPanel extends React.Component {
 
         const zoneFeatures = this.generateZoneFeatures();
 
+        // Color rooms on office map
+        const areas =
+            World.areas && World.styleArea ? (
+                <GeoJSON data={World.areas} style={World.styleArea} />
+            ) : null;
+
         return (
             <Map
                 className="the-map"
-                center={initialMapCenter}
-                zoom={initialZoom}
+                center={World.initialMapCenter}
+                zoom={World.initialZoom}
                 zoomControl={false}
             >
                 <TileLayer
-                    url="https://990.azavea.com/floorplan/{z}/{x}/{y}.png"
-                    minZoom={20}
-                    maxZoom={22}
+                    url={World.tilesUrl}
+                    minZoom={World.minZoom}
+                    maxZoom={World.maxZoom}
                 />
-                <GeoJSON
-                    data={areas}
-                    style={this.styleArea}
-                    onEachFeature={this.configArea}
-                />
+                {areas}
                 {zoneFeatures}
                 {geolocationMarker}
             </Map>
