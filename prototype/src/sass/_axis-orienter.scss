@@ -22,6 +22,24 @@
         justify-content: center;
         min-height: 64rem;
 
+        > .arrow {
+            position: absolute;
+            transition: opacity 500ms;
+
+            &.-hide {
+                opacity: 0;
+            }
+
+            > svg {
+                width: 72px;
+                height: 72px;
+                fill: #b81190;
+                animation: pulsate 1s ease-out;
+                animation-iteration-count: infinite;
+                opacity: 0.2;
+            }
+        }
+
         > .illustration {
             position: absolute;
             width: 108px;
@@ -65,14 +83,30 @@
     }
 
     &.-alpha > .canvas {
-        > .illustration {
+        > .illustration,
+        > .arrow {
             transform: translateX(var(--offset));
         }
     }
 
     &.-beta > .canvas {
-        > .illustration {
+        > .illustration,
+        > .arrow {
             transform: translateY(var(--offset));
         }
+    }
+}
+
+@keyframes pulsate {
+    0% {
+        transform: scale(0.4, 0.4);
+        opacity: 0;
+    }
+    50% {
+        opacity: .8;
+    }
+    100% {
+        transform: scale(1.2, 1.2);
+        opacity: 0;
     }
 }

@@ -7,6 +7,8 @@ import {
 import { delay, cancelDelay, calculateNormalizedAlphaOffset } from './utils';
 import DeviceSVG from './DeviceSVG';
 import TargetSVG from './TargetSVG';
+import ArrowLeftSVG from './ArrowLeftSVG';
+import ArrowRightSVG from './ArrowRightSVG';
 
 const classNames = require('classnames');
 
@@ -41,6 +43,11 @@ export default class AlphaOrienter extends React.Component {
 
         this.deviceEl.style.setProperty(cssOffsetPropertyName, -offset + 'px');
         this.targetEl.style.setProperty(cssOffsetPropertyName, offset + 'px');
+        this.arrowEl &&
+            this.arrowEl.style.setProperty(
+                cssOffsetPropertyName,
+                -offset + 'px'
+            );
     }
 
     calculateOffset(reading) {
@@ -57,8 +64,17 @@ export default class AlphaOrienter extends React.Component {
     render() {
         const { offset } = this.state;
 
-        const headingText =
-            offset === 0 ? 'Nice!' : 'Turn until the boxes align';
+        let headingText, arrowSVG;
+        if (offset < 0) {
+            headingText = 'Turn left until the boxes align';
+            arrowSVG = <ArrowLeftSVG />;
+        } else if (offset > 0) {
+            headingText = 'Turn right until the boxes align';
+            arrowSVG = <ArrowRightSVG />;
+        } else {
+            headingText = 'Nice!';
+            arrowSVG = null;
+        }
 
         const deviceClassName = classNames('illustration -device', {
             '-on': offset === 0,
@@ -67,6 +83,10 @@ export default class AlphaOrienter extends React.Component {
 
         const targetClassName = classNames('illustration -target', {
             '-on': offset === 0,
+            '-hide': offset === null
+        });
+
+        const arrowClassName = classNames('arrow', {
             '-hide': offset === null
         });
 
@@ -94,6 +114,14 @@ export default class AlphaOrienter extends React.Component {
                         }}
                     >
                         <DeviceSVG />
+                    </div>
+                    <div
+                        className={arrowClassName}
+                        ref={el => {
+                            this.arrowEl = el;
+                        }}
+                    >
+                        {arrowSVG}
                     </div>
                 </div>
             </div>

@@ -7,6 +7,8 @@ import {
 import { delay, cancelDelay, calculateNormalizedBetaOffset } from './utils';
 import DeviceSVG from './DeviceSVG';
 import TargetSVG from './TargetSVG';
+import ArrowUpSVG from './ArrowUpSVG';
+import ArrowDownSVG from './ArrowDownSVG';
 
 const classNames = require('classnames');
 
@@ -41,6 +43,11 @@ export default class BetaOrienter extends React.Component {
 
         this.deviceEl.style.setProperty(cssOffsetPropertyName, offset + 'px');
         this.targetEl.style.setProperty(cssOffsetPropertyName, -offset + 'px');
+        this.arrowEl &&
+            this.arrowEl.style.setProperty(
+                cssOffsetPropertyName,
+                offset + 'px'
+            );
     }
 
     calculateOffset(reading) {
@@ -54,13 +61,16 @@ export default class BetaOrienter extends React.Component {
     render() {
         const { offset } = this.state;
 
-        let headingText;
+        let headingText, arrowSVG;
         if (offset < 0) {
             headingText = 'Tile your phone away from you';
+            arrowSVG = <ArrowDownSVG />;
         } else if (offset > 0) {
             headingText = 'Raise your phone until almost upright';
+            arrowSVG = <ArrowUpSVG />;
         } else {
             headingText = 'Nice!';
+            arrowSVG = null;
         }
 
         const deviceClassName = classNames('illustration -device', {
@@ -70,6 +80,10 @@ export default class BetaOrienter extends React.Component {
 
         const targetClassName = classNames('illustration -target', {
             '-on': offset === 0,
+            '-hide': offset === null
+        });
+
+        const arrowClassName = classNames('arrow', {
             '-hide': offset === null
         });
 
@@ -97,6 +111,14 @@ export default class BetaOrienter extends React.Component {
                         }}
                     >
                         <DeviceSVG />
+                    </div>
+                    <div
+                        className={arrowClassName}
+                        ref={el => {
+                            this.arrowEl = el;
+                        }}
+                    >
+                        {arrowSVG}
                     </div>
                 </div>
             </div>
