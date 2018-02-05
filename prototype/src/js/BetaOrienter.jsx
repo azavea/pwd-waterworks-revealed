@@ -55,7 +55,7 @@ export default class BetaOrienter extends React.Component {
         const containerSize = this.containerEl.offsetHeight;
         const size = this.deviceEl.offsetHeight;
         const maxOffset = (containerSize - size) / 2;
-        return normalizedOffset * maxOffset;
+        return Math.sqrt(normalizedOffset) * maxOffset;
     }
 
     render() {

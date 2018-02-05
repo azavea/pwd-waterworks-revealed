@@ -58,7 +58,8 @@ export default class AlphaOrienter extends React.Component {
         const containerSize = this.containerEl.offsetWidth;
         const size = this.deviceEl.offsetWidth;
         const maxOffset = (containerSize - size) / 2;
-        return normalizedOffset * maxOffset;
+        const sign = normalizedOffset < 0 ? -1 : 1;
+        return sign * Math.sqrt(sign * normalizedOffset) * maxOffset;
     }
 
     render() {
