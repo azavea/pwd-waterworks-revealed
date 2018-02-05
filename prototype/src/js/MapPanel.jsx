@@ -4,7 +4,8 @@ import { point } from '@turf/helpers';
 import circle from '@turf/circle';
 import buffer from '@turf/buffer';
 import booleanWithin from '@turf/boolean-within';
-import * as World from './worlds/office';
+// import * as World from './worlds/office';   // azavea office
+import * as World from './worlds/franklin-square'; // franklin square
 require('leaflet-path-drag');
 
 export default class MapPanel extends React.Component {
