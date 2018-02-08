@@ -5,10 +5,10 @@ import {
     hideOrienterDelay
 } from './constants';
 import { delay, cancelDelay, calculateNormalizedAlphaOffset } from './utils';
-import DeviceSVG from './DeviceSVG';
-import TargetSVG from './TargetSVG';
-import ArrowLeftSVG from './ArrowLeftSVG';
-import ArrowRightSVG from './ArrowRightSVG';
+import DeviceSVG from './svg/DeviceSVG';
+import TargetSVG from './svg/TargetSVG';
+import ArrowLeftSVG from './svg/ArrowLeftSVG';
+import ArrowRightSVG from './svg/ArrowRightSVG';
 
 const classNames = require('classnames');
 
