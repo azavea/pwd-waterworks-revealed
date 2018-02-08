@@ -26,7 +26,7 @@ export default class ZonePanel extends React.Component {
             <CSSTransition
                 in={!this.state.oriented}
                 classNames=""
-                timeout={300}
+                timeout={{ enter: 300, exit: 0 }}
                 mountOnEnter={true}
                 unmountOnExit={true}
             >
@@ -41,7 +41,7 @@ export default class ZonePanel extends React.Component {
             <CSSTransition
                 in={this.state.oriented}
                 classNames=""
-                timeout={300}
+                timeout={{ enter: 300, exit: 0 }}
                 mountOnEnter={true}
                 unmountOnExit={true}
             >

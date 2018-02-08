@@ -24,7 +24,6 @@
 
         &.-exit-active {
             opacity: 0.01;
-            transition: opacity 300ms ease-in;
         }
     }
 
@@ -33,13 +32,11 @@
 
         &.-enter {
             opacity: 0.01;
-            flex: none;
         }
 
         &.-enter-active {
             opacity: 1;
-            flex: auto;
-            transition: opacity 300ms ease-in, flex 300ms ease-in;
+            transition: opacity 300ms ease-in;
         }
 
         &.-exit {
@@ -48,7 +45,6 @@
 
         &.-exit-active {
             opacity: 0.01;
-            transition: opacity 300ms ease-in;
         }
     }
 
