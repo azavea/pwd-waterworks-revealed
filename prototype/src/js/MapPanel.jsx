@@ -7,7 +7,8 @@ import booleanWithin from '@turf/boolean-within';
 import { geolocationAccuracyThreshold } from './constants';
 
 // import * as World from './worlds/office';   // azavea office
-import * as World from './worlds/franklin-square'; // franklin square
+// import * as World from './worlds/franklin-square'; // franklin square
+import * as World from './worlds/water-works'; // water works
 
 require('leaflet-path-drag');
 
