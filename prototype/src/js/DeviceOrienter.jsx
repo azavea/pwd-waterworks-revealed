@@ -7,7 +7,6 @@ import {
     calculateNormalizedAlphaOffset,
     calculateNormalizedBetaOffset
 } from './utils';
-const classNames = require('classnames');
 
 export default class DeviceOrienter extends React.Component {
     constructor(props) {

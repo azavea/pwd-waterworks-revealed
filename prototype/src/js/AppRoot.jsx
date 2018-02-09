@@ -3,7 +3,6 @@ import MapPanel from './MapPanel';
 import ZonePanel from './ZonePanel';
 import { CSSTransition } from 'react-transition-group';
 import { geolocationAccuracyThreshold } from './constants';
-import { delay } from './utils';
 
 export default class AppRoot extends React.Component {
     constructor(props) {
