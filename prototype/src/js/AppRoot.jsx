@@ -2,6 +2,7 @@ import React from 'react';
 import MapPanel from './MapPanel';
 import ZonePanel from './ZonePanel';
 import { CSSTransition } from 'react-transition-group';
+import { geolocationAccuracyThreshold } from './constants';
 import { delay } from './utils';
 
 export default class AppRoot extends React.Component {
@@ -10,7 +11,8 @@ export default class AppRoot extends React.Component {
         this.state = {
             selectedZone: null,
             currentZone: null,
-            showZonePanel: false
+            showZonePanel: false,
+            geolocationAccuracyThreshold: geolocationAccuracyThreshold
         };
     }
 
@@ -57,6 +59,16 @@ export default class AppRoot extends React.Component {
         this.setState({ showZonePanel: false });
     };
 
+    onSliderChange = () => {
+        this.setState({ geolocationAccuracyThreshold: this.sliderEl.value });
+    };
+
+    onSliderValueClick = () => {
+        this.setState({
+            geolocationAccuracyThreshold: geolocationAccuracyThreshold
+        });
+    };
+
     render() {
         let zone;
         if (this.state.selectedZone) {
@@ -76,8 +88,30 @@ export default class AppRoot extends React.Component {
                 selectedZone={
                     this.state.showZonePanel && this.state.selectedZone
                 }
+                geolocationAccuracyThreshold={
+                    this.state.geolocationAccuracyThreshold
+                }
             />
         );
+
+        const slider = this.props.dev ? (
+            <div className="accuracy-slider">
+                <output className="output" onClick={this.onSliderValueClick}>
+                    {this.state.geolocationAccuracyThreshold}m
+                </output>
+                <input
+                    className="slider"
+                    type="range"
+                    value={this.state.geolocationAccuracyThreshold}
+                    min="0"
+                    max="80"
+                    onChange={this.onSliderChange}
+                    ref={el => {
+                        this.sliderEl = el;
+                    }}
+                />
+            </div>
+        ) : null;
 
         const zonePanel = (
             <CSSTransition
@@ -100,6 +134,7 @@ export default class AppRoot extends React.Component {
         return (
             <div className="app-root">
                 {mapPanel}
+                {slider}
                 {zonePanel}
             </div>
         );

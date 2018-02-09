@@ -4,9 +4,8 @@ import { point } from '@turf/helpers';
 import circle from '@turf/circle';
 import buffer from '@turf/buffer';
 import booleanWithin from '@turf/boolean-within';
-import { geolocationAccuracyThreshold } from './constants';
 
-// import * as World from './worlds/office';   // azavea office
+// import * as World from './worlds/office'; // azavea office
 // import * as World from './worlds/franklin-square'; // franklin square
 import * as World from './worlds/water-works'; // water works
 
@@ -30,7 +29,17 @@ export default class MapPanel extends React.Component {
     }
 
     componentWillUnmount() {
-        navigator.geolocation.clearWatch(this.geolocationId);
+        this.haltGeolocation();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (
+            nextProps.geolocationAccuracyThreshold !==
+            this.props.geolocationAccuracyThreshold
+        ) {
+            this.haltGeolocation();
+            this.initGeolocation();
+        }
     }
 
     initZones() {
@@ -61,13 +70,9 @@ export default class MapPanel extends React.Component {
         }
     }
 
-    getCalibratedLatitude(lat) {
-        // return lat - 0.0004;
-        return lat;
-    }
-
-    getCalibratedLongitude(lng) {
-        return lng;
+    haltGeolocation() {
+        navigator.geolocation.clearWatch(this.geolocationId);
+        this.setState({ lat: null, lng: null, acc: null });
     }
 
     getCurrentZone() {
@@ -84,13 +89,15 @@ export default class MapPanel extends React.Component {
             return;
         }
 
-        if (position.coords.accuracy > geolocationAccuracyThreshold) {
+        if (
+            position.coords.accuracy > this.props.geolocationAccuracyThreshold
+        ) {
             return;
         }
 
         this.setLocation(
-            this.getCalibratedLatitude(position.coords.latitude),
-            this.getCalibratedLongitude(position.coords.longitude),
+            position.coords.latitude,
+            position.coords.longitude,
             position.coords.accuracy
         );
     };
