@@ -9,7 +9,7 @@ export const betaConstants = {
     max: 90
 };
 
-export const geolocationAccuracyThreshold = 20; // meters
+export const geolocationAccuracyThreshold = 12; // meters
 
 export const cssOffsetPropertyName = '--offset';
 

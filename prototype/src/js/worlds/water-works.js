@@ -17,7 +17,7 @@ export const zones = [
             'By the 1840s the chaste, neoclassical architecture of the buildings, the landscaped garden, and the promenades up to and around the reservoirs on "Fair Mount," were major attractions.',
         lat: 39.965672730693555,
         lng: -75.18278002738953,
-        bearing: 270,
+        bearing: 224,
         tour: [
             {
                 image: 'AP1.jpg',
@@ -32,7 +32,7 @@ export const zones = [
             'The golden age at Fairmount Water Works covers the period roughly from 1830 to 1850.',
         lat: 39.965905027098046,
         lng: -75.18299728631973,
-        bearing: 270,
+        bearing: 285,
         tour: [
             {
                 image: 'DP1.jpg',
@@ -47,7 +47,7 @@ export const zones = [
             'From 1815 to 1854, Fairmount Water Works was the sole pumping station supplying Philadelphia with water.',
         lat: 39.96665535964932,
         lng: -75.18315017223358,
-        bearing: 270,
+        bearing: 310,
         tour: [
             {
                 image: 'EP1.jpg',
@@ -62,7 +62,7 @@ export const zones = [
             'The development of this remarkable facility was not fully envisioned or planned as an entirety from the beginning.',
         lat: 39.96635728332038,
         lng: -75.18312335014343,
-        bearing: 270,
+        bearing: 332,
         tour: [
             {
                 image: 'FP1.jpg',
@@ -77,7 +77,7 @@ export const zones = [
             'For foreign and native travelers in the nineteenth century making the grand tour of the United States it was unthinkable to be in Philadelphia without visiting the Fairmount Water Works.',
         lat: 39.966745810140395,
         lng: -75.18343716859818,
-        bearing: 270,
+        bearing: 300,
         tour: [
             {
                 image: 'HP1.jpg',
@@ -92,7 +92,7 @@ export const zones = [
             'The Joint Committee on Supplying the City with Water, known as the Watering Committee, was a city agency formed in 1798.',
         lat: 39.96686,
         lng: -75.18396,
-        bearing: 270,
+        bearing: 118,
         tour: [
             {
                 image: 'IP1.jpg',
@@ -107,7 +107,7 @@ export const zones = [
             "In the nineteenth century the small temples of Fairmount Water Works arranged at the water's edge had become a symbol of Philadelphia.",
         lat: 39.96669,
         lng: -75.18356,
-        bearing: 270,
+        bearing: 160,
         tour: [
             {
                 image: 'JP1.jpg',
@@ -122,7 +122,7 @@ export const zones = [
             'The south garden at the waterworks had been built by 1835, and soon the idea of a large urban recreational park caught the fancy of many citizens.',
         lat: 39.96667180520207,
         lng: -75.18341839313507,
-        bearing: 270,
+        bearing: 144,
         tour: [
             {
                 image: 'KP1.jpg',
@@ -137,7 +137,7 @@ export const zones = [
             'In 1911 the city passed an ordinance giving the Fairmount buildings along the river to the mayor for use as a public aquarium.',
         lat: 39.965898859947075,
         lng: -75.18313139677048,
-        bearing: 270,
+        bearing: 327,
         tour: [
             {
                 image: 'LP1.jpg',
@@ -152,7 +152,7 @@ export const zones = [
             'Many persons were instrumental in the creation and the operation of Fairmount Water Works. Most noted among them were Frederick Graff (1774-1847) and his son, Frederic Graff, Jr. (1817-1890).',
         lat: 39.966293556488324,
         lng: -75.18359810113907,
-        bearing: 270,
+        bearing: 95,
         tour: [
             {
                 image: 'NP1.jpg',
@@ -167,7 +167,7 @@ export const zones = [
             'Fairmount Water Works today maintains its graceful presence in the Philadelphia landscape and serves as a picturesque reminder of the past.',
         lat: 39.96697,
         lng: -75.18454,
-        bearing: 270,
+        bearing: 157,
         tour: [
             {
                 image: 'RP1.jpg',
@@ -182,7 +182,7 @@ export const zones = [
             'In 1975 the American Society of Civil Engineers declared Fairmount Waterworks a National Historic Civil Engineering Landmark and on May 11, 1976.',
         lat: 39.96688,
         lng: -75.18458,
-        bearing: 270,
+        bearing: 122,
         tour: [
             {
                 image: 'RC13_amphitheater_view.jpg',
@@ -197,7 +197,7 @@ export const zones = [
             'The Fairmount Dam fishway helps fish pass through the furthest downstream passage of the Delaware River Basin to reach the ocean, allowing direct passage to their spawning areas.',
         lat: 39.9668,
         lng: -75.18462,
-        bearing: 270,
+        bearing: 295,
         tour: [
             {
                 image: 'Fishway.jpg',
