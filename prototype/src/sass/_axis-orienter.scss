@@ -1,0 +1,112 @@
+.axis-orienter {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    position: relative;
+
+    > .heading {
+        flex: none;
+        padding: 2.4rem;
+        font-size: 4.8rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    > .canvas {
+        position: relative;
+        display: flex;
+        flex: auto;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        min-height: 64rem;
+
+        > .arrow {
+            position: absolute;
+            transition: opacity 500ms;
+
+            &.-hide {
+                opacity: 0;
+            }
+
+            > svg {
+                width: 72px;
+                height: 72px;
+                fill: #b81190;
+                animation: pulsate 1s ease-out;
+                animation-iteration-count: infinite;
+                opacity: 0.2;
+            }
+        }
+
+        > .illustration {
+            position: absolute;
+            width: 108px;
+            height: 222px;
+            opacity: 1;
+            transition: opacity 500ms;
+
+            &.-hide {
+                opacity: 0;
+            }
+
+            &.-target {
+                .outer {
+                    fill: none;
+                }
+
+                .inner {
+                    fill: gold;
+                    fill-opacity: 0.3;
+                    stroke: #b81190;
+                    stroke-width: 4px;
+                    stroke-dasharray: 6;
+                }
+
+                &.-on .inner {
+                    fill-opacity: 1;
+                    stroke-width: 0;
+                }
+            }
+
+            &.-device {
+                .outer {
+                    fill: #000;
+                }
+
+                &.-on .outer {
+                    fill: #b81190;
+                }
+            }
+        }
+    }
+
+    &.-alpha > .canvas {
+        > .illustration,
+        > .arrow {
+            transform: translateX(var(--offset));
+        }
+    }
+
+    &.-beta > .canvas {
+        > .illustration,
+        > .arrow {
+            transform: translateY(var(--offset));
+        }
+    }
+}
+
+@keyframes pulsate {
+    0% {
+        transform: scale(0.4, 0.4);
+        opacity: 0;
+    }
+    50% {
+        opacity: .8;
+    }
+    100% {
+        transform: scale(1.2, 1.2);
+        opacity: 0;
+    }
+}

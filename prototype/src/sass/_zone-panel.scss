@@ -1,0 +1,66 @@
+.zone-panel {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    justify-content: flex-end;
+    background-color: #efefef;
+
+    > .device-orienter {
+        flex: auto;
+        margin-bottom: 8rem;
+
+        &.-enter {
+            opacity: 0.01;
+        }
+
+        &.-enter-active {
+            opacity: 1;
+            transition: opacity 300ms ease-in;
+        }
+
+        &.-exit {
+            opacity: 1;
+        }
+
+        &.-exit-active {
+            opacity: 0.01;
+        }
+    }
+
+    > .zone-tour {
+        flex: auto;
+
+        &.-enter {
+            opacity: 0.01;
+        }
+
+        &.-enter-active {
+            opacity: 1;
+            transition: opacity 300ms ease-in;
+        }
+
+        &.-exit {
+            opacity: 1;
+        }
+
+        &.-exit-active {
+            opacity: 0.01;
+        }
+    }
+
+    > .heading {
+        flex: none;
+        margin: 4rem 4rem 1.6rem;
+        font-size: 5.6rem;
+        font-weight: 700;
+        text-align: left;
+    }
+
+    > .desc {
+        flex: none;
+        margin: 1.6rem 4rem 2.4rem;
+        font-size: 4rem;
+        font-weight: 400;
+        text-align: left;
+    }
+}

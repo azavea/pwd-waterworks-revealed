@@ -1,0 +1,39 @@
+{
+    "name": "prototype",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+        "@turf/boolean-within": "^5.1.5",
+        "@turf/buffer": "^5.1.5",
+        "@turf/circle": "^5.1.5",
+        "@turf/helpers": "^6.0.0-beta.3",
+        "classnames": "^2.2.5",
+        "jquery": "^3.2.1",
+        "leaflet": "^1.3.1",
+        "leaflet-path-drag": "^1.1.0",
+        "prop-types": "^15.6.0",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
+        "react-leaflet": "^1.8.0",
+        "react-transition-group": "^2.2.1"
+    },
+    "scripts": {
+        "start-local": "parcel src/index.html",
+        "start": "parcel src/index.html --https --no-hmr"
+    },
+    "devDependencies": {
+        "babel-eslint": "^8.2.1",
+        "babel-plugin-transform-class-properties": "6.24.1",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-react": "^6.24.1",
+        "babel-preset-stage-2": "^6.24.1",
+        "eslint": "^4.15.0",
+        "eslint-config-prettier": "^2.9.0",
+        "eslint-plugin-prettier": "^2.5.0",
+        "node-sass": "^4.7.2",
+        "parcel-bundler": "^1.4.1",
+        "prettier": "^1.10.2",
+        "svg-to-react-cli": "^1.5.0"
+    }
+}

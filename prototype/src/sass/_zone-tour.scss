@@ -1,0 +1,21 @@
+.zone-tour {
+    > .tour-figure {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: stretch;
+        justify-content: flex-start;
+        margin: 0;
+
+        > .image {
+            width: 100%;
+            height: auto;
+        }
+
+        > .caption {
+            margin: 4rem;
+            font-size: 4rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+    }
+}
