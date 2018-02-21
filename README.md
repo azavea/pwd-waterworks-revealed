@@ -3,28 +3,49 @@ pwd-waterworks-revealed
 
 Prototype app to guide users on "quests" which reveal interesting things about the Fairmount Water Works (and perhaps ultimately other sites in Philly).
 
-## Developer Setup
+This application is built using PhoneGap/Cordova which enables developers to build native Android & iOS applications using HTML/CSS/JS.
 
-This application is build using PhoneGap/Cordova which allows for a native application on Android and iOS to be build using HTML/CSS/JS. Here's how to set everything up to use it for Water Works Revealed.
+### Requirements
 
-#### Clone the repo
+* Node 0.10.48
+* Python (for serving static assets)
+
+### Getting Started
+
+* Clone the repository, then use [nvm](https://github.com/creationix/nvm) to set your current active Node version to 0.10.48.
+
+* Install `grunt-cli` globally:
+
 ```shell
-git clone git@github.com:azavea/pwd-waterworks-revealed
+npm install -g grunt-cli
+
 ```
 
-#### Set up grunt
+* Install the project's Node modules:
+
 ```shell
-npm install -g grunt-cli phonegap
 npm install
-grunt
 ```
-You may need to run the first install command as a super user (sudo). On OS X, you might also need to ensure you're using Node version 0.10.4x and its version of `npm` for `npm install` to work correctly.
 
-#### Try a build cycle
-Modify `src/index.html`, and then build:
+* Build PhoneGap assets with `grunt`:
+
 ```shell
 grunt
 ```
+
+After making changes to the app, you should re-run `grunt` to produce a new build.
+
+
+#### Development
+
+To serve the application for local development, first build the assets using `grunt`, then
+
+```shell
+cd www
+python -m SimpleHTTPServer 8000
+```
+
+This will serve the app on port `8000`.
 
 #### Local Testing
 The application is designed and intended to by run on a touch device. You can run the built site in a standard browser (Firefox and Chrome have been tested thoroughly) with the caveat that you must be running in mobile emulation mode (supported in the aforementioned browsers' developer tools) to ensure touch events are properly triggered.
